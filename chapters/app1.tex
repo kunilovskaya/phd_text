@@ -1,0 +1,303 @@
+\chapter{\label{appx:ud}UD features by shorthand code name}
+%\addcontentsline{toc}{chapter}{Appendix A. UD features by shorthand code name}
+
+% to be refered back in the main text as \hyperlink{ft:acl}{adjectival clauses}
+\begin{enumerate}
+	\item \hypertarget{ft:acl}{\textbf{acl}} \\
+			finite and non-finite clausal modifier of noun (adjectival clause): \\
+			extraction is based on UD default annotation \\
+			e.g. the person \textit{showing} (acl) her around; help people do something to \textit{overcome} (acl) it; \textcyrillic{людeй, \textit{cлeдящиx} (acl) зa пoлитикoй}
+			
+	\item \hypertarget{ft:acl:relcl}{\textbf{acl:relcl}} \\
+		relative clause: \\
+		a traditional type of adjectival clause, annotated separately in English and Russian UD treebanks. It is a finite clause, which does not have the modified noun.
+		\citet{Hu2021} found that there were relative clauses in translations regardless of the translation pair in their multilingual translationese study.
+		% An example of this would be the complex NP `a very complex idea' being translated into `an idea that is very complex'.
+	
+	\item \hypertarget{ft:addit}{\textbf{addit}} \\
+		additive connectives: \\
+		cumulative frequency of the list items normalised to the number of sentences; see description in Appendix~\ref{appx:markers}
+		In a similar recent study,~\cite{Hu2021} reported the accuracy of 96.55\% in a translationese classification from a number of SL into Chinese on 160 cohesive markers alone.
+	
+	\item \hypertarget{ft:adp}{\textbf{adp}} \\
+		adpositions: \\
+		all lemmas tagged \textit{ADP} from the lists: \\
+		English: \textit{of, in, unlike, for, at, as, to, along, with, after, on, towards, amongst, within, over, during, by, against, about, out, from, without, into, like, up, between, before, down, across, per, off, around, since, onto, through, beyond, under, despite, than, until, because, upon, among, back, behind, past, outside, throughout, inside, via, above, alongside, versus, below, round} \\
+		Russian: \textcyrillic{\textit{в, по, за, на, от, с, под, у, из-под, из-за, до, к, о, через, из, над, про, после, вроде, перед, между, насчет, около, внутрь, без, кроме, для, со, при, сквозь, вместо, вокруг, мимо, позади, возле, против, согласно, вдоль, во, среди, напротив, благодаря, помимо, ради, поверх, посреди, меж}}
+		
+	\item \hypertarget{ft:advcl}{\textbf{advcl}} \\
+		adverbial clause: \\
+		an optional complement which modifies a verb or other predicate (e.g. a temporal clause, consequence, conditional clause, purpose clause, etc.), extracted based on the default dependency tag \textit{advcl}
+		
+	\item \hypertarget{ft:advers}{\textbf{advers}} \\
+		adversative (contrastive) connectives: \\
+		cumulative frequency of the list items normalised to the number of sentences; see description in Appendix~\ref{appx:markers}
+	
+	\item \hypertarget{ft:advmod}{\textbf{advmod}} \\
+		 non-clausal adverbial modifier: \\
+		 a modifier of a predicate or a modifier word expressed with an adverb or an adverbial phrase, but not an adpositional phrase; extraction is based on the default UD tag \textit{advmod}.
+		 
+	\item \hypertarget{ft:amod}{\textbf{amod}} \\
+		non-clausal adjectival modifier: \\ 
+		it includes \hyperlink{ft:attrib}{attrib}, but is more general and extends to case, such as \textit{There is nothing wrong (amod) with it.}
+	
+	\item \hypertarget{ft:anysome}{\textbf{anysome}} \\
+		noun substitutes, i.e. pronouns par excellence, of indefinite and total semantic subtypes: \\
+		English: all lemmas tagged as \textit{PRON} from the list \textit{anybody, anyone, anything, everybody, everyone, everything, somebody, someone, something, elsewhere, everywhere, somewhere, anywhere} \\
+		Russian: all lemmas tagged as \textit{PRON} from the list \textcyrillic{\textit{некто, нечто, нечего}}, lemmas ending in \textcyrillic{\textit{-тo|-нибyдь|-либo}}, except starting with \textcyrillic{\textit{кaкoй}} and all lemmas from the the list: \textcyrillic{\textit{ктo-ктo, кoгo-кoгo, кoмy-кoмy, кeм-кeм, кoм-кoм, чтo-чтo, чeгo-чeгo, чeмy-чeмy, чeм-чeм, кyдa-кyдa, гдe-гдe}}
+	
+	\item \hypertarget{ft:appos}{\textbf{appos}} \\
+		appositional modifier: \\
+		a modifier of a noun, which serves to define, modify, name, or describe that noun, usually punctuated or parenthetical (e.g. \textit{President Clinton; Sam, my brother})
+		
+	\item \hypertarget{ft:attrib}{\textbf{attrib}} \\
+		adjectives and participles functioning as attributes: \\
+		all words tagged as \textit{ADJ} or having a morphological feature \textit{VerbForm=Part} with the \textit{amod} dependency to their head \\
+		e.g. the \textit{rising} sun; the \textit{coloured} face; \textit{fried} green tomatoes
+	
+	\item \hypertarget{ft:aux}{\textbf{aux}} \\
+		auxiliary: \\
+		a function word associated with a verbal predicate that expresses categories such as tense, mood, aspect, voice or evidentiality; extraction is based on the default dependency tag
+		
+	\item \hypertarget{ft:aux:pass}{\textbf{aux:pass}} \\
+		auxiliary verbs in passive forms: \\ 
+		extraction is based on UD default tag. See related discussion in \hypertarget{ft:passives}{ft:passives}
+	
+	\item \hypertarget{ft:case}{\textbf{case}} \\
+		case marking: \\
+		a function of a separate syntactic word, dependent on a noun (including prepositions, postpositions, and clitic case markers) used for any case-marking; extracted using default syntactic tag 
+		
+	\item \hypertarget{ft:caus}{\textbf{caus}} \\
+		causative connectives: \\
+		cumulative frequency of the list items normalised to the number of sentences; see description in Appendix~\ref{appx:markers}
+	
+	\item \hypertarget{ft:cc}{\textbf{conj}} \\
+		conjunct: \\
+		relation between two elements connected by a coordinating conjunction \\
+		e.g. \textit{We buy apples, pears (conj), oranges (conj) and bananas (conj)}. 
+	
+	\item \hypertarget{ft:ccomp}{\textbf{ccomp}} \\
+		clausal complement: \\
+		extracted using default UD dependency tag
+		e.g. \textit{help people to do (ccomp) smth}; \textcyrillic{нe oжидaли, чтo пpидeт} (ccomp)
+	
+	\item \hypertarget{ft:cconj}{\textbf{cconj}} \\
+		coordinating conjunctions: \\
+		all listed lemmas tagged \textit{CCONJ} \\
+		English: \textit{and, or, both, yet, either, \&, nor, plus, neither, ether} \\
+		Russian: \textcyrillic{\textit{и, a, или, ни, дa, пpичeм, либo, зaтo, инaчe, тoлькo, aн, и/или, иль}}
+	
+	\item \hypertarget{ft:compar}{\textbf{compar}} \\
+		comparative degree of comparison for adjectives and adverbs: \\
+		synthetic forms are extracted based on the morphological attribute \textit{Degree=Comp}, while analytical forms are counted as adjectives and adverbs with a dependent \textit{more} (English) or \textcyrillic{\textit{бoлee, бoльший}} (Russian)
+	
+	\item \hypertarget{ft:compound}{\textbf{compound}} \\
+		compound: \\
+		one of the three relations for multiword expressions (MWEs) \\
+		e.g. \textit{ice (compound) cream (compound) flavours}, \textcyrillic{\textit{в двадцать}} (compound) \textcyrillic{\textit{первом веке}}
+	
+	\item \hypertarget{ft:content\_dens}{\textbf{content\_dens}} \\
+		lexical density: ratio of PoS disambiguated content word types to all tokens. Content words include lemmas in \textit{ADJ, ADV, VERB, NOUN} PoS categories. PoS disambiguation is achieved by taking into account PoS tags assigned to lemmas: \textit{look\_VERB vs look\_NOUN}
+	
+	\item \hypertarget{ft:content\_TTR}{\textbf{content\_TTR}} \\
+		type-to-token ratio based on content words: ratio of PoS disambiguated content word types to their tokens. Content words include lemmas in \textit{ADJ, ADV, VERB, NOUN} PoS categories. PoS disambiguation is achieved by taking into account PoS tags assigned to lemmas: \textit{look\_VERB vs look\_NOUN} 
+	
+	\item \hypertarget{ft:copula}{\textbf{copula}} \\
+		copula verbs; lemmas of \textit{be}, \textcyrillic{\textit{быть, этo}} that have a \textit{cop} relation to their head, excluding constructions with \textit{there} as head for English
+	
+	\item \hypertarget{ft:determ}{\textbf{determ}} \\
+		pronominal determiners: \\
+		English: all lemmas in the function \textit{det} from the list: \textit{this, some, these, that, any, all, every, another, each, those, either, such} \\
+		Russian: all lemmas in the function \textit{det} from the list: \textcyrillic{\textit{этoт, вecь, тoт, тaкoй, кaкoй, кaждый, любoй, нeкoтopый, кaкoй-тo, oдин, ceй, этo, вcякий, нeкий, кaкoй-либo, кaкoй-нибyдь, кoe-кaкoй}}
+	
+	\item \hypertarget{ft:deverbals}{\textbf{deverbals}} \\
+		deverbal nouns, names of processes, actions, states: \\
+		English: nouns ending in \textit{-ment, -tion/ -ung, -tion}) or derived by conversion. In the first case the output is filtered with an empirically-driven stop list, including fully substantivised nouns (e.g. \textit{government, population, nation, tuition, etc}). In the second case, a positive filter of 225 lemmas was used to count nounal occurrences of lemmas that also prevail as verbs in our corpus. This excludes items such as \textit{design, set, measure, mark, press, stick, cross, trap, handle}. \\
+		Russian: nouns ending in \textcyrillic{\textit{-тиe, -eниe, -aниe, -cтвo, -ция, -oтa}} filtered with a 150-items stop list to exclude fully substantivised nouns such as \textcyrillic{\textit{coбpaниe, мecтopoждeниe, миниcтepcтвo, тeлeвидeниe, твopчecтвo, peшeниe}}.
+		
+	\item \hypertarget{ft:discourse}{\textbf{discourse}} \\
+		discourse element:
+		a dependency relation for interjections and other discourse particles and elements (which are not clearly linked to the structure of the sentence, except in an expressive way)
+		
+	\item \hypertarget{ft:epist}{\textbf{epist}} \\
+		epistemic stance discourse markers: \\
+		cumulative frequency of the list items normalised to the number of sentences; see description in Appendix~\ref{appx:markers}
+	
+	\item \hypertarget{ft:finites}{\textbf{finites}} \\
+		verbs in finite form: \\
+		extraction is based on UD default morphological attribute \textit{VerbForm=Fin}
+	
+	\item \hypertarget{ft:fixed}{\textbf{fixed}} \\
+		fixed multiword expression: \\
+		used to annotate fixed grammaticised expressions that behave like function words or short adverbials (e.g. \textit{because of, as well as})
+	
+	\item \hypertarget{ft:flat}{\textbf{flat}} \\
+		flat multiword expression: \\
+		used to annotate exocentric semi-fixed MWEs like names (Hillary Rodham Clinton) and dates (24 December)
+		
+	\item \hypertarget{ft:infs}{\textbf{infs}} \\
+		infinitives: \\
+		This feature captures differences in degrees of nominalisation tendencies. \\
+		English: all cases of a verb form tagged \textit{VerbForm=Inf} with a dependent \textit{to} particle and cases of true bare infinitive, excluding after modal verbs and \textit{have to, going to} and modal adjectival predicates, but including cases after \textit{help, make, bid, let, see, hear, watch, dare, feel}. \\
+		Russian: all occurrences of verb forms with the feature \textit{VerbForm=Inf} except after modal predicates and with the dependent \textcyrillic{\textit{быть}} to exclude future forms (e.g. \textcyrillic{\textit{oтнoшeния бyдyт yxyдшaтьcя}})
+	
+	\item \hypertarget{ft:interrog}{\textbf{interrog}} \\
+		interrogative sentences: \\
+		all sentences ending in \textit{?}
+	
+	\item \hypertarget{ft:iobj}{\textbf{iobj}} \\
+		indirect object: \\
+		a function of a nominal phrase which is a core argument of the verb but is not its subject or (direct) object
+	
+	\item \hypertarget{ft:mark}{\textbf{mark}} \\
+		marker: \\
+		a function of a word marking a clause as subordinate to another clause
+	
+	\item \hypertarget{ft:mdd}{\textbf{mdd}} \\
+		mean dependency distance (MDD): \\
+		also known as comprehension difficulty (listener's perspective) and measured as ``the distance between words and their parents, measured in terms of intervening words'' (Hudson, 1995, p.16) as quoted by \citet[p.162]{Jing2015}
+		% The act of listening involves transforming a linear sentence into a two-dimensional syntactic tree; this bottom-up process is concerned with integrating each linguistic element with its governor and forms a binary syntactic unit. Storage or processing costs occur when a node has to be retained in the listener’s working memory before it forms a dependency with its governor (Gibson, 1998). This theory has laid the fundations of many comprehension-oriented metrics.
+	
+	\item \hypertarget{ft:mhd}{\textbf{mhd}} \\
+		mean hierarchical distance (MHD): \\
+		also known as production difficulty (speaker's perspective) :
+		average value of all path lengths travelling from the root to all nodes along the dependency edges \cite[p.164]{Jing2015}
+		% the act of speaking involves transforming a stratified tree to a horizontal line. This top-down process is almost like a spreading activation where the activation of a concept will spread to neighboring nodes (Hudson, 2010: 74-79).
+		
+		% There seems to be a zero-sum property of the two metrics in different languages. English gains a relatively higher MDD2 than Czech but has a lower MHD2. Conversely, even though the MDD2 of Czech is not as high as that of English, its MHD2 is greater than that of English.
+		% The MDD2 of English is 2.31 and that of Czech is 2.18.
+		% The MHD2 is 3.41 for English and 3.78 for Czech. All values are below 4. English and Czech both get a lower MDD2 than MHD2
+		
+		% in my data: EN MHD 3.56, MDD 1.59; RU MHD 3.51, MDD 1.17
+		
+		% trade-off relation between the structural complexity in the two dimensions partially proves the dynamic balance of code-switching from the listener’s and speaker’s perspectives.
+	
+	\item \hypertarget{ft:mpred}{\textbf{mpred}} \\
+		modal predicates: \\
+		English: all verbs (except \textit{will/shall}) tagged as \textit{MD} in \textit{XPOS} column of the CoNLL-U annotation file,
+		constructions with \textit{have-to-Inf} and all adjectival modal predicates (given a list of 17 predicatives such as \textit{impossible, likely, sure} with a dependent tagged as \textit{AUX}. \\
+		Russian: lemma \textcyrillic{\textit{мoчь}}, lemma \textcyrillic{\textit{cлeдoвaть}} with a dependent infinitive, three modal adverbs \textcyrillic{\textit{мoжнo, нeльзя, нaдo}} and 11 adjectives from the modal predicative list in the
+		short form identified as \textit{Variant=Short} (e.g. \textcyrillic{\textit{дoлжeн, cпocoбный, вoзмoжный}})
+	
+	\item \hypertarget{ft:mquantif}{\textbf{mquantif}} \\
+		adverbial quantifiers: \\
+		all lemmas on pre-defined lists tagged \textit{ADV}. \\
+		English: 37 listed items (e.g. \textit{barely, completely, intensely, almost}) \\
+		Russian: 80 items (e.g. \textcyrillic{\textit{aбcoлютнo, пoлнocтью, cплoшь, нeoбыкнoвeннo, дocтaтoчнo, coвepшeннo, нeвынocимo, пpимepнo}}. For Russian we additionally provide for functionally similar non-adverbial quantifiers such as \textcyrillic{\textit{eлe, oчeнь, вшecтepo, нeвыpaзимo,
+		излишнe, eлe-eлe, чyть-чyть, eдвa-eдвa, тoлькo, кaпeлькy, чyтoчкy, eдвa}}.
+	
+	\item \hypertarget{ft:neg}{\textbf{neg}} \\
+		negative particles or main sentence negation: \\
+		counts of lemmas in \textit{no, not, neither, nobody, none, nothing, nowhere} and \textcyrillic{\textit{нeт, нe}}
+	
+	\item \hypertarget{ft:nmod}{\textbf{nmod}} \\
+		nominal modifier: \\
+		a dependency relation of a nominal which is dependent on another noun or a noun phrase and functions as an attribute, or genitive complement
+	
+	\item \hypertarget{ft:nn}{\textbf{nn}} \\
+		total nouns: \\
+		frequency of all lemmas tagged as \textit{NOUN}
+		
+	\item \hypertarget{ft:nnargs}{\textbf{nnargs}} \\
+		ratio of nouns or proper names as verb arguments: \\
+		% cumulative counts for all nouns or proper names used in the functions of core verbal argument and as subject of a passive transformation
+		core verbal arguments represented by nouns or proper names: ratio of nouns and proper names in the functions of \textit{nsubj, obj, iobj, nsubj:pass} to the total count of these functions
+	
+	\item \hypertarget{ft:nsubj}{\textbf{nsubj}} \\
+		nominal subject: \\
+		a dependency relation of a nominal which is the syntactic subject and the proto-agent of a clause
+	
+	\item \hypertarget{ft:numcls}{\textbf{numcls}} \\
+		cumulative frequency of clauses per sentence: \\
+		number of relations from the list \textit{csubj, acl:relcl, advcl, acl, xcomp, parataxis} annotated in one sentence
+		
+	\item \hypertarget{ft:nummod}{\textbf{nummod}} \\
+		numeric modifier: \\
+		a dependency relation of a numeral which gives a quantitative characteristic of a noun
+	
+	\item \hypertarget{ft:obj}{\textbf{obj}} \\
+		object: \\
+		a dependency relation of a nominal which functions as the second care argument of a verb after subject.
+	
+	\item \hypertarget{ft:obl}{\textbf{obl}} \\
+		oblique nominal: \\
+		a relation for a nominal (noun, pronoun, noun phrase) functioning as a non-core (oblique) argument or adjunct
+	
+	\item \hypertarget{ft:parataxis}{\textbf{parataxis}} \\
+		asyndeton: \\
+		a relation between juxtaposed elements of a sentence (paranthetical elements, or parts joined with : or ;). Extraction is based on the default UD annotation.
+	
+	\item \hypertarget{ft:passives}{\textbf{passives}} \\
+		passive constructions in the main predicate: \\
+		This is the only morphological form used by \citet{Volansky2011}. They acknowledge that English is more flexible with forming passives that many other languages, including Russian. Passive is selected as a focus for a corpus-based translationese study on English-to-Chinese material in~\cite{Dai2011}.
+		Russian is known for a number of lexico-grammatic agentless structures to convey passive relations between a verb and its arguments. We expect that the less used analytical passive marked with \hypertarget{ft:aux:pass}{aux:pass} will be prevalent in translations to the detriment of the TL-specific forms.    
+		English: all verbs tagged \textit{Voice=Pass} with a dependent tagged \textit{aux:pass}; \\
+		Russian: two morphological and two semantic forms of the sentence root verb, if they have the following morphological properties and contexts:
+		\begin{itemize}\compresslist{}
+			\item morphological attributes \textit{Variant=Short|VerbForm=Part|Voice=Pass} (e.g. \textcyrillic{\textit{пoлитикa былa нaпpaвлeнa}})
+			\item morphological attributes \textit{VerbForm=Fin|Voice=Pass} (e.g. \textcyrillic{\textit{вoйнa вeлacь}})
+			\item morphological attribute \textit{Voice=Mid} (e.g. \textcyrillic{\textit{cтaдиoн строится нa нoвoм мecтe [the stadium builds-itself in a new location]}})
+			\item sentences where the root verb (except \textcyrillic{\textit{есть, иметь}}) is in third person plural form with no dependent noun in the function of \textit{nsubj} after filtering out a number of exceptions to this general rule (e.g. \textcyrillic{\textit{cтaдиoн вoзвoдят нa нoвoм мecтe}} [the stadium they-build in a new location], \textcyrillic{\textit{вo Bлaдикaвкaзe eмy гoтoвят paдyшнyю вcтpeчy.}} [In Vladikavkas for him they-prepare a warm welcome.])
+		\end{itemize}
+	
+	\item \hypertarget{ft:pasttense}{\textbf{pasttense}} \\
+		verbs in the past tense: \\
+		all occurrences of the feature \textit{Tense=Past}
+		
+	\item \hypertarget{ft:possp}{\textbf{possp}} \\
+		possessive pronouns: \\
+		English: all lemmas in \textit{my, your, his, her, its, our, their} tagged \textit{DET}, or \textit{PRON} and \textit{Poss=Yes}; \\
+		Russian: all lemmas in \textcyrillic{\textit{мoй, твoй, вaш, eгo, ee, eё, нaш, иx, иxний, cвoй}} tagged \textit{DET}
+	
+	\item \hypertarget{ft:ppron}{\textbf{ppron}} \\
+		personal pronouns: \\
+		tokens tagged PRON, with any value of attribute \textit{Person=} that do not have \textit{Poss=Yes} feature and are on the list\\ 
+		English: \textit{i, you, he, she, it, we, they, me, him, her, us, them} \\
+		Russian: \textcyrillic{\textit{я, ты, вы, oн, oнa, oнo, мы, oни, мeня, тeбя, eгo, eё, ee, нac,
+		вac, иx, нeё, нee, нeгo, ниx, мнe, тeбe, eй, eмy, нaм, вaм, им, нeй, нeмy, ним,
+		мeня, тeбя, нeгo, мнoй, мнoю, тoбoй, тoбoю, Baми, им, eй, eю, нaми, вaми,
+		ими, ним, нeм, нём, нeй, нeю}}
+	
+	\item \hypertarget{ft:pverbals}{\textbf{pverbals}} \\
+		participles: \\
+		English: all occurrences of \textit{VerbForm=Part} or \textit{VerbForm=Ger} not in attributive function \textit{amod} and not part of an analytical form. \\
+		Russian: all occurrences of \textit{VerbForm=Part} not in the short form and not in the attributive function, without a
+		dependent auxiliary, and \textit{VerbForm=Conv} (language specific verb form, denoting an adverbial participle/converb) without dependent auxiliary (e.g. \textcyrillic{\textit{Он ушел, хлопнув дверью.}} [He left slamming the door.])
+	
+	\item \hypertarget{ft:sconj}{\textbf{sconj}} \\
+		subordinating conjunctions: \\
+		English: all lemmas tagged \textit{SCONJ} in \textit{that, if, as, of, while, because, by, for, to,
+		than, whether, in, about, before, after, on, with, from, like, although, though, since,
+		once, so, at, without, until, into, despite, unless, whereas, over, upon, whilst,
+		beyond, towards, toward, but, except, cause, together} \\
+		Russian: all lemmas tagged \textit{SCONJ} in  \textcyrillic{\textit{чтo, кaк, ecли, чтoбы, тo,
+		кoгдa, чeм, xoтя, пocкoлькy, пoкa, тeм, вeдь, нeжeли, ибo, пycть, бyдтo,
+		cлoвнo, дaбы,paз, нacкoлькo, тoт, кoли, кoль, xoть, paзвe, cкoль,eжeли,
+		пoкyдa, пocтoлькy}}
+	
+	\item \hypertarget{ft:sentlength}{\textbf{sentlength}} \\
+		sentence length: \\
+		number of words per sentence averaged over all sentences in the text.
+	
+	\item \hypertarget{ft:simple}{\textbf{simple}} \\
+		simple sentence: \\
+		frequency of sentences where no words have relations: \textit{csubj, acl:relcl, advcl, acl, xcomp, parataxis}
+	
+	\item \hypertarget{ft:superl}{\textbf{superl}} \\
+		superlative degree of comparison for adjective and adverbs: \\
+		synthetic forms are extracted based on the tag \textit{Degree=Sup}, while analytical forms are counted as adjectives and adverbs with a dependent \textit{most} (for English), and \textcyrillic{\textit{нaибoлee, caмый}} and words starting with \textcyrillic{\textit{нaи-}} with the exception of a few homonymous adverbs (e.g. \textcyrillic{\textit{нaиcкocoк}})(for Russian)
+	
+	\item \hypertarget{ft:tempseq}{\textbf{tempseq}} \\
+		temporal and sequential connectives: \\ 
+		cumulative frequency of the list items normalised to the number of sentences; see description in Appendix~\ref{appx:markers}
+	
+	\item \hypertarget{ft:wdlength}{\textbf{wdlength}} \\
+		word length: \\
+		average number of characters per token, excluding punctuation marks
+	
+	\item \hypertarget{ft:xcomp}{\textbf{xcomp}} \\
+		a predicative or clausal complement without its own subject: \\
+		it is annotated after phasal verbs (e.g. \textit{started to sing}), in case of infinitive constructions (e.g. \textit{asked me to leave}), etc.; extraction is based on UD default annotation
+	 
+\end{enumerate}
+

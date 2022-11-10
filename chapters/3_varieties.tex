@@ -1,0 +1,348 @@
+\chapter{\label{cha:varieties}Human Translation Varieties}
+In essence, this chapter presents the textual data used in the experiments and previous work related to the study of professionalism in translation.  
+This research relies on a hoist of resources, most importantly two self-compiled comparable parallel subcorpora containing student and professional translations of mass-media texts, which we refer to as \textit{human translation varieties}. 
+
+Section~\ref{sec:competence} discusses previous work related to:
+\begin{itemize}\compresslist{}
+	\item building and exploiting \gls{LTC};
+	\item defining professional levels and
+	\item building comparable corpora of non-translations in translationese studies.
+\end{itemize}
+
+Section~\ref{sec:data} gives details on the research corpus in this project and presents other language resources used to generate the features.
+
+\section{\label{sec:competence}Competence Levels}
+
+Research into (human) translation quality requires annotation. Lack of manually annotated data is an acknowledged bottleneck for computational approaches in many research areas. Researchers are faced with a choice of either using existing resources, setting up an annotation experiment, or finding other natural sources of suitable labels for documents. 
+
+In the area of human translation quality estimation, professional and student translations, i.e. texts labelled according to the known professional status of translators, can be used as an approximation of quality labels. Note that some researchers prefer to speak of expertise levels rather than quality in this case. 
+
+Alternatively, researchers resort to human quality judgments passed in real-life situations where translations are routinely assessed or annotated. One obvious type of activity which generates human translation quality judgments is translator education. 
+
+An example of re-purposing the outputs of education process for research is presented in~\citet{Wisniewski2014}. They produced a corpus of error-annotated machine translations from students' exercises done as part of their professional translator training. Students on translation programmes are routinely asked to analyse translation errors and to suggest edits for identified faults. The authors describe a way to convert the outputs of this practice into a reliable machine-readable corpus, containing almost five thousand source sentences aligned with their machine translations and post-edited versions as well as error annotations according to a simple 6-category error classification and semi-structured qualitative analysis.
+
+Another potential source of quality-annotated translations is the assessment procedures adopted within many translation degree programmes. Thus, collections of student translations are not only a source of documents with the known ontological status (usually compared to professional or MT translations as other members of the opposition). They often come with error annotation or metadata from other forms of assessment that can be used to generate fine-grained human translation quality labels and scores.
+
+\subsection{\label{ssec:ltc}Learner Translator Corpora}
+
+The advent of available corpus building technology enabled the researchers to convert error-annotated and graded student translations into research corpora and gave rise to a number of corpus-building initiatives.
+This paragraph contains a description of typical practices in building learner translator corpora with a focus on error annotation, which is their main feature.
+
+Following the inspiring example of \textit{MeLLANGE}~\cite{Castagnoli2011b}\wlvfootnote{\url{corpus.leeds.ac.uk/mellange/about\_mellange.html}}, there appeared half a dozen of learner translator corpora projects \cite{Wurm2013, Lapshinova2013, Stepankova2014, Espunya2014, Kutuzov2014rltc,Fictumova2017}, many of which included error annotation. More recent additions to this family of corpora are described in \citet{Granger2018,Alfuraih2019}. The former presents \textit{MUST} project and deserves a special mention for being a large-scale multilingual inter-university project, led by the Louvain Centre for English Corpus Linguistics with an extended expertise in corpus-based learner language research. In their annotation scheme, dubbed `translation-oriented annotation', they lay special emphasis on the description of translator solutions: they have \textit{Translation procedures} along with the traditional categories that reflect \textit{ST-TT transfer} and \textit{Language} categories. 
+
+Most of learner translator corpus projects rely on the outputs of translation-teaching frameworks as their
+source of error annotation. The choice of error taxonomy underlying a learner translator corpus or an annotation project covering student translations is governed by studies and observations from translator education, teaching procedures in place and criteria for \gls{TQA}. 
+
+One of the early and comprehensive overviews of human translation assessment methods in educational contexts is offered by~\citet{Secara2005}. That work also contained a description of \textit{MeLLANGE} error typology, which was used in subsequent learner translator projects~\cite{Stepankova2014,Fictumova2017,Verplaetse2019}.
+
+Typically, error classifications designed for annotating student translations include two broad, theoretically-justified categories based on Toury's principles of adequacy and acceptability~\cite{Toury1995}: 
+
+\begin{itemize}\compresslist{}
+	\item content errors, i.e. ``those which misrepresent the meaning (or style) of the source''~\cite[p.39]{Chesterman2010}, and reflect the relations between source and target texts (adequacy/accuracy aspect of quality). The subcategories of content errors sometimes include pragmatic sub-types, dealing
+	with functional and communicative aspects of texts. For example, in \textit{UPF Learner Translation Corpus}, this error category covers solutions that ``compromise content, quality of linguistic and cultural expression and suitability for the purposes of the translation''~\cite[p.36]{Espunya2014}.
+	\item language errors that reflect readability (fluency) and linguistic `well-formedness' of the translated text; these errors can be revealed through comparison with non-translations in the TL.
+\end{itemize}
+
+Learner translator corpora can be multi-parallel, i.e. they include a number of translations of the same ST by many students. Besides, it is typical to maintain some register balance in these resources. For example, \textit{VARTRA} includes student translations of texts in seven registers: political essays, fiction, manuals, popular-scientific articles, letters to share-holders, political essays and touristic leaflets~\cite{Lapshinova2013}.
+It is not uncommon for \gls{LTC} to store extensive metadata about students' gender, \gls{L1}, level of the second language, level of education, situation of translation, etc~\cite[see, for example,]{Bowker2003}. As it will be shown in Section~\ref{ssec:subsets} these parameters can be used to extract a more homogeneous sample of translations for experiments.
+
+However, the exploitation of these translation-error-annotated corpora remains tricky: there are few publications that shows how the information retrieved from error annotation is applied in education process (the major intended use) or for any other purpose that goes beyond individual case studies and error tag statistics, typically released with the corpus.
+
+In some projects, annotated translations are made available to students as a form of feedback, error statistics are used for tracking and analysing students’ individual progress, and corpus data is used for generating exercises and tests~\cite{Kutuzov2014rltc,Fictumova2017}.
+
+\citet{Wurm2020} used several hundreds of annotated translations to test two assumptions on translation competence acquisition. She compared error statistics for groups of translator trainees with different backgrounds and grades to see whether trainees' profiles correlated with the translation quality. She also measured effects of intensive training on some aspects of students' performance, including quality and speed of translation.
+
+\citet{Kubler2018} described a teaching framework for specialised translation training, which was centred on using comparable specialised corpora in the translation process and included a learner component used to evaluate the outputs. The authors reported error analysis results for learner translations produced in different scenarios (with and without specialised corpora). They found clear evidence in favour of corpus use during translation production. The number of errors when using a corpus was lower for many error types. In particular, cases of \textit{terms translated by a non-term, incorrect collocation, incorrect choice and preposition errors} went down. The paper suggested that error analysis could be informative with regard to SL units and language features that were particularly problematic for students. One example given by the authors linked many cases of ``distortion'' errors to the erroneous analysis of complex noun phrases (NPs). However, this direction of research was not developed: the authors focused on presenting corpus-based activities designed to address the most salient error types such as incorrect collocation. 
+
+% error-tagged corpora problems
+% While the data is not annotated for a specific research project it is difficult to guard against some confounding factors
+There are several limitations for using error-tagged outputs of education process in a research project.
+Even if error annotation is implemented to produce the machine-readable output (which is not always the case), human errors are much more varied than those in MT and defy broad generalisations, especially given that the amount of annotated data is sometimes limited to just a few texts of one type (i.e. \textit{MeLLANGE} project annotated 232 student translations across four different text types and several language pairs).
+
+Then, there are always issues with the reliability and validity of the annotations produced outside properly controlled research experiment settings. In educational contexts, it is not uncommon that annotation is performed by just one teacher. 
+
+Another limitation of a typical error annotation setup is annotation on the translation side of the parallel corpus only. This makes it difficult to identify the source language item or phenomenon that triggered the error. Arguably, identifying the factors that increase the error rate in translations, including the error-prone source text items, is one of the main purposes of error analysis.
+
+One of the objectives in this thesis is to establish which assessment approach is best aligned with linguistic properties of translations by investigating the correlation between various quality labels and scores from a typical learner translator corpus and a given document representation. We contend that this is one way to validate human quality judgments generated in real-life contexts.
+% as labels in a machine learning setting. 
+Additionally, Section~\ref{sec:mygold} reports the results of three inter-annotator reliability studies that demonstrate the level of agreement between humans in translation assessment task in various annotation setups. % and correlation between estimates made for the same instances using different asssessment techniques
+
+\subsection{\label{ssec:pro}Professionalism and Quality}
+% ontological labels
+Student and professional translations can be viewed as forming a continuous scale reflecting competence and expertise levels. These ontological categories offer objective labels for machine learning experiments, provided that the criteria of professionalism are clearly defined and other important parameters of the communicative situation with translation, such as register and mode, are controlled for as much as possible. 
+
+Ideally, students and professional translations should come from the same source texts like in \textit{VARTRA}~\cite{Lapshinova2013} or in a study by~\citet{Carl2010} who used translations from 12 professionals and 12 students for two short texts specifically obtained for the their study. However, in many cases researches rely on register-comparable collections of human translations obtained from different groups of subjects. \citet{Popovic2020} used comparable ST for language pairs where the same ST for translators from different groups was unavailable. To minimise the effects of this setup, she suggested \textit{relative difference} between ST and TT as values for their features (sentence length, word length, morphosyntactic variety, lexical variety and lexical density). The results confirmed that there were learnable differences between translations produced at the different levels of expertise.
+
+% what is a student or a professional translation?
+\paragraph{Defining the categories} There are some acknowledged problems with delineating the two types of translators. Admittedly, students can vary in terms of how much translation practice they have been through. \citet{Tirkkonen1990} compares the output of students in their first and fifth years of professional degree. The students can vary with respect of their mother tongue and mastery of the other language. Obviously, it is best to have a homogeneous group of students with regard to the socio-demographic factors relevant in translation. 
+In a study by \citet{Daems2017}, student translation were obtained from MA students of translation who had passed their final English Translation examination but had no professional experience beyond their studies. 
+%The selection criteria for student translations used in this project appear in Section~\ref{ssec:subsets}.
+The group of professional translators in~\citet{Daems2017} included people with a minimum of 5 years of full-time employment.
+The information about the years of experience can be unavailable when translations are obtained from real-world environments rather that within a specifically designed experimental setup involving specific compensated subjects\wlvfootnote{Interestingly,~\citet{Daems2017} acknowledged that professional translational behaviour can be affected by the experimental setup when translators do not perform routine tasks. This is another supporting argument in favour of using real-life translations.}. In this case it is typical to assume that translations run by well-established reputable publishers were produced by experts doing their paid professional job~\cite[see][for example]{Redelinghuys2015}. Additionally, published professional translations usually carry translators' names and/or are endorsed by the editorial board. This is the approach taken in this thesis.
+
+% how do students differ from professionals? 
+\paragraph{Process- and product-oriented approaches to professional varieties} The studies that involve comparison of professional and student translations can be focused on either process-related or product-related aspects of translation. Translation quality focus can be viewed as a subtype of product-oriented studies.
+
+% process: time, translation strategies, use of external resources
+Previous research focused on \textit{procedural aspects} established differences between students and professionals in the overall time spent on translation and in the use of external resources such as dictionaries and reference materials as well as in the frequency and types of problem-solving activities. Professionals were usually faster and made less use of dictionaries. They had a tendency to translate at the higher linguistic levels than students and took into account coherence and register~\cite{Tirkkonen1990}.  
+
+A study of professional varieties by~\citet{Carl2010} combined process- and product-based approaches, with the latter being focused on quality. The authors were interested in the procedural differences between students and professionals. They employed eye-tracking and keystroke logging to look into the length of translation process phases (skimming, drafting and post-editing). They found that students spend more time familiarising themselves with the source text at the skimming stage and less time editing their translations than professionals. They also compared the quality of translations produced by students and professionals. For that they had all translations blindly evaluated by a native speaker of the TL for accuracy and fluency using a 5-point scale for scoring. The finding that is particularly relevant to this research is that ``students and professionals differ mainly with respect to produced translation fluency''~\cite{Carl2010}.
+
+In a similar vein, \cite{Daems2017} employed eye-tracking and keystroke logging to explore translation speed, cognitive load, and the use of external resources for students and professional translators. The product comparison was quality-centred and used the results of manual error annotation. The authors observed that ``students perform somewhat worse than professional translators, but the effect was not statistically significant'' (p.258). At the same time, they found that the level of domain specialisation (general texts in their experiment) was negatively correlated with the number of errors. These results are not surprising, given that their experiment was staged to include students who had just completed their programme of professional education and general domain was the most common text type in their training. The study demonstrated that professionalism understood as an ability to produce successful translations and expertise understood as years of professional practice can be distinct from each other as translator's characteristics\wlvfootnote{We do not make this distinction in this dissertation.}.
+
+With regard to quality, early research results, referred to in~\citet{Daems2017}, were not conclusive whether students performed worse than professionals. However, if professionalism in translation could be reliably linked to systemic language patterns (possibly, related to translationese), then professional translations could be used to work around the scarcity and unreliability of the data annotated for translation quality.
+
+\paragraph{Translationese perspective on professionalism} A fruitful type of product-oriented studies of professional varieties is built around the theory of translation universals and the concept of translational language. Some researchers within this strand make an explicit link between translationese-related properties and translation quality.  
+
+\citet{Corpas2008} and~\citet{Ilisei2012} used professional and student translations in medical domain to test the validity of simplification and convergence. They did not focus on the professional status of translators as a factor as such, but made marginal observations on the differences between the two translation varieties. For example, \citet{Corpas2008} noted that simplification hypothesis could not be confirmed for student translations, while some simplification features returned significant results for professional translations.
+
+This approach is developed in two papers by ~\citet{Redelinghuys2015,Redelinghuys2016}. They aimed to establish whether the linguistic makeup of student and professional translations exhibited traces of the trends in expected translational behaviour (explicitation, normalisation, simplification and levelling-out of register differences). The authors hypothesised that experienced translators were more aware of the cognitive constraints of the translation process and had enough skill to counteract them. Professionals were expected to be more familiar with text conventions and translation norms. The results of the study included some evidence in favour of these universals, especially simplification, for all varieties of translations. However, the expected differences between subcorpora representing different levels of professionalism were often statistically insignificant, which was attributed to the small corpus size and its heterogeneous content in terms of SLs, varieties of TL (English) and registers. The overall conclusion substantiated our experimental setup: some of frequency-based features (conjunctive markers, \textit{that} complementiser, standardised type-token ratio, word length, readability index) could potentially be considered indicators of translation expertise.
+
+Only marginal differences between student and professional translations of the same English source texts were established in a number of publications by Lapshinova-Koltunski. Those studies were based on a register-balanced parallel corpus, specifically designed to study professional varieties of translation~\cite{Lapshinova2013}. The authors employed a number of computational techniques and representation approaches to explore the importance of expertise in shaping the properties of translations, including register. 
+For example, \citet{Rubino2016} resorted to supervised machine learning as a research method in an attempt to capture the differences between student and professional translations. They tested usefulness of features inspired by research in \gls{MTQE} in a text categorisation task. The feature set included 13 surface features such as number of upper-cased letters, and over 700 surprisal and distortion features from regular and backward language models. However, their result for the binary professional/student translation classification was barely above 50\% baseline demonstrating that features designed for MT were not helpful for that task. 
+\citet{Lapshinova2017} employed hierarchical cluster analysis to understand which factor in translation -- register or translation method (categorised as student, professional and machine translation) -- correlated with the selected frequency features more. They concluded that register explained variation in translation better. At the same time, in some registers the level of expertise proved to be more prominent than register. 
+\citet{Bizzoni2021} used the same textual data to test information theory approach to document representation. For each translation they calculated perplexity from a neural LM trained on PoS sequences in non-translations. Contrary to expectations, professional translations generated higher perplexity scores, i.e. they were more difficult for the model to predict. They authors explained it by higher register variation in professional translations signalling higher sensitivity to register among professional translators. 
+
+In our own previous research, comparable student and professional translations of mass-media texts were teased apart on a morphosyntactic feature set~\cite{Kunilovskaya2018ud}. A binary classifier for the two varieties achieved F1-score of 72\% on top 10 most useful features. That result was lower than for PoS trigrams as features, but helped to identify patterns that distinguished the two professional categories in English-to-Russian translation, including \textit{nsubj:pass}, \textit{xcomp} and \textit{acl:relcl}, which were also the strongest translationese indicators.
+
+In~\citet{Kunilovskaya2020vars}, the experiments were extended to include English-to-German language pair. That extension required adaptations to the feature set to make the features comparable across the three languages. 
+The results of translationese classifications (translations vs. non-translations) for each professional variety and statistical feature analyses indicated that the amount and types of translationese might be related to the level of expertise. For example, it was established that in both language pairs students produced more translationese related to shining-through. 
+The difference between student and professional translations was machine-learnable: the binary classification on the full feature set returned 70\% accuracy for the German translations, and 74\% accuracy for Russian.
+This work also proposed an approach to capture the amount of translationese as Euclidean distances between the three text categories: aligned source and target texts, and comparable non-translations. In a visual representation, the shape of resulting triangles showed relative importance of shining-through, normalisation and SL/TL-independent translationese. That methodology was subsequently used to explore register as a factor in professional English-to-Russian translation~\cite{Kunilovskaya2021regs}.
+
+% with a link to quality
+\paragraph{Professionalism as quality} A explicit link between professional varieties, translationese and quality was made by~\citet{Sutter2017}. They represented quality as professional competence levels, comparing student and professional translations on two datasets: English-to-French translations of fiction and French-to-Dutch translation of news texts. In both case-studies student translations were defined as translations by first or second year students on profession-oriented MA programmes in two universities produced as part of their course work. All students had TL as their \gls{L1}. Professional translations included published translated novels or translations from an existing parallel corpus.
+Importantly, they treated professional translations as a professional norm, demonstrating (with PCA plots and ANOVA analysis) that while professional translations did not entirely blend with comparable non-translations in the target language, students were usually further from the expected TL norm. The differences observed between professional and student translations were not clear-cut and ``only seven features (out of 30) exhibit a significant difference between students and professionals'' (p.33) in their first case study, for example. The authors contended that acceptability could be measured as distance to the TL convention represented in the linguistic behaviour of the professional translators and professional writers.
+
+In summary, investigations into professionalism in translation is an established research area. The differences between two varieties are revealed on procedural level and in terms of linguistic properties of translations. The latter aspect encompasses direct comparisons of annotated quality between the categories, and comparisons of various translationese trends. The distance between a translation and the expected TL norm manifested in comparable non-translations is sometimes interpreted as an indicator of quality (with an eye on the observed professional standard). Generally, professional translators demonstrated similar though less obvious trends in their linguistic behaviour and were closer to non-translations. Automatic detection of professional varieties is notoriously difficult, especially when they come from the same source text. The results for differences in quality are at best inconclusive, not the least because most studies obtain student translations from advanced students, who are well-familiar with translation theory and have completed some practical translation modules. As shown in~\citet{Popovic2020}, when human translation is produced by a true layman, e.g. a crowd-worker with unknown professional status, the difference between professional varieties is more detectable. Qualitative and quantitative description of professional translation subcorpus is given in Section~\ref{ssec:mypro}.
+
+\subsection{\label{ssec:norm}Expected Target Language Norm}
+The second category in a traditional binary translationese classification is originally-authored text in the TL. \citet{Chesterman2004} used the term \textit{non-translations} to refer to that component of the research corpus. It is also known as a \textit{reference corpus}, along with the other reference collection of source texts sometimes involved in translationese research. According to~\citet{Chesterman2004}, non-translations are used the expected TL norm/standard to evaluate target text family fit (textual fit).
+
+% approaches to comparability
+The concept of comparability of language resources is approached differently in (corpus-based) translation studies, on the one hand, and \gls{NLP}, on the other. 
+
+NLP interprets comparable corpora as texts in the same topical domain. They are harvested on a set of seed terms~\cite{Kilgarriff2011}, and comparability is calculated based on the lexical features, such as vocabulary overlap or bag-of-words representations~\cite{Li2018}. In many NLP tasks, functionally comparable bilingual corpora (such as the reference corpora of non-translations in translationese studies) can be classed as quasi-comparable~\cite[see, for example, ``non-aligned, and non-translated bilingual documents that could either be on the same topic (in-topic) or not (off-topic)'' in ][p.1051]{Fung2004}. 
+
+However, for researchers in corpus linguistics, translation studies and contrastive analysis, the same corpora are ``comparable corpora in a strict sense''~\cite[p.19]{McEnery2007}. 
+In translation studies, functional, communicative and pragmatic adequacy is placed at the top of the hierarchy of translation quality criteria~\cite{Nord2006}. In a general case, translations are expected to retain the source text functional properties and to conform to conventions of the respective text type in the TL. This makes the considerations of cross-linguistic functional comparability of the two reference corpora (source texts and non-translations in the TL) of paramount importance. 
+
+% register as a key factor in translation
+It is well-known that different \textbf{registers/genres trigger different type of translationese}. \citet{Lapshinova2017} demonstrated that register is one of the major factors explaining variation in translation. \citet{Neumann2013} revealed the specificity of German-English translations observed in some registers but not others. \citet{Delaere2015} provided evidence that \textbf{translational norms were register-specific} and some registers could be more tolerant to interference and less prone to normalisation than others.
+The importance of building an adequate reference corpus is also reflected in the fact that some corpora (like \textit{CroCo} and \textit{Europarl-uds}) that are designed for translationese or contrastive research, include untranslated reference texts as their integral part~\cite[see][respectively]{HansenSchirra2012,Karakanta2018}.
+
+This research interprets comparability as a functional and register-related property, similarly to how bilingual comparable corpus is described in~\citet{Kutuzov2016}, or how it is traditionally defined in corpus-based translation studies~\cite{Zanettin1998}. In particular, \citet{Zanettin1998} lists subject domain, author-reader relationship, text origin and constitution, factuality, technicality and intended outcome (i.e. communicative function) among criteria for \textit{comparable} corpus collection. 
+
+% register vs genre
+The functional and situational properties of texts are most immediately captured in the concepts of genre and register. 
+
+According to~\citet{Lee01}, \textit{register} is a text-internal approach to text categorisation. It is based on the assumption that competent speakers align their linguistic choices with the communicative situation and use specific linguistic means to achieve their communicative goals. Operationally, this approach relies on the statistical analysis of the lexicogrammatic features such as subordinating conjunctions, infinitives, discourse markers or demonstrative pronouns. % and requires pre-existing register labels for interpretation. 
+The description of \textit{genres} as text categories is built around extra-linguistic criteria, ranging from domain to the perceived speaker's goal and social roles of the parties involved. Genres are conventionally recognised communicative templates enabled under the appropriate sociocultural circumstances to achieve specific communicative purposes. They provide a more flexible and practical, although be it more subjective, approach to explain the real-life text variety. 
+
+These views are complementary: text categories delineated on extra-linguistic parameters are expected to share linguistic properties. 
+
+Besides, calculating frequencies of tokens (lexis-based categorisation typical for domain-oriented approach), can be as effective in genre classification as more elaborate register features. \citet{Xiao2005} showed that keywords analysis performed on par with Biber's features~\cite{Biber1988} in detecting both similar (everyday conversation vs official speech) and distant genres (spoken genres vs. academic prose). Their analysis demonstrated that the important differences in frequencies had to do with the function words, which formed the top of their keyness statistics results. It was shown that a set of `register features' -- as small as frequencies of nouns and frequencies of pronouns -- could be effectively used to capture four major text categories in the BNC~\cite{Lijffijt2017}. Another important register feature is the distribution of connectives and other cohesive devices. \citet[p.286]{Kunz2017} reported ``considerable variation across registers, language internally. The differences between registers in German were more pronounced than in English''. Note that features useful in register analysis were also among important translationese indicators discussed in Section~\ref{ssec:feats}. 
+There have been numerous attempts to establish a link between genres and their linguistic features, while ignoring domain differences inside genre categories (including~\citet{Lee01} and~\citet{Braslavski2010}). 
+In this thesis, we prefer the term \textit{register} which is more in line with the analysis of linguistic properties of texts, our key research interest.
+
+% building comparable corpora
+The comparability of datasets and resources is usually ensured by collecting texts from similar sources (e.g. the same institutions, websites, or corpora), and by using the same chronological and sociolinguistic sampling frame. 
+Alternatively, researchers can rely on the pre-existing register/genre annotation. However, even if the labels in two given corpora coincide, it does not warrant the data comparability as has been repeatedly shown in the literature~\cite{Sharoff2018, Delaere2015}. % Besides, any reasonably concise genre classification necessarily collapses several text-external properties and provides opaque atomic labels that are unable to account for hybrid (or emerging) text types.
+Sometimes, the description of resources comparability is limited to a phrase such as `the BNC sample was chosen so as to mirror the makeup of the TEC' or `reference corpus made comparable to the parallel data in terms of register'. The assumed comparability of monolingual and cross-lingual resources is typically a point of criticism. For example, in his overview of research on explicitation, \citet{Becher2011} questioned the comparability of materials used in a number of cases. 
+`Applying the same sampling frame'~\cite{McEnery2007} is contingent on the the analyst's recognition of the similarity between circumstances under which the texts were produced: \citet{Zanettin1998} defines comparable corpora as put together on the basis of similarity of content, domain and communicative function as \textit{perceived by a corpus compiler}.
+
+On top of that, pre-defined categories pigeonhole texts in accordance with the accepted convention in a given language community, and does not allow for a more flexible and realistic reflection of the evolving text-type variety or for reliable cross-linguistic comparisons. Simple solutions, which work for the major text categories, fail in the presence of more subtle distinctions. For example, we found that the impressive and reproducible results from~\citet{Lijffijt2017}, where they achieved F1 = 90\% in the classification of four `tried and tested' top-level categories from \gls{BNC} using pairs of simple register features like frequencies of nouns and pronouns, was reduced to only F1 = 71\% on a less balanced six categories subcorpus described in~\citet{Kunilovskaya2019similar}.
+
+Building register-comparable corpora is treated as an important research step in this thesis. To this end, we proposed a solution based on representing texts with functional vectors and comparing texts on these representations. The vectors were produced by a recurrent neural network model trained on the hand-annotated data in English and Russian from the \gls{FTD} project. More details are provided in Section~\ref{ssec:ref}.
+
+\section{\label{sec:data}Data Description}
+This section has a description and quantitative parameters of textual data used in this thesis. 
+To achieve the goal of this research and to test whether translationese indicators can be used to predict translation quality, a corpus needs to be composed of three text types: source texts, target texts and comparable non-translations in the TL. Extraction of lexical features also requires independent language resources to train language models. 
+
+Training and evaluation of quality estimation models is performed on labels derived from the known professional status of translators (students vs. professionals) and on three types of manual quality scores assigned to student translations at sentence and document levels in a number of annotation projects. However, this section discusses the latter only in as much as they define the size of respective subcorpora within student translations. Detailed description of annotation experiments setup and results is provided in Section~\ref{sec:mygold}.
+
+We view document as our main granularity level. Throughout this thesis, \textit{document} refers to a set of contiguous sentences in their true order. The number of sentences in a document varies across the subcorpora, but it is not less than 10.
+
+\subsection{\label{ssec:subsets}RusLTC Subsets}
+The primary component of our research corpus -- various subsets of student translations -- comes from the \textit{Russian Learner Translator Corpus} (RusLTC)~\cite{Kutuzov2014rltc}.
+
+% multi-parallel bidirectional
+\paragraph{RusLTC description} It is a large parallel bidirectional corpus of student translations in the English-Russian language pair. The project was conceptualised in 2012 at the \textit{Translation Studies Department, University of Tyumen}, by translation teachers and translation degree students. The corpus collects outputs of professional translation degree programmes from 14 universities in Russia, however, most translations are by students with the University of Tyumen. It is an ongoing project, and new translations are being added after every semester. We have an effective preprocessing pipeline to integrate new students' submissions into the corpus. The most labour-intensive step in this process is manual correction of automatic sentence-level alignment. The alignment is done with \textit{hunalign} library~\cite{Varga2007} and then manually corrected in \textit{Heartsome TMX Editor}, version 8\wlvfootnote{\url{github.com/heartsome/tmxeditor8}}. Aligned bitexts are stored in \gls{TMX} format, a subtype of \gls{XML}. The source and translation segments are identified by corresponding  attributes. In TMX, they retain the associated metadata, including links to original plain text files, which allows to retrieve the whole text if needed. Originally, TMX format is intended to store translations in several languages (`translation unit variants'). In \textit{RusLTC}, this functionality is used to organise translations by several students.
+
+% languages and size
+Although the corpus is bidirectional, the English-to-Russian direction is much more represented. At the time of writing, RusLTC counts over 450 English source texts and over 4,000 of their Russian translations. The number of translations per source ranges from 1 to more than 60 and averages at 8. In the most typical scenario, students translated an extract of about 400 words. Students who donated their translations to the corpus have Russian as their mother tongue. At the time of translation, they would have been through at least three full years of English training at the university level, their English competence is assessed as B2 level.
+
+% subjects and translation conditions
+Translations are produced as part of routine and exam assignments or as submissions to various translation contests. There are, however, translations from trainees who study translation as a supplementary course or study translation part-time. We also include translations from internship tasks by students majoring in translation and as graduation translation projects by part-time students. These student populations are described in the searchable corpus metadata. 
+All translations are fully anonymised. Additionally, students' informed consent was obtained for including their translations in the corpus. The corpus website details a mechanism to withdraw their work from the corpus at any time.
+
+% metadata
+The key extra-linguistic parameters related to the subjects and the situation of translation, discussed above, are reflected in 10 metadata fields:
+\begin{enumerate}\compresslist{}
+	\item Student's gender
+	\item Educational programme and mode
+	\item Year of study
+	\item Student's affiliation
+	\item Register
+	\item Completion (draft/final)\wlvfootnote{There was a plan to collect drafts and final versions to study revision in human translation, but we failed to systematically acquire this material}
+	\item Grade for translation
+	\item Independence (routine/exam/contest) 
+	\item Conditions (home/classroom)
+	\item Year of production
+\end{enumerate}
+
+Translations were made under different conditions related to the amount of stress and responsibility and time limit. Routine translations are less independent, because the source text would typically be discussed in the classroom before submission. In a general case scenario, no restrictions on use of reference materials or access to the Internet was imposed, and the students did not use any special computer-assisted technology tools. 
+In terms of the translation task, the students were expected to return \textit{a translation of publishable quality}, and the target audience of the translations was said to be more or less equal to the target audience of the source text. We did not include students' output for translation exercises that might be offered at sentence-level or be based on manipulated source texts to facilitate learning or to achieve a translation outcome beyond functional translation (e.g. adaptation, summative translation). 
+
+\textit{RusLTC} includes translations of sources classified into the following eleven registers: academic, informational, essay, interview, tech, fiction, educational, speech, letters, advertisement, review. The distribution of the documents across the registers is heavily skewed towards informational and argumentative texts published by general interest mass media. Around 80\% of the English source documents fall within this category.
+The English source texts for student translations were published in 2001-2016 by well-known English mass-media outlets, newspapers or magazines like \textit{BBC}, \textit{The Guardian}, \textit{The USA Today}, \textit{The New York Times}, \textit{the Economist}, \textit{Popular Mechanics}, \textit{The Independent}.
+
+When receiving the contributions from other universities, we checked whether translations comply with these requirements.
+
+The grades for translation come from the assessment results implemented according to the procedures in each university. These are official judgments about translation quality announced to students and kept in the university records. The corpus converts various assessment scales to a simple 4-point scale, the most typical approach in Russian higher education, where 2 is the lowest mark and 5 is the highest mark. This information is available for over a third of all translations. 
+
+% online interface
+\textit{RusLTC} has an online search interface\wlvfootnote{\url{www.rus-ltc.org}}. The search engine installed on the project website allows building and saving multi-parallel concordances for tokens, lemmas or PoS tags. There are various options for filtering search results by context or by metadata parameters. However, the primary use of the corpus seems to be as textual data for computational studies of student translations.
+
+The corpus is available for download as a single customised TMX file and as an archive of plain text files. The corpus in plain text format has \textit{FileDocument} structure; each document has a header file with respective metadata. Sources, targets and metadata files are linked to each other by filename conventions. For example, \textit{RU\_1\_2\_6.txt} is Russian translation number 6 to an English source text in \textit{EN\_1\_2.txt}. The respective metadata is stored as \textit{RU\_1\_2\_6.head.txt} and \textit{EN\_1\_2.head.txt}.
+
+% error annotation
+Over 750 translations (300,000 words) were annotated for translation errors as part of feedback to students in a practical translation course over a period of six years (2013--2018). Error annotation was mostly done for independent translations carried out in the exam or competition contexts. Technically, the annotation was performed in the \textit{brat} online environment~\cite{Stenetorp2012}\wlvfootnote{\url{brat.nlplab.org}}, which allowed easy annotator collaboration and sharing the annotated texts with the students. Details on error annotation, including error typology, results of inter-rater reliability study and generation of error-based quality scores are reported in Section~\ref{ssec:err}.
+
+\paragraph{Sampling} This thesis relies on various \textit{RusLTC} subsets. Sampling is necessary to ensure homogeneity of textual data in terms of register, translation conditions, translators' professional status and type of quality assessment. Figure~\ref{fig:perspective} puts the four extracted subsets (solid coloured circles) into perspective of all available materials, which helps to explain the rationale behind the selection.
+The size of each circle is proportional to the number of translated texts in each category. The numbers in brackets indicate the number of English source texts, translations and aligned sentences in ST-TT pairs. 
+
+\wlvfig[0.5]{perspective}{Number of (sources, targets, aligned sentences) by type of annotation}
+
+Note that for the purposes of this research we could not rely on the default \textit{RusLTC} multi-parallel TMX, because our feature extraction setup required plain text documents aligned at sentence-level. We found that it was impossible to reliably restore respective source and multiple target texts from TMX as it did not retain the order of sentences in a document. Even though TMX is not designed to retain document structure, it usually does\wlvfootnote{Lack of context is identified as a current problem  in MT training. \citet{Voita2019} observed that in most practical scenarios, the sentence-aligned parallel data did not consist of complete documents undermining the development of context-aware NMT}. However, in our case, standard TMX underwent additional processing needed to put several translations of a segment into one translation unit as alternative translation unit variants, which interfered with the true order of sentences. Besides, there was lack of uniformity in sentence segmentation (sentence tokenisation) for each ST-TT pair amplified by lack of one-to-one correspondence between source and target sentences due to sentence splitting and merging operations. This resulted in loss of some sentences in our multi-parallel TMX as compared to plain text collection.
+
+To guarantee true sentence-level alignment for each ST-TT pair, we had to fall back to pairwise alignment of each document pair, leading to multiplication of source text files with slight differences in the number of sentences. As far as we can tell, this did not have any implications for our experimental setup.
+
+Figure~\ref{fig:perspective} shows that we had four divergent samples, each with its own type of quality label.
+They are comparable as there is some overlap between them, and they come from the same general population, e.g. \textit{Multiple targets}, shown as a grey dashed circle encompassing other subsets. This general pool of student translations was selected according to the following parameters:
+\begin{enumerate}\compresslist{}
+	\item English-to-Russian translation direction;
+	\item produced by full-time students enrolled in specialist (5-year) or BA (4-year) degree programmes during their per-ultimate and final years of study;
+    \item ST is annotated for register as \textit{informational, essay, educational};
+    \item ST has more than 400 running words and at least 10 sentences.
+\end{enumerate}
+
+These criteria, as well as \textit{RusLTC} procedures contribute to the homogeneity of student component of the research corpus. 
+
+The \textit{Random students} translation set (blue circle) is a subset that includes one random translation from all translations available for each of the 334 English sources selected for this project. While the multiple nature of \textit{RusLTC} can be useful for some studies~\cite[see][]{Castagnoli2009}, it is certainly a factor to be considered when producing keyword lists and assessing frequency distributions of lexical items at a subcorpus level. This set was used to represent students (`stu') in comparison with professionals in experiments on professionalism in Section~\ref{ssec:var}. The quantitive parameters are given in Table~\ref{tab:vars}, along the parameters of the professional subcorpus.
+
+The \textit{Error-annotated} subset (green circle) includes independently produced translations that have complete error annotations. It means that translations were produced in an exam or competition setting, and the source text or draft translations were not discussed in the classroom prior to translation. This is a multiple translation parallel subcorpus for 46 English sources and 553 annotated translation, counting over 12 thousand sentence pairs in total. Admittedly, the number of unique English sentences in this subset is a bit over 1,000.
+
+The \textit{Binary labels} subset (light-brown circle), includes \textit{good} and \textit{bad} translations to the same source text. It is a ST-limited version of a larger collection (blue dashed line) that was build using the \textit{grade} attribute. The binary quality labels (\textit{good}/\textit{bad}) are assigned to 1--3 top-ranking translations and to 1--3 bottom translations, respectively.
+
+Finally, the \textit{Direct assessment} subset (dark-brown circle) represents the texts annotated specifically for this thesis in 2020 in a direct assessment setup. More information on this is given in Section~\ref{ssec:da}. Here it would suffice to say that the documents were selected to include other types of quality labels, as shown in Figure~\ref{fig:perspective}.
+
+\subsection{\label{ssec:mypro}Professional Translations}
+
+Professional translations included in this research, were published by established electronic media, such as \textit{BBC Russian service}  (49\%), InoSMI.ru (20\%) and other electronic mass media (\textit{Nezavisimaya Gazeta}, Russian editions of global mass media outlets: \textit{Forbes} and \textit{National Geographic}). These editions publish links to the respective source texts. A considerable portion of the professional subcorpus was harvested automatically by parsing the html code of the respective websites. All translations on these websites have the translator's name and/or are authorised by the editorial board.
+The automatically crawled data was filtered to exclude noisy results.
+Remaining 23\% were sampled from the \gls{RNC} parallel subcorpus of newspaper texts~\cite{Sitchinava2019}. 
+
+\label{pg:stu_pro_made_comparable}
+To make sure that  English sources for student and professional translations are register-comparable, we applied the methodology described in~\citet{Kunilovskaya2019similar}. In brief, this approach consists (i) in vectorising documents with a ML model trained to predict document functionality along 10 dimensions and then (ii) in extracting the most similar documents from given text collections.
+
+We relied on the most successful model from our previous research -- a bidirectional LSTM with an attention layer trained on texts in mixed token-PoS representations suggested by~\citet{Baroni2006} (biLSTMmix). This experimental setup returned better results in the evaluation study predicting the functionality of documents in a corpus with 'known' register composition. 
+% a multi-label task in a deep neural network architecture
+This model was trained in a multi-label task. It used annotations described in detail in~\citet{Sharoff2018} and based on \textit{Functional Text Dimensions} approach (ibid). In that annotation effort, linguistics students assigned texts a score on a 4-point Likert scale that reflected the proximity of a text to the suggested functional prototype (argumentative, evaluative, informational, fiction, instruction, news, personal, promotional, technical-scientific, legal). The annotations were produced for English and Russian; the reported inter-rater agreement averaged at was reported at Krippendorff's $\alpha > 0.76$. 
+
+The quantitative parameters of the resulting comparable subcorpora of professional and student translations used in this thesis are reported in Table~\ref{tab:vars}. For consistency, the table includes information about a comparable reference corpus of non-translations described in the next section (Section~\ref{ssec:ref}).
+
+% updated 11 July 2022
+% after filtering, pre-processing and annotation (based on conllu format)
+% the diverging number of sentences after annotation in parallel corpora is reported based on EN (which is higher in stu and lower in pro than in tgt :-))
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l|c|c|cc}
+	\toprule
+	
+	             & documents & sentences & \multicolumn{2}{c}{tokens} \\
+				 &      &        & EN      &  RU \\
+	\midrule
+%	students     & 334  & 10,435 & 237,593 & 216,003 \\  
+%	professional & 404  & 17,279 & 421,390 & 383,969 \\
+%	non-translations & 526  & 25,529 & -- & 505,511 \\  
+	students     & 334  & 10,332 & 237,755 & 216,057 \\  
+	professional & 404  & 17,008 & 421,514 & 383,983 \\ 
+	non-translations & 497  & 26,038 & -- & 523,737 \\  
+	\bottomrule
+\end{tabular}
+	\caption{\label{tab:vars} Parallel subcorpora of professional and student translations and non-translated reference subcorpus}
+\end{table}
+
+Note that we report the corpora sizes after filtering, pre-processing and annotation, based on the \textit{CoNLL-U} format of the corpora, which was used to extract morphosyntactic translationese features.
+
+Similar to student subcorpus, the automatic sentence alignment for professional translations was manually corrected using the same tools. 
+
+\subsection{\label{ssec:ref}Non-translations Corpora and other Resources}
+
+This thesis uses two types of monolingual document collections comparable to the parallel data: (i) non-translation, or reference subcorpus, which is an integral part of the research corpus and is directly used in all experiments, and (ii) large monolingual resources used to train language models required for the extraction of collocational and n-gram features. 
+These two collections are non-intersecting.  
+
+Non-translated Russian texts (`ref', i.e. reference corpus) were extracted from the main \gls{RNC} (2016 version, counting in total over 50 thousand documents across a number of registers). For extracting a comparable subset, we relied on the corpus metadata and the following sampling frame:
+
+\begin{enumerate}\compresslist{}
+	\item longer than 350 words;
+	\item intended for non-specialist adult audience;
+	\item marked as article or commentary;
+	\item marked as neutral of style;
+	\item created after 2003
+\end{enumerate}
+
+The resulting sample counted 8,210 documents.
+
+Further on, this subcorpus of documents originally-authored in the target language (Russian) was subset to get a cross-linguistically register-comparable sample to the joint collection of English sources from student and professional parallel subcorpora. We used the same approach as for homogenising English sources for professional and student collections, but in a cross-linguistic setting. Its effectiveness was demonstrated in~\citet{Kunilovskaya2019crossling}.
+
+We used the most successful neural model to generate functional vectors for the total of 738 unique English sources to find two most cross-linguistically similar Russian non-translated documents for each of the English original texts. 
+
+After removing duplicates and 10\% of the document-length and sentence-length outliers, this sample was reduced to 497 documents. 
+
+As we explained above, this subcorpus represents the expected target language norm for the selected register, i.e. the current TL `textual fit' for professional and student translations.
+
+\textit{Language resources} used to learn \textit{Phraser} and \textit{n-gram} models to extract 24 collgram and 10 n-gram features were collected to represent mass-media register in~\citet{Kunilovskaya2021regs}.
+For Russian we used 790-million-word contemporary Russian newspaper corpus (2.7 million documents), included in the RNC monolingual resources. After filtering out short texts (< 350 words), regional and specialised press using the standard corpus metadata, it was reduced to 226,144-document collection (see Table~\ref{tab:lmres}).
+ 
+English models were trained on the \gls{BNC} newspaper texts extracted following Lee's register annotation~\cite{Lee01}.
+
+% Table updated 28 June 2022 
+% (after pre-processing and annotation) 
+\begin{table}[]
+	\centering
+	\begin{tabular}{l|ccc}
+	\toprule
+		 & documents & sentences & tokens      \\
+	\midrule
+	en   & -         & 413,955   & 9,824,216   \\
+	ru   & 226 K     & 6,874,028 & 129,106,708 \\ 
+	\bottomrule
+\end{tabular}
+ \caption{\label{tab:lmres} Language resources for collocational, LM and \textit{QuEst++} features}
+\end{table}
+
+Note that the mass-media items in the BNC do not observe true document boundaries, but are in fact text chunks of varying length. However, it is irrelevant for the purposes of building LMs and n-gram lists.
+
+\subsection{\label{ssec:prepro}Preprocessing}
+All text collections went through the same preprocessing pipeline.
+We deleted 10\% of the document-length and sentence-length outliers, unified spelling to meet the conventions of the parser model (e.g. replaced various possible styles of quotes and double quotes with one variant: \cyrillictext{`«…»'} to `"..."'), looked through frequency word lists to detect possible formatting issues, checked the number of sentences in parallel sentence-aligned documents, cleaned out remaining fragments of html code.
+%Additionally, student translations collections were filtered to exclude documents shorter than 350 tokens and longer than 500 lines.
+
+After sentence tokenisation (to get \textit{LineSentence} corpus format), all lines shorter than 3 words were deleted (usually by-lines, dates and short headlines), as well as sentences starting with a lowercase character (obvious formatting errors or lists~\cite[see similar filtering rule in][]{Guzman2019}. 
+
+Linguistic annotation was performed by \textit{UDpipe}~\cite[][v.1.2.0]{Straka2017}  pipeline (word tokenisation, POS-tagging, lemmatisation, parsing) with the language models pre-trained on \gls{EWT} (v.2.5) and \textit{SynTagRus}~\cite[v2.5,][]{Droganova2018} treebank for English and Russian, respectively. According to the UD description and performance reports\wlvfootnote{\url{ufal.mff.cuni.cz/udpipe/1/models\#universal\_dependencies\_25\_models}} these are the largest treebanks available for the respective languages which outperform models trained on alternative annotated resources.
+
+The documents in the resulting \textit{CoNLL-U} format were used as input to the morphosyntactic feature extraction module. 
+
+\section{\label{sec:sum3}Summary} 
+%\addcontentsline{toc}{section}{Summary}
+This chapter describes all textual materials used in this thesis, their intended use and the rationale behind selection criteria.
+In the first part of the chapter we presented research related to the construction and use of learner translator corpora in (applied) research. This helped us to demonstrate that \textit{RusLTC}, the source of student translations in this research, is representative of this type of language resources. It is a large parallel corpus with extensive metadata, including quality labels from real-life student translation assessment. We presented the sampling frame used to subset the RusLTC content to get reasonably homogeneous textual datasets for experiments and reduce the impact of possible confounding factors. 
+
+The chapter introduced the concept of human translation varieties: it describes approaches to defining student and professional translations and previous results related to their comparison with regard to (i) translators' practices and (ii) linguistic properties of the output, including quality. The latter line of research is either based on manual quality assessment (using Likert scale or error annotation) or on translationese features to see whether students generate more translationese and deviate from the expected TL norm to a greater extent than professional. The overall results indicated that differences in quality scores were small and mostly contained to the fluency aspect. However, student and professional translations have detectable differences in their linguistic makeup, with students being further away from the TL norm. \citet{Sutter2017} interpreted these deviations as a quality indicator. 
+
+Finally, this chapter presents an approach to build register-comparable corpora for translationese research. We view this task as a necessary preliminary step, external to this thesis. Corpus-building efforts aimed to ensure (i) comparability of English sources in student and professional subcorpora and (ii) comparability of all English sources to Russian non-translations. To this end, the documents in both pairs were represented as vectors of 10 meaningful functional dimensions. Then, those vectors were used to extract most similar documents in the each pair of subcorpora.
+
+Besides, all raw materials went through the same preprocessing step, including spelling standardisation and document-length and sentence-length normalisation, and linguistic annotation, using UD framework.

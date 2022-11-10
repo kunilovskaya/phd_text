@@ -1,0 +1,144 @@
+\chapter{\label{appx:feat_analysis}Comparative-contrastive UD features}
+%\addcontentsline{toc}{chapter}{Appendix C. Core MQM taxonomy}
+
+Note: In Tables~\ref{tab:pro_indicators} and \ref{tab:stu_indicators} equals sign indicates no statistical differences; * marks cases where there are statistical differences between SL and TL (ref=src)
+
+\begin{longtable}{l|p{2cm}p{2cm}p{1.5cm}ccc}
+	\caption{\label{tab:pro_indicators}Properties of UD features sorted by degree of association between values in professional translations and non-translation}\\
+	\toprule
+	feature       & shapiro-tgt & shapiro-ref & bartlett & LogR & trend          & means \\
+	\midrule
+	acl           & -- & --   & --  & 0.62    & shining        & ref\textless{}src=tgt \\
+	acl:relcl     & -- & --   & --  & 0.69    & overuse of SL & ref\textless{}tgt\textless{}src \\
+	addit         & -- & --  & --   & 0.4     & shining   & ref\textless{}src=tgt \\
+	adp           & -- & normal& --& 0.4  & useless   & tgt=ref=src   \\
+	advcl         & -- & --   & --  & 0.7 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	advers        & -- & --  & --   & 0.39 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	advmod        & normal       & --  & equal& 0.53 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	amod          & -- & --  & -- & 0.51    & russification  & src\textless{}ref\textless{}tgt \\
+	anysome       & -- & --  & -- & 0.36    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	appos         & -- & --  & -- & 0.39    & SL/TL-indep    & tgt\textless{}ref=src           \\
+	attrib        & -- & --  & -- & 0.51    & russification  & src\textless{}ref\textless{}tgt \\
+	aux           & -- & --  & -- & 0.42    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	aux:pass      & -- & --  & equal & 0.36 & underuse of TL  & tgt\textless{}ref\textless{}src \\
+	case          & -- & -- & -- & 0.54    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	caus          & -- & -- & equal & 0.36    & russification  & src\textless{}ref\textless{}tgt \\
+	ccomp         & -- & -- & -- & 0.63    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	cconj         & -- & -- & -- & 0.36    & adaptation     & tgt=ref\textless{}src           \\
+	compar        & -- & -- & -- & 0.38    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	compound      & -- & -- & equal & 0.63    & adaptation     & tgt=ref\textless{}src           \\
+	conj          & -- & --& -- & 0.37    & SL/TL-indep    & ref\textless{}tgt=src*          \\
+	content-TTR  & -- & -- & -- & 0.36    & adaptation     & src\textless{}ref=tgt        \\
+	content-dens & -- & -- & equal& 0.36    & normalisation  & src\textless{}tgt\textless{}ref \\
+	copula        & -- & -- & --& 0.52 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	determ        & normal       & -- & equal & 0.36    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	deverbals     & -- & -- & -- & 0.45 & normalisation  & src\textless{}tgt\textless{}ref \\
+	discourse     & -- & -- & equal & 0.63    & useless  & tgt=ref=src                     \\
+	epist         & -- & -- & -- & 0.45 & anglicisation  & ref\textless{}src\textless{}tgt \\
+	finites       & normal       & -- & -- & 0.45 & adaptation     & tgt=ref\textless{}src           \\
+	fixed         & -- & -- & --       & 0.56    & russification  & src\textless{}ref\textless{}tgt \\
+	flat          & -- & -- & equal    & 0.36    & underuse of TL  & tgt\textless{}ref\textless{}src \\
+	infs          & -- & -- & equal    & 0.39    & russification  & src\textless{}ref\textless{}tgt \\
+	interrog      & -- & -- & --       & 0.39    & shining        & ref\textless{}tgt=src           \\
+	iobj          & -- & -- & --       & 0.58    & russification  & src\textless{}ref\textless{}tgt \\
+	mark          & -- & -- & --       & 0.74    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	mdd           & normal       & -- & --       & 0.57    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	mhd           & -- & -- & equal    & 0.63    & SL/TL-indep    & ref=src\textless{}tgt           \\
+	mpred         & -- & -- & equal    & 0.53    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	mquantif      & -- & -- & equal    & 0.36    & shining        & ref\textless{}src=tgt           \\
+	neg           & -- & -- & --       & 0.41    & normalisation  & src\textless{}tgt\textless{}ref \\
+	nmod          & -- & -- & equal    & 0.74    & adaptation     & src\textless{}ref=tgt        \\
+	nn            & normal       & -- & equal    & 0.38    & normalisation  & src\textless{}tgt\textless{}ref \\
+	nnargs        & -- & -- & --       & 0.68    & normalisation  & src\textless{}tgt\textless{}ref \\
+	nsubj         & -- & -- & --       & 0.82    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	numcls        & -- & normal       & --       & 0.71    & anglicisation  & ref\textless{}src\textless{}tgt \\
+	nummod        & -- & -- & --       & 0.46    & normalisation        & src=tgt\textless{}ref           \\
+	obj           & -- & -- & --       & 0.72    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	obl           & -- & -- & --       & 0.64    & russification  & src\textless{}ref\textless{}tgt \\
+	parataxis     & -- & -- & equal    & 0.64    & adaptation     & src\textless{}ref=tgt        \\
+	passives      & -- & -- & --       & 0.36    & normalisation  & src\textless{}tgt\textless{}ref \\
+	pasttense     & -- & -- & --       & 0.51    & SL/TL-indep    & tgt\textless{}ref=src           \\
+	possp         & -- & -- & --       & 0.36    & russification  & src\textless{}ref\textless{}tgt \\
+	ppron         & -- & -- & --       & 0.36    & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	pverbals      & -- & -- & --       & 0.36    & adaptation     & src\textless{}ref=tgt        \\
+	sconj         & -- & -- & --       & 0.36    & russification  & src\textless{}ref\textless{}tgt \\
+	sentlength    & -- & -- & --       & 0.61    & NA  & ref\textless{}tgt \\
+	simple        & -- & -- & equal    & 0.67    & underuse of TL & tgt\textless{}src\textless{}ref \\
+	superl        & -- & -- & equal    & 0.67    & adaptation     & tgt=ref\textless{}src           \\
+	tempseq       & -- & -- & --       & 0.67    & adaptation     & tgt=ref\textless{}src           \\
+	wdlength      & -- & normal       & --       & 0.4     & NA  & tgt\textless{}ref \\
+	xcomp         & -- & -- & --       & 0.68    & shining        & ref\textless{}src=tgt
+		
+%		\bottomrule
+\end{longtable}
+
+
+\begin{longtable}{l|p{2cm}p{2cm}p{1.5cm}ccc}
+	\caption{\label{tab:stu_indicators}Properties of UD features sorted by degree of association between values in student translations and non-translations}\\
+	\toprule
+	feature       & shapiro-tgt & shapiro-ref & bartlett & LogR-F1 & trend          & means \\
+	\midrule
+	acl           & --     & --     & --    & 0.56 & shining        & ref\textless{}src=tgt           \\
+	acl:relcl     & --     & --     & --    & 0.66 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	addit         & --     & --     & --    & 0.43 & SL/TL-indep    & ref=src\textless{}tgt           \\
+	adp           & --     & normal & --    & 0.43 & adaptation     & tgt=ref\textless{}src           \\
+	advcl         & --     & --     & --    & 0.63 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	advers        & --     & --     & --    & 0.43 & adaptation     & tgt=ref\textless{}src           \\
+	advmod        & --     & --     & --    & 0.38 & SL/TL-indep    & tgt\textless{}ref=src           \\
+	amod          & --     & --     & --    & 0.53 & russification  & src\textless{}ref\textless{}tgt \\
+	anysome       & --     & --     & --    & 0.43 & adaptation     & tgt=ref\textless{}src           \\
+	appos         & --     & --     & equal & 0.37 & underuse of TL & tgt=src\textless{}ref           \\
+	attrib        & --     & --     & --    & 0.52 & russification  & src\textless{}ref\textless{}tgt \\
+	aux           & --     & --     & --    & 0.37 & adaptation     & tgt=ref\textless{}src           \\
+	aux:pass      & --     & --     & --    & 0.37 & adaptation     & tgt=ref\textless{}src           \\
+	case          & --     & --     & --    & 0.54 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	caus          & --     & --     & --    & 0.37 & normalisation  & src\textless{}tgt\textless{}ref \\
+	ccomp         & --     & --     & --    & 0.50 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	cconj         & --     & --     & --    & 0.37 & adaptation     & tgt=ref\textless{}src           \\
+	compar        & --     & --     & --    & 0.38 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	compound      & --     & --     & --    & 0.37 & underuse of TL  & tgt\textless{}ref\textless{}src \\
+	conj          & --     & --     & --    & 0.46 & SL/TL-indep    & ref=src\textless{}tgt           \\
+	content\_TTR  & --     & --     & --    & 0.37 & underuse of TL & tgt\textless{}src\textless{}ref \\
+	content\_dens & normal & --     & --    & 0.37 & russification  & src\textless{}ref\textless{}tgt \\
+	copula        & --     & --     & --    & 0.51 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	determ        & --     & --     & --    & 0.37 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	deverbals     & --     & --     & --    & 0.45 & russification  & src\textless{}ref\textless{}tgt \\
+	discourse     & --     & --     & --    & 0.37 & underuse of TL & tgt=src\textless{}ref           \\
+	epist         & --     & --     & --    & 0.45 & adaptation     & tgt=ref\textless{}src           \\
+	finites       & --     & --     & --    & 0.38 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	fixed         & --     & --     & --    & 0.58 & russification  & src\textless{}ref\textless{}tgt \\
+	flat          & --     & --     & --    & 0.37 & underuse of TL  & tgt\textless{}ref\textless{}src \\
+	infs          & --     & --     & --    & 0.38 & adaptation     & src\textless{}ref=tgt        \\
+	interrog      & --     & --     & --    & 0.38 & useless        & tgt=ref=src                     \\
+	iobj          & --     & --     & --    & 0.37 & normalisation  & src\textless{}tgt\textless{}ref \\
+	mark          & --     & --     & --    & 0.68 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	mdd           & --     & --     & --    & 0.39 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	mhd           & --     & --     & --    & 0.63 & SL/TL-indep    & ref=src\textless{}tgt           \\
+	mpred         & --     & --     & --    & 0.44 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	mquantif      & --     & --     & --    & 0.44 & useless        & tgt=ref=src                     \\
+	neg           & --     & --     & --    & 0.40 & normalisation  & src\textless{}tgt\textless{}ref \\
+	nmod          & --     & --     & --    & 0.50 & russification  & src\textless{}ref\textless{}tgt \\
+	nn            & --     & --     & --    & 0.37 & russification  & src\textless{}ref\textless{}tgt \\
+	nnargs        & --     & --     & --    & 0.55 & normalisation  & src\textless{}tgt\textless{}ref \\
+	nsubj         & --     & --     & --    & 0.71 & shining        & ref\textless{}tgt=src           \\
+	numcls        & --     & normal & --    & 0.52 & russification  & src\textless{}ref\textless{}tgt \\
+	nummod        & --     & --     & --    & 0.71 & adaptation     & src\textless{}ref=tgt        \\
+	obj           & --     & --     & --    & 0.61 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	obl           & --     & --     & --    & 0.59 & russification  & src\textless{}ref\textless{}tgt \\
+	parataxis     & --     & --     & equal & 0.67 & normalisation  & src\textless{}tgt\textless{}ref \\
+	passives      & --     & --     & equal & 0.37 & normalisation  & src\textless{}tgt\textless{}ref \\
+	pasttense     & --     & --     & equal & 0.42 & SL/TL-indep    & tgt\textless{}ref=src           \\
+	possp         & --     & --     & --    & 0.42 & adaptation     & src\textless{}ref=tgt        \\
+	ppron         & --     & --     & --    & 0.37 & overuse of SL  & ref\textless{}tgt\textless{}src \\
+	pverbals      & --     & --     & equal & 0.37 & adaptation     & src\textless{}ref=tgt        \\  % src<ref=tgt
+	sconj         & normal & --     & --    & 0.37 & russification  & src\textless{}ref\textless{}tgt \\
+	sentlength    & --     & --     & --    & 0.57 & NA  & ref\textless{}tgt \\
+	simple        & --     & --     & --    & 0.37 & underuse of TL  & tgt\textless{}ref\textless{}src \\
+	superl        & --     & --     & --    & 0.37 & adaptation     & tgt=ref\textless{}src           \\
+	tempseq       & --     & --     & --    & 0.37 & adaptation     & tgt=ref\textless{}src           \\
+	wdlength      & normal & normal & --    & 0.43 & NA  & ref\textless{}tgt \\
+	xcomp         & --     & --     & --    & 0.52 & shining        & ref\textless{}src=tgt			\\
+	\bottomrule
+
+\end{longtable}
+
