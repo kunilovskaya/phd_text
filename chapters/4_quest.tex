@@ -1,52 +1,50 @@
 \chapter{\label{cha:quest}Quality in Translation} % Quality Estimation
-This chapter contextualises our approach to automatic generation of quality scores for human translations. It introduces key concepts related to translation quality and brings together the approaches to capturing quality in two disciplines that have a mutual interest in the subject: \gls{TS} and machine translation.
+%\todo[inline]{subheading?}
+This chapter contextualises our approach to automatic generation of quality labels and scores for human translations. It introduces key concepts related to translation quality and brings together the approaches to capturing quality in two disciplines that have a mutual interest in the subject: \gls{TS} and machine translation.
 
-The purpose of this part is two-fold: to overview automatic methods to predict quality of human and machine translation, and to describe the nature of the quality labels and scores obtained for this research, with references to recent best practices in benchmarking translation quality. 
+The purpose of this chapter is two-fold: to overview approaches to translation quality estimation for machine and human translation, and to describe the quality labels and scores obtained for this research, with references to recent best practices in benchmarking translation quality. 
 
 The chapter opens with a concise theoretical discussion of quality and its aspects, which provides the interpretations of key terms accepted in this project (Section~\ref{sec:aspects}). We explore the relation between human and machine translation, and implications for quality research regarding possible cross-disciplinary insights and techniques.
 
 There are two prominent approaches to produce automatic quality scores in MT: \textit{evaluation} and \textit{estimation}. The more general term \textit{assessment} is associated with manual appraisal of translations and creating annotated datasets required to test evaluation metrics and estimation methods. 
-We contend that \textit{quality estimation} is a more suitable approach for automatic prediction of human translation quality. 
-Therefore, Section~\ref{sec:qe} has a focus on numeric representations 
-%(features and vectorisation) 
-and learning methods used to solve \gls{TQE} task for MT. Importantly, we overview existing research dealing with automatic human translation quality estimation, a line of studies this thesis seeks to contribute to. 
+Section~\ref{sec:qe} is focused on numeric representations and learning methods used to solve \gls{TQE} task for MT. Importantly, in Section~\ref{sec:qe}, we overview existing research dealing with \textit{human translation quality estimation} (\gls{HTQE}), a line of studies this thesis seeks to contribute to. 
 
-Section~\ref{sec:ass} presents most popular experimental setups to collect human quality judgments and produce reliable quality benchmarks. It discusses available options, standards and requirements with regard to the key parameters of quality annotation: experimental unit, raters, granularity of assessment, quality control measures and reliability studies. This description is used as a springboard to report setups and results of three quality annotation procedures which generated various quality judgments for student translations underpinning this dissertation (see Section~\ref{sec:mygold}). 
+Section~\ref{sec:ass} presents most popular experimental setups to collect human quality judgments and produce reliable quality benchmarks. It discusses available options, standards and requirements with regard to the key parameters of quality annotation: experimental unit, raters, granularity of assessment, quality control measures and reliability studies. This description is used as a springboard to report setups and results of three quality annotation procedures which generated various quality judgments for student translations underlying results in this thesis (Section~\ref{sec:mygold}). 
  
 \section{\label{sec:aspects}Quality and its Aspects}
 
 % possible goals of evaluation: system optimisation, benchmarking and comparison
 % what are we measuring in principle? Which part of it is measurable under which conditions?
 %the definition of acceptability and of the means of determining it are matters of ongoing debate
-Over the past few decades, the controversies about translation quality in MT and TS seem to have converged to a few general statements that are universally accepted at least theoretically.
+Over the past few decades, the controversies about translation quality in MT and TS seem to have converged to a few general statements that are universally accepted, at least, theoretically.
 In both fields there is a wide consensus that the definition of quality is relative in several dimensions. First and foremost, it is contingent on the purpose of evaluation. It also varies depending on the communicative situation of translation and with regard to other available translation candidates. 
 
-The goals of translation evaluation can include diagnostics and system optimisation, comparative analysis or producing quality benchmarks. In each scenario the task can be set with regard to some pre-defined aspects of quality or quality standards. In this research we are mostly concerned with measuring the \textit{overall end-user quality of translation as a product}. We treat human and machine translations as translation varieties that can in principle be evaluated within the same paradigm. However, the practical usefulness of a universal approach is doubtful, especially if the evaluation goals go beyond summative scoring, but aim at revealing the weaker components of the translation process to facilitate improvements (in either human or machine performance).
+The goals of defining translation quality can include diagnostics and system optimisation, comparative analysis or producing quality benchmarks. In each scenario the task can be set with regard to some aspects of quality. In this research we are mostly concerned with measuring the \textit{overall end-user quality of translation as a product}. We treat human and machine translations as translation varieties that can in principle be evaluated within the same paradigm. However, the practical usefulness of a universal approach is doubtful, especially if the evaluation goals go beyond summative scoring, but aim at revealing the weaker components of the translation process to facilitate improvements (in either human or machine performance).
  
-This overview abstains from purely theoretical expositions, following the principle that ``the proof of the pudding is in the eating''. In empirical studies the concept of quality can be defined through operationalisations, i.e. it depends on the nature of features/representations, and on how the labels were generated. However, we cannot avoid a brief discussion of translation quality aspects
+This overview abstains from purely theoretical expositions, following the principle that ``the proof of the pudding is in the eating''. In empirical studies, the concept of quality can be defined through operationalisations, i.e. it depends on the nature of features/representations, and on how the labels were generated. However, we cannot avoid a brief discussion of translation quality aspects
 %, which summarises years of professional academic experience of the author as a lecturer in Translation Studies 
 (Section~\ref{ssec:theory}).
 
-Section~\ref{ssec:versus} explores the commonalities and differences observed in approaches to quality in human and machine translation, which reflect the differences in how quality is conceptualised in the two fields. This helps to define the intersection between machine and human translation modelling techniques and their cross-disciplinary applicability.
-Section~\ref{ssec:practices} discusses the intimate link between quality assessment for human translation and automatic quality predictions for MT. The quality of HT turned out to be an important factor in training and evaluating MT as discussed in a number of recent publications~\cite[see, for example,][]{Popovic2020, Laubli2020}. This aspect of HT/MT relation was brought into the fore after the introduction of NMT and a palpable improvement of automatic translation. Most importantly the quality of HT (including direction of translation) was shown to have ``practical impact on evaluation of machine translation (MT) systems''~\cite[p.365]{Popovic2020}. \citet{Popovic2020} demonstrated that standard MT evaluation metrics returned different results when reference translations were produced by people with different professional status: professional translators, crowd contributors, or translation students.
+Section~\ref{ssec:versus} explores the commonalities and differences observed in approaches to quality in human and machine translation to reflect how quality is conceptualised in these two fields. This helps to define the intersection between machine and human translation modelling techniques and their cross-disciplinary applicability.
+Section~\ref{ssec:practices} discusses the intimate link between manual quality assessment for human translation and its use in MT. The quality of HT turned out to be an important factor in training and evaluating/estimating MT as discussed in a number of recent publications~\cite[see, for example,][]{Popovic2020, Laubli2020}. This aspect of HT/MT relation was brought into the fore after the introduction of NMT and a palpable improvement of automatic translation. Most importantly the quality of HT (including direction of translation) was shown to have ``practical impact on evaluation of machine translation (MT) systems''~\cite[p.365]{Popovic2020}. \citet{Popovic2020} demonstrated that standard MT evaluation metrics returned different results when reference translations were produced by people with different professional status: professional translators, crowd contributors, or translation students.
 
 \subsection{\label{ssec:theory}Theoretical Underpinnings of Quality} 
 
-This paragraph briefly outlines the translation-theoretical concept of quality that, according to the literature, is shared by researchers working on human and on machine translation. We also highlight the key differences in the methods used to determine quality that are indicative of double standards in assessing translations produced by professional translators and automatically. 
+This section briefly outlines the translation-theoretical concept of quality that, according to the literature, is shared by researchers working on human and on machine translation. We also highlight the key differences in the methods used to determine quality that are indicative of double standards in assessing translations produced by professional translators and automatically. 
 
 % relative to context and to other hypotheses; dynamic interrelations between adequacy-accuracy-fluency under the aegis of adequacy
-It is not uncommon for MT researchers to refer to TS theorists to validate their approach to measuring quality in MT. There is a shared and wide-spread understanding in both fields that quality is a relative category. We will focus on two parameters of \hypertarget{wd:relativity}{relativity}: it can be defined (i) as appropriateness of a translated text to fulfil a communicative purpose in a given communicative context and (ii) as a relation to other possible renditions of a source text under given translation conditions.
+It is not uncommon for MT researchers to refer to TS theorists to validate their approach to measuring quality in MT. There is a shared and wide-spread understanding in both fields that quality is a relative category. We will focus on two parameters of \hypertarget{wd:relativity}{relativity}: it can be defined (i) as appropriateness of a translated text to fulfill a communicative purpose in a given communicative context and (ii) as a relation to other possible renditions of a source text under given translation conditions.
 
 The first dimension of relativity is conceptualised around the category of \textit{adequacy}, which is the ultimate quality requirement: all translation solutions should, first of all, be acceptable from the functional-communicative-pragmatic point of view. From the quality research point of view, it means that the question of \emph{`Is it a good translation?} is replaced with the question \emph{`Is this an acceptable translation, given its communicative purpose?'}
-\textit{Adequacy} is complemented with \textit{accuracy} and \textit{fluency} to get the triad of key aspects of quality, where accuracy can be briefly defined as the degree of meaning preservation, and fluency as the adherence to TL norms. For example, see the recognition of this triad and the hierarchy with regard to HT in~\citet{Chesterman1998} and to MT quality in~\citet{Koponen2010}.
+\textit{Adequacy} is complemented with \textit{accuracy} and \textit{fluency} to get the triad of key aspects of quality, where accuracy can be defined as the degree of meaning preservation, and fluency as the adherence to TL norms. For example, see the recognition of this triad and the hierarchy with regard to HT in~\citet{Chesterman1998} and to MT quality in~\citet{Koponen2010}.
 
 There is a known inherent controversy in the interrelations between adequacy and the other aspects of quality. While adequacy is a super-ordinate predominant category and can justify some deviations from accuracy and fluency, there are certain limits to the scope of source text modifications that can be done in the name of adequacy. These limits are set by the need to preserve the source text identity in translation, which is a fuzzy and complex idea, forming the core of translation equivalence theories~\cite[such as proposed by][]{Nida1964}. 
 If the key parameters of the prospective TT communicative situation are very different from those of the ST (e.g. different text functionality or audience), the scale of required adaptations might ruin the ability of TT to represent the ST, which is incompatible with the idea of translation (naively put as `the same in the other language').
 
-With regard to the audiences, some researchers attempt more practical explanations of how much alteration is allowed for an instance of a cross-linguistic transfer to fall into the category of translation, and not cross-linguistic adaptation. \citet{Latyshev2003} restricts the transformations possible in translation to differences in the linguistic and cultural components of communicative competences of the source and target audiences. This motivates replacements for culture-specific phenomena or explanations added for them in translation. For example, in \textit{I packed my two Gladstones}, a typically British name for a leather suitcase, can be replaced by a generic description that omits \textit{Gladstones} to avoid the readers' confusion over an insignificant detail.
+With regard to the audiences, some researchers attempt more practical explanations of how much alteration is allowed for an instance of a cross-linguistic transfer to fall into the category of translation, and not cross-linguistic adaptation. \citet{Latyshev2003} restricts the transformations possible in translation to differences in the linguistic and cultural components of communicative competences of the source and target audiences. This motivates replacements for culture-specific phenomena or explanations added for them in translation. For example, in \textit{I packed my two Gladstones}, a typically British name for a leather suitcase, can be replaced by a generic description in translation that omits \textit{Gladstones} to avoid the readers' confusion over an insignificant detail.
 
 %From the pragmatic point of view, there is no sense in commissioning a translation of lectures on subatomic particles for an audience of ballet dancers. 
-In the most typical translation task communicative conditions (including the type of audience and text function) of the source and target texts are assumed comparable. Some researchers and teachers explicitly indicate this in translation briefs: ``the target audience of the translations was said to be more or less equal to the target audience of the source text''~\cite{Daems2013}. Student translations used as research material in this dissertation were produced to solve a typical translation task: they were offered a mass-media text to be translated for information purposes to publishable quality standards.
+In the most typical translation task communicative conditions (including the type of audience and text function) of the source and target texts are assumed comparable. Some researchers and teachers explicitly indicate this in translation briefs: ``the target audience of the translations was said to be more or less equal to the target audience of the source text''~\cite{Daems2013}. Student translations used as research material in this thesis were produced to solve a typical translation task: they were offered a mass-media text to be translated for information purposes to publishable quality standards.
 
 The second dimension of \hyperlink{wd:relativity}{relativity} has to do with the space of possible renditions of a source segment acceptable under given translation task and conditions. In HT, it is customary to compare translation solutions with the available or hypothesised alternatives. 
 This approach is called for by many translation educators. For example, \citet[p.172]{Bittner2020} states: ``Good translation quality can only be better translation quality, just as bad translation quality can only be worse translation quality. There is no use dismissing a translation solution as unacceptable unless a better alternative can be produced.''). \citet{Pym2003} includes the ability to generate alternative translation solutions and to chose the best of them for a given context into the core of translator professional competence. 
@@ -64,8 +62,8 @@ This lack of communication is manifested in some confusion over the use of terms
 By design this research is product-based and, hence, is set within the textual, more linguistically oriented, direction of TS~\cite[as opposed to cognitive, cultural and sociological branches, following disciplinary map of TS in][]{Chesterman2005}. This means that we rely on the concept of register, a theoretical construct focused on textual properties reflecting situation of communication, to capture adequacy in translation. 
 
 Judging by how quality is operationalised in the realms of human and machine translation, there is a gap between what is expected in terms of quality from a machine and from a human. 
-This gap was revealed through critical analysis of the first claims in~\citet{Hassan2018} that MT has achieved human parity. It turned out that the outcome of the comparison depends on how you measure quality. \citet{Laubli2018} used alternative evaluation protocols to challenge the MT-human parity claim.
-In the years to come we might see this gap closing due to the urgent need for, and development of, new quality benchmarks and methods to adequately reflect the improvements of neural MT models. These new approaches address very `human' aspects of quality (such as document-level coherence, for example). Nonetheless, at the time of writing, sentence-level reference-based quality metrics remain unchallenged in the MT research community.
+This gap was revealed through critical analysis of the first claims in~\citet{Hassan2018} that MT has achieved human parity. It turned out that the outcome of the comparison depended on how translation quality was measured. \citet{Laubli2018} used alternative evaluation protocols to challenge the MT-human parity claim.
+In the years to come, we might see this gap between requirements to MT and HT quality closing due to the urgent need for, and development of, new quality benchmarks and methods to adequately reflect the improvements of neural MT models. These new approaches address very `human' aspects of quality (such as document-level coherence, for example). Nonetheless, at the time of writing, sentence-level reference-based quality metrics remain unchallenged in the MT research community.
 
 %Before MT metrics went under a lot of scrutiny, there were attempts to used them for evaluating HT.
 %~\citet{Vela2014} applied automatic metrics designed for MT (BLEU and METEOR) to evaluate human translations. They correlated the automatic scores with the manual scores showing that the automatic metrics should be used with caution: they unfairly underestimate human translation and are unable to account for immense and legitimate variation in human translation. 
@@ -75,17 +73,17 @@ In the years to come we might see this gap closing due to the urgent need for, a
 \paragraph{\label{par:diffs}Key differences and their implications for quality research} %methodological 
 This paragraph lists several factors that make some MT approaches to quality inapplicable to human translation. 
 
-First and foremost, TS discusses quality as a document-level phenomenon and HT are usually produced and assessed at document level, while MT models as well as most MT quality metrics \textit{operate on the sentence level}.
-This is seen as one of the key shortcomings of the modern MT, including its neural implementations. There is an ongoing active research that aims to make neural MT more context-aware. The researchers have to design their own quality metrics to demonstrate achievements of the proposed models because the standard MT quality metrics (most notably, \gls{BLEU}) are unable to capture improvements in MT on the text level. For example, \citet{Voita2019} created a test set for targeted evaluation of improvements in deixis, ellipsis and lexical cohesion for their MT model that was additionally trained on document-level parallel data. They demonstrated that models indistinguishable with BLEU can be very different in terms of rendering text cohesion.
+First and foremost, TS discusses quality as a document-level phenomenon, and HT are usually produced and assessed at document level, while MT models as well as most MT quality metrics \textit{operate on the sentence level}.
+This is seen as one of the key shortcomings of the modern MT, including its neural implementations. There is an ongoing active research that aims to make neural MT more context-aware. The researchers have to design their own quality metrics to demonstrate achievements of the proposed MT models because the standard MT quality metrics (most notably, \gls{BLEU}) are unable to capture improvements in MT on the document level. For example, \citet{Voita2019} created a test set for targeted evaluation of improvements in deixis, ellipsis and lexical cohesion for their MT model that was additionally trained on document-level parallel data. They demonstrated that models indistinguishable with BLEU can be very different in terms of rendering text cohesion.
 
 \citet[p.4791]{Laubli2018}, who tested the claim of Chinese-English MT attaining human parity, emphasised ``the need to shift towards document-level evaluation as machine translation improves to the degree that errors which are hard or impossible to spot at the sentence-level''. 
 
-Document-level quality approaches in MT are still in the budding. The respective quality estimation shared task was introduced at \gls{WMT} in 2016. The document scores to be predicted were obtained from a two-stage post-editing approach\wlvfootnote{It is inspired by the practice of outsourcing translation of sensitive documents as randomised sentences, and then double-checking re-assembled translated documents.}, which penalised documents that needed more editing when the context of the entire document was considered. 
+Document-level quality approaches in MT are still in the budding. The respective quality estimation shared task was introduced at \gls{WMT} in 2016. The document scores to be predicted were obtained from a two-stage post-editing approach\wlvfootnote{It was inspired by the practice of outsourcing translation of sensitive documents as randomised sentences, and then double-checking re-assembled translated documents.}, which penalised documents that needed more editing when the context of the entire document was considered. 
 In 2018 a HTER\wlvfootnote{\gls{HTER}}-based scores were replaced with quality scores from word-level error annotation. However, in both cases the document scores were generated from sentence-level edits or word-level errors with severity weights.
  
 Interestingly, \textit{QuEst++} document-level quality estimation method, the WMT baseline in 2016 and 2018, essentially used the same features as \textit{QuEst++} sentence-level method. The values for those features (such as token length, ratios of four types of n-grams in top and bottom frequency quartiles, LM probabilities for each of the parallel texts) were averaged across sentences for document pairs. \citet{Scarton2016} suggested nine features dubbed `discourse-aware' in her PhD thesis. They were based on counting word repetition in ST and TT, and the ratios between those values\wlvfootnote{e.g. DocLevelFeature1084: percentage of content words in the source document; DocLevelFeature9994: noun repetition in the target document, the number of words that repeat are normalised by the total number of content words}. In 2020 the baseline system computed MQM document-level scores using the word-level baseline system\wlvfootnote{\url{statmt.org/wmt20/quality-estimation-task.html}}.
 
-Next, the neural-based supervised machine learning approaches to quality estimation are held back by the lack of effective document representation relevant to translation quality. The current practice to produce document-level predictions by averaging sentence-level outputs seems sub-optimal.
+Next, the neural-based supervised machine learning approaches to quality estimation are held back by the lack of effective document representation relevant to translation quality. The current practice to produce document-level predictions by averaging sentence-level outputs might be sub-optimal.
 
 Sentence-level is the most common setup for error annotation in MT, unless the researchers specifically target document-level phenomena like in~\citet{Voita2019, Laubli2018}. The sentence-level annotation setups for MT can be exemplified by \textit{BLAST}, an early translation error annotation tool designed for ``human error analysis of MT output, where humans identify and classify the problems in machine translated sentences''~\cite[p.56]{Stymne2011} and by \textit{ACCOL\'E}, a more recent MT-oriented platform designed to facilitate the task of ``labelling translation errors by locating manually their occurrences in the
 target as well as in the source sentence''~\cite[p.28]{EsperancaRodier2019}. Sentence-level setup is chosen in many MT studies that involve error-annotation~\cite[see, for example,][]{vanBrussel2018}.
@@ -107,23 +105,23 @@ Because source sentences can differ in the extent to which a literal translation
 
 Another limitation to extend MT techniques to HT consists in the fact that state-of-the-art unsupervised approaches to \gls{MTQE} rely on the internal information from the MT system~\cite{Fomicheva2020} (known as \textit{glass-box} or \textit{confidence} features, also used in \textit{QuEst++} feature sets), and are hardly usable until the parameters of human translation process can be reliably converted to numeric representation.
 
-Finally, it might be useful to lay different emphasis on accuracy and fluency in HTQE and MTQE. It seems that major problems of unprofessional human translation (represented by student translations) and today's state-of-the-art neural translation are associated with different aspects of quality. \cite{Carl2010} demonstrated that translation students were ``able to reproduce the source text meaning in their native target language just as well as professionals'', but their renditions were less fluent. These finding were corroborated in our own investigation of SL-related issues in student translations \cite{Kunilovskaya2022err}. This means that the distinctions between relatively high-quality human translations (professional translators and translation students) have to do with fluency. 
-Modern neural MT is notorious for accuracy errors, especially omissions~\cite[see, for example,][]{vanBrussel2018} and hallucinations, even though we might not mean the same degree of flexibility when we talk about machine and human accuracy.
+Finally, it might be useful to lay different emphasis on accuracy and fluency in HTQE and MTQE. It seems that major problems of unprofessional human translation (represented by student translations) and today's state-of-the-art neural translation are associated with different aspects of quality. \citet{Carl2010} demonstrated that translation students were ``able to reproduce the source text meaning in their native target language just as well as professionals'', but their renditions were less fluent. These finding were corroborated in an investigation of SL-related issues in student translations \cite{Kunilovskaya2022err}. This means that the distinctions between relatively high-quality human translations (professional translators and translation students) have to do with fluency. 
+Modern neural MT is notorious for accuracy errors, especially omissions~\cite[see, for example,][]{vanBrussel2018} and hallucinations, even though we might not mean the same degree of flexibility and discretion when we talk about machine and human accuracy.
 
 \section{\label{sec:qe}Quality Estimation for MT and HT}
 \subsection{\label{ssec:task}QE as NLP Task}
 Quality estimation is one of two approaches to produce automatic quality scores for MT.
-Unlike a more traditional and well-established method to quantify quality in MT, known as \textit{quality evaluation}\wlvfootnote{Description of quality evaluation approaches is beyond the scope of this thesis}, \gls{QE} aims to score MT outputs in a reference-free manner, that is without comparing a candidate translation to a human translation or several human translations of a given source segment. 
+Unlike a more traditional and well-established method to quantify quality in MT, known as \textit{quality evaluation}\wlvfootnote{Description of quality evaluation approaches is beyond the scope of this thesis}, \gls{QE} aims to score MT outputs in a reference-free manner, that is without comparing a candidate MT to a human translation or several human translations of a given source segment. 
 
 The major advantage of this approach over reference-based evaluation metrics is that QE can be used in online MT applications to score entirely unseen input, for which human reference translations are unavailable. QE is also designed to return results for individual data points, rather than to evaluate the overall MT system performance. It is better at capturing quality variation between outputs of the same MT system. 
 
-QE is often framed as a supervised ML task (classification or regression depending on the type of labels), which requires (i) explicit features or representations extracted from texts and (ii) labels. According to \citet[p.1]{Specia2018a}, ``the general framework that is used to address QE of human texts can be similar to that for QE of automatic applications''. They admit, however, that MT and HT are ``substantially different'' types of texts. Given the differences and the focus of this thesis, existing research in the area of MTQE and HTQE is summarised in separate subsections.
+QE is often framed as a supervised ML task (classification or regression depending on the type of labels), which requires (i) explicit features or representations extracted from texts and (ii) labels/scores. According to \citet[p.1]{Specia2018a}, ``the general framework that is used to address QE of human texts can be similar to that for QE of automatic applications''. They admit, however, that MT and HT are ``substantially different'' types of texts. Given the differences and the focus of this thesis, existing research in the area of MTQE and HTQE is summarised in separate subsections.
 
 Note that unlike models that use specific pre-defined features as input to a learning algorithm, most recent achievements are obtained using syncretic feature-learning approaches. These models interpret text representation as a trainable (rather than frozen) layer of a modelling architecture. Neural feature-learning architectures are discussed in a separate paragraph below. 
 
 \paragraph{QE levels} QE can be implemented at various levels: word, phrase, sentence and document. This section is focused on sentence and document levels as relevant for this thesis.
 
-\textit{Sentence-level} is by far the most popular setting. It is reasonable given that sentence is the main operational unit in MT systems. As shown above, in TS it is very uncommon to assess separate sentences, because human translation is essentially document-based. If any MTQE methods can be carried over to HTQE, they are likely to be document-based. Besides, human translations datasets are usually annotated at document-level. Even error annotation, which usually locates problematic spans within a sentence, reflects document-level quality because (i) a typical taxonomy for HT includes pragmatics- and texture-related categories, and (ii) annotators are exposed to the entire documents rather than isolated sentences and can annotate errors like tautology and repetitive content, for example. 
+\textit{Sentence-level} is by far the most popular setting. It is reasonable given that sentence is the main operational unit in MT systems. As shown above, in TS it is very uncommon to assess individual sentences, because human translation is essentially document-based. If any MTQE methods can be carried over to HTQE, they are likely to be document-based. Besides, human translations datasets are usually annotated at document-level. Even error annotation, which usually locates problematic spans within a sentence, reflects document-level quality because (i) a typical taxonomy for HT includes pragmatics- and texture-related categories, and (ii) annotators are exposed to the entire documents rather than isolated sentences and can annotate errors like tautology and repetitive content, for example. 
 
 % This is a hard variant of QE to address; nonetheless, its potential applications become increasingly popular as users move away from consuming sentence translations
 In contrast to that, \textit{document-level} MTQE research suffers from lack of annotated data. The first specialised shared task at WMT-2015 relied on automatic reference-based \gls{METEOR} scores as labels. In 2016 they were replaced by scores from human two-stage post-editing with weighting to emphasise specific document-level problems. 
@@ -134,7 +132,7 @@ This approach might run counter the previous concept of document-level quality a
 
 \citet{Specia2018a} acknowledged that document-level QE is the least explored of the granularity levels. This task is faced with two major problems: (i) the majority of MT approaches are trained on parallel data with shuffled sentences and no possibility to recover documents, and (ii) obtaining human labels/scores, which are not aggregated from lower level annotations, is a challenge, not the least because there is a lack of parallel corpora with preserved document boundaries. 
 % obtaining scores according to some perceived quality scale (e.g., perceived post-editing effort or perceived adequacy).
-
+\todo[inline]{the paragraph below is marked, I don't understand why}
 In the last two years document-level WMT QE task was replaced with critical error detection, a subtype of \textit{word-level} QE based on error annotation rather than post-edits, and aimed at predicting parts of translation that are dangerously unreliable to alert post-editors. In this novel task a sentence receives a binary label depending on whether it contains a catastrophic error. 
 \label{pg:eval_setup}
 \paragraph{Evaluation setup} QE evaluation setup depends on the type of labels used. 
@@ -177,6 +175,7 @@ r = \frac{{}\sum_{i=1}^{n} (x_i - \overline{x})(y_i - \overline{y})}
 {\sqrt{\sum_{i=1}^{n} (x_i - \overline{x})^2(y_i - \overline{y})^2}}
 \end{equation}
 \\
+\todo[inline]{An underlined variance-related effects; and there is some other formula for eq:pearson at the bottom of the page by An}
 To control for variance-related effects, non-parametric \gls{MAE} and \gls{RMSE} are used. They do not make the assumption of normal distribution of values, and would penalise predictions for instances which deviate too much from gold standard. 
 % \cite[p.58]{Specia2018a} ``This means that, if the predictions of a given QE model show high variance, it will lead to a high MAE, even though the distribution ofthe predictions follows the distribution ofthe true labels.''
 %\gls{MAE} and \gls{RMSE} focus on the scale of deviations of generated predictions from the gold scores instead of reflecting the similarity of distributions between predicted and true labels measured by \textit{Pearson's coefficient} under the assumption of normality.
@@ -226,7 +225,7 @@ We focus on 17 features included in \textit{QuEst++} baseline at WMT before neur
 \textit{Complexity} features characterise difficulty of sources on the assumption that more complex sentences yield lower translation quality. They are extracted from source documents. The first seven items in the list below (comprising 13 features) are included in the baseline and are shown in the order of \textit{QuEst++} configuration file). The three features beyond that are taken from the extended feature set.  
 %Source text complexity is obviously viewed as the most effective predictor of quality. 
 \begin{enumerate}\compresslist{}
-	\item number of tokens;
+	\item number of tokens in the source document;
 	\item LM log probability of n-grams in the source document using a large corpus of SL to build LM;
 	\item average source token length;
 	\item average number of translations per source word in the source document using probabilistic dictionaries  (two features with different probability thresholds and weighting strategies);
@@ -235,16 +234,14 @@ We focus on 17 features included in \textit{QuEst++} baseline at WMT before neur
 	\item number of punctuation marks;
 	\item percentage of content words;
 	\item percentage of nouns;
-	\item average word frequency: on average, each type (unigram) in the source document appears x times in the corpus (in all quartiles);
-	\item etc.
+	\item average word frequency: on average, each type (unigram) in the source document appears x times in the corpus (in all quartiles).
 \end{enumerate}
 
 Features from targets are known as \textit{fluency} features. They measure ``how natural, fluent, and grammatical the translation is''~\cite[p.53]{Specia2018a}. They are mostly the same as ST complexity features (except \#4), but are evaluated on the target document. A few features that are not measured for the source document are listed below:
 \begin{enumerate}\compresslist{}
 	\item number of occurrences of the target word within the target hypothesis (averaged for all words in the hypothesis -- type/token ratio)
 	\item perplexity of the target sentence (with and without end of sentence marker);
-	\item proportion of \gls{OOV} tokens in the target document;
-	\item etc.
+	\item proportion of \gls{OOV} tokens in the target document.
 \end{enumerate}
 These specific features aim to capture the likelihood of translation to be seen in the TL.
 \label{pg:quest_adequacy_feats}
@@ -253,8 +250,7 @@ Features from sentence-aligned sources and targets are called \textit{adequacy} 
 \begin{enumerate}\compresslist{}
 	\item difference between number of periods in source and target (absolute and normalised by target length);
 	\item ratio of content word repetition between the target and source documents;
-	\item ratio of percentage of verbs in the source and target;
-	\item etc.
+	\item ratio of percentage of verbs in the source and target.
 \end{enumerate}
 
 Discourse-aware features are limited to nine features that count repetition of tokens, lemmas and nouns in the document and their ratios. 
@@ -274,7 +270,7 @@ However, we start with \textit{predictor-estimator} model that dominated the lea
 
 Predictor-estimator is an internally complex sequential model consisting of two components: a predictor, which generates embeddings for words based on the context in which they appear; and an estimator, which produces quality estimates~\cite[POSTECH]{Kim2017b}. 
 
-The first component is a multi-layer model. It produced three representations: one for the source sentence using a bidirectional \gls{RNN} model with the attention layer and two embeddings for preceding and succeeding context of each word in the translation segment by forward and backward RNN layers. The outputs of these three layers are summed and further processed by \textit{Maxout} layer which outputs pre- and post-prediction vectors. A concatenation of these vectors is sent to the estimator, a simple bi-directional RNN layer, which produces quality estimates.
+The first component of a predictor-estimator is a multi-layer model. It produced three representations: one for the source sentence using a bidirectional \gls{RNN} model with the attention layer and two embeddings for preceding and succeeding context of each word in the translation segment by forward and backward RNN layers. The outputs of these three layers are summed and further processed by \textit{Maxout} layer which outputs pre- and post-prediction vectors. A concatenation of these vectors is sent to the estimator, a simple bi-directional RNN layer, which produces quality estimates.
 This model is used in a multi-task setup: it outputs word-, phrase-, and sentence-level quality labels.
 
 The estimator and the predictor are connected using a technique called stacked propagation, which allows for the information learned by the estimator to be propagated back to the predictor.
@@ -357,13 +353,13 @@ To give an impression of the types of information they leveraged, we will give a
 These features are fed to \textit{XGBoost} algorithm with grid search parameter optimisation to get Pearson's $r=0.72$ against \textit{QuEst++} baseline result of $r=0.67$ in document-level experiments.
 
 For sentence-level \gls*{HTQE}, he used a stacked neural model using \gls{CNN} and \gls{RNN} layers with a cross-lingual attention mechanism.
-The proposed feature-learning model, initialised with pre-trained word embeddings, demonstrated second-best performance to the reduced set of most correlative explicit features proposed for sentence-level~\cite[see Table 7.3 Sentence-level \gls*{HTQE} results][p.160]{Yuan2018}. The values for Pearson's coefficient are reported at $r=0.53$ and $r=0.42$ for feature-based and feature-learning approaches at sentence level, respectively. 
+The proposed feature-learning model, initialised with pre-trained word embeddings, demonstrated second-best performance to the reduced set of most correlative explicit features proposed for sentence-level~\cite[see Table 7.3 Sentence-level \gls*{HTQE} results in][p.160]{Yuan2018}. The values for Pearson's coefficient are reported at $r=0.53$ and $r=0.42$ for feature-based and feature-learning approaches at sentence level, respectively. 
 
 We might want to treat these results with a grain of salt, however. Given that Yuan's translational data is very repetitive (more than 50 translations to one source), it made sense to adjust train-test splitting procedure (p.123) to respect groups in the data is all settings, so that training is done on translations to five sources and testing on the translations from the sixth set. Otherwise, the models might have learnt what is good and what is bad for translations of this particular ST, and the test set was not a problem for them. 
 
 We aim to test an alternative text representation approach on a more varied set of student translations in another language pair and with other types of labels/scores, but we roughly follow the same design: document-level experiments on frequency-based features, sentence-level experiments on embeddings.
 
-Yuan demonstrated that hand-engineered features, apart from returning competitive performance, had the advantage of interpretability. The best-performing features selected in their experiments helped determine grammatical characteristics that are likely to be responsible for lower translation quality scores. They showed that human translations typically contained errors beyond the lexical level, to which proximity-based MT evaluation metrics were less sensitive.
+\citet{Yuan2018} demonstrated that hand-engineered features, apart from returning competitive performance, had the advantage of interpretability. The best-performing features selected in their experiments helped determine grammatical characteristics that are likely to be responsible for lower translation quality scores. They showed that human translations typically contained errors beyond the lexical level, to which proximity-based MT evaluation metrics were less sensitive.
 
 %He concludes that ``HT errors cause mainly content inadequacy and machine translation (MT) errors are more about language misuse'', which runs counter our theoretical stance
 % comparison on MT and HT is based on an adapted error taxonomy, taking into account practices in MT and HT.
@@ -423,7 +419,8 @@ Lack of inter-rater agreement does not make TQA for MT unique among other tasks 
 
 Besides, in MT quality annotation is viewed as more \textit{task-dependent}, which explains active exploration of various labels.
 Choosing the right yardstick remains a matter of continuous debate in MT. Which type of annotation is more feasible and reliable to produce scores as a machine learning target?
-Various annotation setups can to produce diverging scores because they essentially measure different properties of translation. \cite[p.101]{Yankovskaya2019} gives a convincing example demonstrating how \gls{DA} scores can be different from \gls{HTER}. 
+Various annotation setups can to produce diverging scores because they essentially measure different properties of translation. 
+\citet[p.101]{Yankovskaya2019} gives a convincing example demonstrating how \gls{DA} scores can be different from \gls{HTER}. 
 
 The uncertainty about an appropriate annotation procedure to produce scores for testing QE models is evident if we look at the changes in preferred annotation methodology for \gls{WMT} datasets in the past few years. 
 
@@ -667,13 +664,13 @@ The experiment was arranged in several blocks of tasks to avoid tiring the annot
 In this setting, all three raters demonstrated total harmonic agreement in 21 sets out of 40, i.e. 53\% of cases. In three sets the raters returned three different responses (7.5\%)
 
 Inter-rater reliability for three raters across 80 decisions by each participant was computed as weighted Krippendorff's alpha ($\alpha$), interpreting the contrasts in translations quality as an interval scale, where the disagreements between `good' and `bad' had bigger penalty than between `good' and `same' (i.e. `good': 2, `same': 1, `bad': 0). The overall reliability in the experiment in this setting was $\alpha=0.52$.
-
-If we look at the pairwise measurements in Figure~\ref{fig:PairwiseAlphaInterval}, it becomes clear that one of the annotators (CoderN) had a tendency to agree with the other two participants less. They selected  the `same' category more often. 
+\todo[inline]{An suggests comparing to results from similar experiments to show whether this is good or bad}
+If we look at the pairwise measurements in Figure~\ref{fig:PairwiseAlphaInterval}, it becomes clear that one of the annotators (CoderN) had a tendency to agree with CoderI and CoderT less. CoderN selected  the `same' category more often. 
 \vspace{-2em}
 \wlvfig[0.5]{PairwiseAlphaInterval}{Pairwise Krippendorff's alpha for re-assessment of documents with binary labels}
 
-This indicated one of the limitations of that dataset: the `good' label did not reflect absolute quality. In fact, these translations were the best in the set, but not without their flaws. 
-In an educational setting, it is typical to have a relative, rather than an absolute grading scale.   
+%This behaviour can be explained by the specificity of the dataset. `Good' label were highest-ranking in the set, but not without their flaws. In absolute terms, `good' translations are actually `better' translations.
+%In educational settings, it is typical to have a relative, rather than an absolute grading scale.   
 
 To get an estimate of human performance on the re-annotated sample against the labels extracted from the \textit{RusLTC} corpus, we had to discard five translation pairs (out of 40 sets) where two annotators could not decide on the quality (and used `same' option), because the gold labels from \textit{RusLTC} are binary and do not have `same' category (two sets, four documents). We also had to remove three sets (six documents), where no consensus between the raters was achieved. 
 
@@ -700,7 +697,7 @@ The latter is a typically educational arrangement meant to describe annotated sp
 Finally, annotators are encouraged to leave a note, which can be brought up by hovering a mouse over an error tag. 
 
 \textit{RusLTC} error taxonomy and detailed statistics on tags in the error-annotated subcorpus used in this thesis are given in Appendix~\ref{appx:rusltc_err}.
-sec:mygold
+
 The annotation is performed online using \textit{brat} annotation tool, a popular instrument for annotating text spans. The web-based interface was used as an educational tool to provide feedback to students in 2013-2018. All translations were anonymised before annotation. They were made available to students via a link (see a screenshot in Appendix~\ref{appx:rusltc_err}.   
 Error statistics was used to rank student translations for a source text as a basis for relative evaluation of them.
 
@@ -740,8 +737,8 @@ With regard to the post-annotation overall document-level assessment expressed a
 To sum up our observations from these studies: the least reliable components of the proposed error-based assessment include (i) total number of errors, (ii) gravity of language errors, (iii) positive evaluation (kudos).
 Besides, we established that raters had a tendency to agree more on the quality of the low-ranking translations than on the high-ranking ones. For the bottom ten documents the agreement between three raters on the  scale was $\alpha=0.607$, while for the top ten translations $\alpha=0.265$. 
 The ratio of content to language errors was one of the most stable parameters of the annotation across all raters and experiments; it consistently was 40:60 proportion.
-
-Further details of these reliability studies can be found in \citet{Kunilovskaya2015far}.
+\todo[inline]{I do not quite understand how to quote oneself}
+%Further details of these reliability studies can be found in \citet{Kunilovskaya2015far}.
 
 Note that for the two cross-annotated samples we used annotations from the more lenient rater. The rest of the subcorpus had a single error annotation by one of the two translation teachers from the first experiment.
 
@@ -758,7 +755,7 @@ Admittedly, the procedure was not entirely reliable, but we managed to recover a
 
 Besides, we failed to find a reliable automatic way to link target side errors with their triggers on the source side, which limits the potential of converting this subcorpus to the word-level error-annotated format used by WMT. 
 The community would definitely benefit from a tool that would accept sentence-aligned documents (bitexts) for error annotation.  
-However, an attempt was made to overcome this difficulty in a manual cross-annotation setup. The results are reported in~\citet{Kunilovskaya2022err}.
+%However, an attempt was made to overcome this difficulty in a manual cross-annotation setup. The results are reported in~\citet{Kunilovskaya2022err}.
 
 Second, it was not clear whether to use weights for various error categories and severity levels. If yes, how exactly to weights categories and severities and how to combine them.the 
  
@@ -766,12 +763,12 @@ There seem to be two formulas in related research. Apart from the one adopted by
 
 \begin{equation}\label{eq:taus_score}
 \begin{split}
-TAUS Score = 100 - (\frac{1\times n_{min} + 10\times n_{maj} + 100\times n_{cri} -1\times n_{kudo}}{n})\times 100 \\
+TAUS-Score = 100 - (\frac{1\times n_{min} + 10\times n_{maj} + 100\times n_{cri} -1\times n_{kudo}}{n})\times 100 \\
 \text{where $n_{min}$, $n_{maj}$, $n_{cri}$ can be already weighted by error category weights} \\
 \end{split}
 \end{equation}
 
-Similar to Formula~\ref{eq:mqm_score}, \textit{TAUS} formula suggests to convert the calculated penalties to a positive evaluation of translation quality and normalise to the word count.
+Similar to Equation~\ref{eq:mqm_score}, \textit{TAUS} formula suggests to convert the calculated penalties to a positive evaluation of translation quality and normalise to the word count.
 
 All scores in this study were normalised to the ST word count. ST word count was used as the normalisation base ($n$ in denominator) to reduce the impact of translation size on the calculation outcomes.
 
@@ -789,7 +786,7 @@ Arguably, the weighting strategy can introduce additional subjective bias to the
 	\item[minor errors] $\times 1$
 \end{description}
 
-Weighted \textit{accuracy} and \textit{fluency} scores were weighted for severities plus for individual error categories, following a scheme shown in Table~\ref{tab:errweights}, Appendix~\ref{appx:rusltc_err}.
+Weighted \textit{accuracy} and \textit{fluency} scores were weighted for severities plus for individual error categories, following a scheme shown in Appendix~\ref{appx:rusltc_err} (Table~\ref{tab:errweights}).
 
 Figure~\ref{fig:tq} and~\ref{fig:docs_fluency} demonstrate that weighting improves the distribution of error scores, but might introduce yet another subjective factor in translation quality assessment. 
 
@@ -959,9 +956,8 @@ We provide a visualisation for the distribution of DA scores at document- and se
 
 \section{\label{sec:sum4}Summary}
 
-This is a key section in this thesis. It presents the theoretical concept of quality in translation and practical approaches to quality quantification. 
+This chapter presents the theoretical concept of quality in translation and practical approaches to quality quantification. 
 It is focused (i) on automatic quality estimation methods for machine and human translation (Sections~\ref{ssec:mtqe} and~\ref{ssec:htqe} and (ii) on the best practices in producing manual quality benchmarks for NLP experiments (Section~\ref{sec:ass}). The last part of the chapter has a description of annotation procedures used to obtain quality labels and score in this research.
-% (Section~\ref{sec:mygold}).
 
 In \gls{TS}, quality is defined with the emphasis on extralinguistic context, including the purpose of translation, intended audience and medium (pragmatic aspect of quality, usually referred to as adequacy). MT research is mostly focused on accuracy and fluency aspects, where accuracy is viewed as (lexico-)semantic similarity between ST and TT, and fluency is approached as readability/grammaticality in the TL. The relative nature of quality was highlighted with regard to three factors, including the purpose of assessment, parameters of communicative situation with translation and comparison with alternative translation candidates. 
 
@@ -983,8 +979,6 @@ In MT there is more awareness that these methods capture various dimensions of q
 We tend to agree that the distinction between aspects of quality (accuracy and fluency) is even more difficult to capture in an annotation experiment. 
 
 While describing the best practices in producing quality benchmarks in MT we focus technical details, such as the choice of top-level error categories, use of severities, ways to convert error statistics to actual quality scores and annotation environments. 
-A separate subsection discusses organisation of reliability studies for various annotation setup. We note that measuring IRR for error annotation or post-editing is particularly difficult because ideally it involves taking into account the agreement about the location of the annotated spans and their categorisation. Further caveats heeded in our own experiments include the recommendation to use Krippendorff' coefficient in IRR studies and to apply metrics to z-transformed (standardised) DA scores instead of absolute values. 
- 
-It was also repeatedly shown that the outcomes of supervised ML experiments are contingent on the distribution of scores in the dataset. 
+A separate subsection discusses organisation of reliability studies for various annotation setup. We note that measuring IRR for error annotation or post-editing is particularly difficult because ideally it involves taking into account the agreement about the location of the annotated spans and their categorisation. Further caveats heeded in our own experiments include the recommendation to use Krippendorff' coefficient in IRR studies and to apply metrics to z-transformed (standardised) DA scores instead of absolute values. It was also repeatedly shown that the outcomes of supervised ML experiments are contingent on the distribution of scores in the dataset. 
 
 Finally, we provided detailed descriptions of three annotation procedures used to obtain or verify various quality labels/scores in our datasets. The results were reported in terms of IRR and scores distribution at document and sentence levels. We demonstrated that in our various experiments the agreement between university translation teachers (nominal-scale assessment and error annotation) and final-year under-graduate students (DA experiment) as raters ranges from 0.467 to 0.734 in various settings, with the lowest result seen for sentence-level DA by students.

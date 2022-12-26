@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{report} % uses the default cls report, no separate cls file:  ,twoside,openright
+\documentclass[12pt,a4paper,twoside,openright]{report} % uses the default cls report, no separate cls file:  ,twoside,openright
 
 \usepackage{xpatch} % an extention to etoobox for redefining commands 
 \makeatletter % the redefined macro name contains @
@@ -84,8 +84,8 @@
 \usepackage[acronym,automake,nopostdot,nonumberlist]{glossaries}
 \makeglossaries % create makeindex files
 
-\newcommand{\specialcell}[2][l]{%
-	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+\newcommand{\specialcell}[2][t]{%
+	\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
 
 % typesetting examples with chapterwise numbering
 \usepackage{linguex}  % https://texdoc.org/serve/linguex-doc.pdf/0
@@ -124,17 +124,17 @@
 
 %%% \thesistitle ends the preamble.
 % Thesis title, author and name.
-\thesistitle{Translationese indicators \\for human translation quality estimation \\(based on English-to-Russian translation \\of mass-media texts)} {Maria Kunilovskaya} {November 2022}
+\thesistitle{Translationese indicators \\for human translation quality estimation \\(based on English-to-Russian translation \\of mass-media texts)} {Maria Kunilovskaya} {December 2022}
 % Human translation quality: linguistic description and automatic estimation
 % Human translation quality: translationese and distributional embeddings approaches
 
-%\include{chapters/dedication}
+\include{chapters/dedication}
 
 % Thesis abstract.
 \include{chapters/00_abstract}
 
 % Acknowledgements
-%\include{chapters/0_ack}
+\include{chapters/0_ack}
 
 % Automatically generated tables.
 \include{contents}
