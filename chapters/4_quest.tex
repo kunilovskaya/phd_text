@@ -349,7 +349,7 @@ In summary, error-based and criteria-based quality assessment frameworks for HT 
 
 % how are we going to evaluate our results
 % Quirk [2004] was the first to introduce the use of manually assigned labels to sentences. The labels vary from 1–4, with meanings as follows: Unacceptable, Possibly Acceptable, Acceptable, Ideal. Results on a small set of 350 sentences proved much better than those obtained using automatic annotations on a much larger set of instances, motivating most subsequent work in QE.
-\paragraph{Labels and scores for MT} The ultimate yardstick in evaluating any automatic system is human performance on the same task.
+\paragraph{\label{pg:pessimism}Labels and scores for MT} The ultimate yardstick in evaluating any automatic system is human performance on the same task.
 
 Interestingly, there is much more pessimism about getting human annotators agree in their quality judgment (especially at document-level) in the field of MT than in TS. Generalising from previous research, \citet[p.64]{Specia2018a} concludes that ``document-level evaluation (in general) is less trivial than the evaluation of more fine-grained levels''.
 % As shown by \cite{Scarton2015}, asking humans for a single score for the entire document that encompasses its overall quality is not feasible. Humans may get confused or distracted by prob- lems at other lower levels and, consequently, be misled in their assessment.
@@ -456,7 +456,7 @@ The continuous DA implementations have an integrated quality control mechanism w
 % a continuous scale allows scores to be standardized (with z-transformation) to eliminate individual judge preferences, resulting in higher levels of inter-annotator consistency. 
 
 To account for systematically different levels of leniency, i.e. legitimate disagreements between the raters, the individual scores are standardised by normalising the raw values with respect to the mean and standard deviation of all scores assigned by a given individual judge (z-score conversion). Finally, the z-scores are averaged across all reliable raters to produce the final translation quality score.   
-
+\label{pg:controvercy_over_acc_and_flu}
 Some aspects of evaluation protocols remain subject to controversy in the field. On the one hand, \citet{Graham2013, Graham2015} suggests that fluency should be judged independently of adequacy. 
 % acc: The black text adequately expresses the meaning of the gray text
 % flu: The text is fluent English 

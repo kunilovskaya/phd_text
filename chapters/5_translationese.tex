@@ -87,11 +87,13 @@ The data was split 10 times into a training set and a test set in a cycle, respe
 
 %We use the standard evaluation metrics for classification problems as described in Section~\ref{ssec:task} (page~\pageref{pg:eval_setup}). 
 
-\paragraph{\label{pg:eval_setup}Evaluation setup} Evaluation setups in this thesis depend on the type of labels used. 
+\paragraph{\label{pg:eval_setup}Evaluation setup} 
+%Evaluation setups in this thesis depend on the type of labels used. 
 In Chapters~\ref{cha:translationese} and~\ref{cha:pro_qua}, the tasks formulated as \textit{classification problems on discrete labels} were evaluated on accuracy, precision, recall and F1-score.
 % classeval.wordpress.com/introduction/basic-evaluation-measures/ 
 % A binary classifier predicts all data instances of a test dataset as either positive or negative. This classification (or prediction) produces four outcomes – true positive, true negative, false positive and false negative.
 % A confusion matrix is formed from the four outcomes produced as a result of binary classification.
+
 For completeness of this description, let us define \textit{accuracy} as the number of all correct predictions divided by the total number of instances in the dataset, \textit{recall} % aka sensitivity or true positive rate
 as the number of correct positive predictions divided by the total number of instances belonging to a class (positives), and precision % aka positive predictive value
 as the number of correct positive predictions divided by the total number of positive predictions.
@@ -108,8 +110,8 @@ The datasets were reasonably balanced, so F1-score was calculated independently 
 
 %\citet{Specia2018a} recommended to supplement them with graphical representation of a classifier's performance with \gls{ROC} curves, which visualise the relation between sensitivity (the true positive rate) and specificity (the true negative rate) for different thresholds to find the optimal equilibrium between the highest true positive rate and the lowest true negative rate, represented by a curve reaching for the upper-left corner. To report this balance as a number, \gls{AUC} statistic is used. AUC values vary in the range from 0 to 1, where 1 is AUC for a perfect classifier.
 % http://navan.name/roc/
-
-For \textit{regression models on continuous scores}, \textit{Pearson's $r$ correlation coefficient} proposed by~\cite{Graham2015r} was used. This coefficient measures linear correlation between two variables/datasets ($x$ and $y$) and is estimated as the ratio of covariance of the variables to the product of their \gls{STD}s (see Equation~\ref{eq:pearson}, where $n$ is the size of the paired datasets, and $\overline{x}$ and $\overline{y}$ are means of values in each respective dataset). % also refered to as least-squares fit, minimizing the sum of the squares of the residuals (diffs between predicted and true labels)
+%
+%For \textit{regression models on continuous scores}, \textit{Pearson's $r$ correlation coefficient} proposed by~\cite{Graham2015r} was used. This coefficient measures linear correlation between two variables/datasets ($x$ and $y$) and is estimated as the ratio of covariance of the variables to the product of their \gls{STD}s (see Equation~\ref{eq:pearson}, where $n$ is the size of the paired datasets, and $\overline{x}$ and $\overline{y}$ are means of values in each respective dataset). % also refered to as least-squares fit, minimizing the sum of the squares of the residuals (diffs between predicted and true labels)
 % the ratio between the covariance of two variables and the product of their standard deviations; thus, it is essentially a normalized measurement of the covariance
 
 % Pearson's correlation coefficient, when applied to a population, is commonly represented by the Greek letter rho and may be referred to as the population correlation coefficient or the population Pearson correlation coefficient. Results for a given pair of random variables is represented by rho ρ
@@ -118,16 +120,16 @@ For \textit{regression models on continuous scores}, \textit{Pearson's $r$ corre
 
 % as presented in the documentation of def pearsonr(x, y) in scipy.stats 
 %r = \frac{\sum (x - m_x) (y - m_y)}{\sqrt{\sum (x - m_x)^2 \sum (y - m_y)^2}}
-\begin{equation}\label{eq:pearson}
-	r_{xy} = \frac{{}\sum_{i=1}^{n} (x_i - \overline{x})(y_i - \overline{y})}
-	{\sqrt{\frac{\sum_{i=1}^{n} (x_i - \overline{x})^2}{n}}\sqrt{\frac{\sum_{i=1}^{n}(y_i - \overline{y})^2}{n}}}
-\end{equation}
-
-The coefficient value lies in the range from -1 to 1, where a value of 1 represents a perfect positive relationship, -1 is a perfect negative correlation, and 0 indicates the absence of a relationship between variables. 
-In QE tasks, the variables are gold scores generated from human annotations and scores predicted by models for all test instances. 
-
-%\todo[inline]{An underlined variance-related effects; and there is some other formula for eq:pearson at the bottom of the page by An}
-The correlation coefficient is complemented by non-parametric \gls{RMSE} measure. Unlike Pearson's $r$, this metric does not make the assumption of normal distribution of values, and would penalise predictions for instances which deviate too much from gold standard. 
+%\begin{equation}\label{eq:pearson}
+%	r_{xy} = \frac{{}\sum_{i=1}^{n} (x_i - \overline{x})(y_i - \overline{y})}
+%	{\sqrt{\frac{\sum_{i=1}^{n} (x_i - \overline{x})^2}{n}}\sqrt{\frac{\sum_{i=1}^{n}(y_i - \overline{y})^2}{n}}}
+%\end{equation}
+%
+%The coefficient value lies in the range from -1 to 1, where a value of 1 represents a perfect positive relationship, -1 is a perfect negative correlation, and 0 indicates the absence of a relationship between variables. 
+%In QE tasks, the variables are gold scores generated from human annotations and scores predicted by models for all test instances. 
+%
+%%\todo[inline]{An underlined variance-related effects; and there is some other formula for eq:pearson at the bottom of the page by An}
+%The correlation coefficient is complemented by non-parametric \gls{RMSE} measure. Unlike Pearson's $r$, this metric does not make the assumption of normal distribution of values, and would penalise predictions for instances which deviate too much from gold standard. 
 % \cite[p.58]{Specia2018a} ``This means that, if the predictions of a given QE model show high variance, it will lead to a high MAE, even though the distribution ofthe predictions follows the distribution ofthe true labels.''
 %\gls{MAE} and \gls{RMSE} focus on the scale of deviations of generated predictions from the gold scores instead of reflecting the similarity of distributions between predicted and true labels measured by \textit{Pearson's coefficient} under the assumption of normality.
 

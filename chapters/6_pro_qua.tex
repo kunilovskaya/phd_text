@@ -1,17 +1,16 @@
 \chapter{\label{cha:pro_qua}Experiments on Varieties and Quality}
-This chapter reports the results of experiments using linguistically-motivated translationese-aware features to distinguish professional varieties of translations and to estimate human translation quality on various types of human quality assessment. Importantly, these results are compared to the performance of several other representations to indicate the learnability of the available ontological labels and human judgment. 
+This chapter reports the results of experiments using linguistically-motivated translationese-aware features to distinguish experience-related varieties of translations and to estimate human translation quality on various types of human quality assessment. Importantly, these results are compared to the performance of several other representations to indicate the learnability of the available ontological labels and human judgment. 
 
 %The results are reported in two groups of experiments run for the same types of document representations.
 
 First, Sections~\ref{ssec:var} and~\ref{ssec:bin} have the results of binary classifications for student vs professional translations, and for documents with \textit{bad} and \textit{good} quality labels, which were obtained as described in Section~\ref{ssec:binary}. 
 %In Section~\ref{ssec:pro} we argued that this ontological distinction might be relevant for quality. 
-Second, in Section~\ref{sec:_scores}, we explore the learnability of document-level and sentence-level continuous quality scores generated (i) from  error annotation (as discussed in Section~\ref{ssec:err}) and (ii) from direct assessment (see Section~\ref{ssec:da}). The experiments on quality scores, formulated as regression tasks are extended to sentence level, because both types of quality scores (unlike labels) were originally obtained for sentences and then averaged to get document scores. 
+Second, Section~\ref{sec:_scores} explores the learnability of continuous quality scores generated (i) from  error annotation (as discussed in Section~\ref{ssec:err}) and (ii) from direct assessment (see Section~\ref{ssec:da}). The experiments on quality scores, formulated as regression tasks are extended to sentence level, because both types of assessment (unlike labels) were originally obtained for sentences and then averaged to get document scores. 
 On the one hand, sentence-level tasks are expected to be more challenging for most of manual frequency-based features, but on the other hand they should be more natural for embeddings and less limiting in terms of the size of the training data. Additionally, scores from two different manual assessment methods (error annotation vs perceived quality) might offer dissimilar perspectives of translation quality.
 Last, but not least, scores from error annotation allow to compare applicability of proposed representations for major theoretical quality aspects -- accuracy and fluency.
 
-The classification tasks in Section~\ref{sec:labels} rely on the same experimental setup as described in Section~\ref{sec:my_classifiers} with regard to learning methods, most alternative representation methods and feature analysis. However, we open this section with details on the datasets and on additional representation for varieties and quality classifications.
- 
-The specifics of regression experiments appear in the second part of the chapter, before we present the respective results (see Section~\ref{ssec:my_doc_regressors}).
+The classification tasks in Section~\ref{sec:labels} rely on the same experimental setup as described in Section~\ref{sec:my_classifiers} with regard to learning methods, alternative representation methods and feature analysis. However, we open this section with details on the datasets and on additional representation for varieties and quality classifications.
+Additional specifics of regression experiments appear in the second part of the chapter, before we present the respective results (see Section~\ref{ssec:my_doc_regressors}).
 
 \section{\label{sec:labels}Classification Tasks}
 
@@ -20,10 +19,10 @@ There are a few preliminary notes on the classification experiments reported in 
 \paragraph{Datasets} 
 Classification experiments were run on the same dataset as translationese classifications. However, it does not mean that student translations were represented only by translations with either good or bad label. In fact, 334 student translations and 360 quality-labelled translations had only 25 instances in intersection (six labelled as \textit{good} and 19 as \textit{bad}). 
 
-The binary labels used the main experiments reported in this chapter are: 
+The binary labels used in this chapter are: 
 \begin{description}\compresslist{}
 	\item[stu vs pro:] categories in a classification to capture professionalism;
-	\item[bad vs good:] categorial document-level quality labels from holistic assessment of student translations verified in a separate annotation effort as described in Section~\ref{ssec:binary}.
+	\item[bad vs good:] categorial document-level quality labels from holistic assessment of student translations verified in a separate annotation effort (see Section~\ref{ssec:binary}).
 \end{description}
 
 \paragraph{QuEst++ baseline}
@@ -32,12 +31,12 @@ We had to exclude QuEst++ features which reflected the size of the documents -- 
 
 \subsection{\label{ssec:var}Translation Varieties}
 
-In this section we look at the differences between professional translation varieties, when classified against each other. This opposition is interpreted as a proxy for quality on the assumption that student translations are inferior to professional due to the lack of experience (see Section~\ref{ssec:pro}). A useful reminder is that for this experiment the student translations were selected randomly from the available sets of multiple translations for each source text and they might come from various quality grades. 
+In this section we look at the differences between professional translation varieties when classified against each other. This opposition is interpreted as a proxy for quality on the assumption that student translations are inferior to professional due to the lack of experience (see Section~\ref{ssec:pro}). A useful reminder is that for this experiment the student translations were selected randomly from the available sets of multiple translations for each source text and they might come from various quality grades. 
 
-In the previous chapter we have seen that students were not easier to tear apart from non-translations than professionals. On the contrary, in terms of returned F1-scores, the results for translationese classifications on professional translations were slightly higher than on student translations for representations that capture translation-related aspects of language, i.e. on all manual feature sets and on sentence embeddings that were fine-tuned on translation quality (\textit{TQmono-m}). However, on \textit{tf-idf} and on vectors from generic word-embedding models (\textit{ruRoberta} and \textit{mdeberta3}) the results for student translations were higher.
+The experiments in previous chapter demonstrated that students were not easier to tear apart from non-translations than professionals. In terms of returned F1-scores, the results for translationese classifications on professional translations were slightly higher than on student translations for representations that capture translation-related aspects of language, i.e. on manual feature sets and on sentence embeddings that were fine-tuned on translation quality (\textit{TQmono-m}). However, on \textit{tf-idf} and on vectors from generic word embedding models (\textit{ruRoberta} and \textit{mdeberta3}) the results for student translations were higher.
 
 \paragraph{Experimental results}
-Table~\ref{tab:stu-pro} has the results on classification of translation varieties. We explicitly added results on the content-dependent classifiers that were not shown before, but described in \textit{Alternative document representations} in Section~\ref{sec:my_classifiers} on page~\pageref{pg:vectors} (\textit{tfidf, stsb-xlm-r-m, TQmono-m, ruRoberta}).
+Table~\ref{tab:stu-pro} has the results on classification of translation varieties. We explicitly added results on the content-dependent classifiers that were not shown before. These representations are described in \textit{Alternative document representations} in Section~\ref{sec:my_classifiers} on page~\pageref{pg:vectors}  and include vectors from \textit{tfidf, stsb-xlm-r-m, TQmono-m, ruRoberta} models.
 
 \begin{table}[H]
 	\centering
@@ -62,10 +61,10 @@ Table~\ref{tab:stu-pro} has the results on classification of translation varieti
 		mdeberta3  & 89.03 (+/-2.87) & 89.40 (+/-2.85) & 88.69 (+/-2.95) & 88.85 (+/-2.93)\\
 		\bottomrule
 	\end{tabular}
-	\caption{\label{tab:stu-pro}Classification result for translation professionalism labels (student vs professional)}
+	\caption{\label{tab:stu-pro}Classification result for student vs professional labels by SVM. The highest F1-score for manual features is shown in bold, the highest result for content-dependent representations is boxed}
 \end{table}
 
-A glance at Table~\ref{tab:stu-pro} suggests that the best performing representation on this task among manual features was the full QuEst++ feature set ($F1=83.28$). Among content-dependent classifiers \textit{tf-idf} was not significantly outperformed by any other representation ($F1=89.59$). If we consider only statistically significant differences between representations for both SVM and neural classifier, we can observe the following. 
+A glance at Table~\ref{tab:stu-pro} suggests that the best-performing representation on this task among manual features was the full QuEst++ feature set ($F1=83.28$). Among content-dependent classifiers, \textit{tf-idf} was not significantly outperformed by any other representation ($F1=89.59$). If we consider only statistically significant differences between representations for both SVM and neural classifier, we can observe the following. 
 
 The relatively poor performance of translationese-aware UD feature sets against MT-quality-aware QuEst++ feature set (differences are statistically significant) suggest that the translationese-related distinctions between translation varieties were weaker than those captured by MT quality indicators (see feature analysis below).
 
@@ -73,39 +72,39 @@ Further on, \textit{tf-idf} was statistically superior to QuEst++. This means th
 
 This line of interpretation is supported by the similarities in performance between QuEst++ and \textit{TQmono-m}, the two approaches designed to capture quality in MT, and between \textit{tf-idf} and \textit{mdeberta3}, which are thought to be focused on token-based properties (semantics) of documents. 
 
-The outcomes of significance testing between the representations is summarised in Table~\ref{tab:sign_tests_vars}. A hyphen indicates no differences, an asterisk stands for statistically significant differences as measured by t-test at the confidence level of 5\%.
-\todo[inline]{maybe delete these tables, or reorder them from by F1 res}
-\begin{table}[H]
-	\centering
-	\begin{tabular}{l|ccccccccc}
-		\toprule
-                		& UD  & collgr & ngram & all & quest61 & tfidf & stsb-xlm & TQmono & ruRoberta \\
-                \midrule
-		UD              &     &          &       &     &    &       &              &          & \\
-		collgram        & * * &          &       &     &    &       &              &         & \\
-		ngram           & * * & - -      &       &     &    &       &              &          & \\
-		all             & - - & * *      & * *   &     &    &       &              &         & \\
-		quest61         & * * & * *      & * *   & * - &    &       &              &          & \\
-		tfidf           & * - & * *      & * *   & * - & * * &       &              &       & \\
-		stsb-xlm        & - - & * *      & * *   & * - & * * & * -   &              &          & \\
-		TQmono          & * * & * *      & * *   & * - & - - & * -   & * *          &         & \\
-		ruRoberta       & * * & * *      & * *   & * * & * * & * *   & * *          & - *      & \\
-		mdeberta3       & * * & * *      & * *   & * * & * * & * *   & * *          & * *  & - - \\
-		\bottomrule
-	\end{tabular}
-	\caption{\label{tab:sign_tests_vars}Professionalism: Results on pair-wise significance testing on SVM (left marker) and neural classifier (right marker)}
-\end{table}
+%The outcomes of significance testing between the representations is summarised in Table~\ref{tab:sign_tests_vars}. A hyphen indicates no differences, an asterisk stands for statistically significant differences as measured by t-test at the confidence level of 5\%.
+%\todo[inline]{maybe delete these tables, or reorder them from by F1 res}
+%\begin{table}[H]
+%	\centering
+%	\begin{tabular}{l|ccccccccc}
+%		\toprule
+%                		& UD  & collgr & ngram & all & quest61 & tfidf & stsb-xlm & TQmono & ruRoberta \\
+%                \midrule
+%		UD              &     &          &       &     &    &       &              &          & \\
+%		collgram        & * * &          &       &     &    &       &              &         & \\
+%		ngram           & * * & - -      &       &     &    &       &              &          & \\
+%		all             & - - & * *      & * *   &     &    &       &              &         & \\
+%		quest61         & * * & * *      & * *   & * - &    &       &              &          & \\
+%		tfidf           & * - & * *      & * *   & * - & * * &       &              &       & \\
+%		stsb-xlm        & - - & * *      & * *   & * - & * * & * -   &              &          & \\
+%		TQmono          & * * & * *      & * *   & * - & - - & * -   & * *          &         & \\
+%		ruRoberta       & * * & * *      & * *   & * * & * * & * *   & * *          & - *      & \\
+%		mdeberta3       & * * & * *      & * *   & * * & * * & * *   & * *          & * *  & - - \\
+%		\bottomrule
+%	\end{tabular}
+%	\caption{\label{tab:sign_tests_vars}Professionalism: Results on pair-wise significance testing on SVM (left marker) and neural classifier (right marker)}
+%\end{table}
 
-To further explore the success of QuEst++ features we ran RFECV and analysed the 25 selected features. This selection improved the performance of the classifier by 3\% against the entire feature set in terms of F1-score (86.17\% vs 83.00\%, the difference was statistically significant). 
+To further explore the success of QuEst++ features, RFECV was run on this feature set and the 25 selected features were analysed. This selection improved the performance of the classifier by 3\% against the entire feature set in terms of F1-score (86.17\% vs 83.00\%, the difference was statistically significant). 
 
-We noticed that 15 of 25 features selected by the algorithm describe the SL side (complexity features), seven features reflect target properties (fluency features), and 3 features are ratios of the two (adequacy features). 
-The five most prominent ST-related QuEst++ features include \textit{percentage of punctuation marks in the source} (\#1074), \textit{source sentence perplexity without end of sentence marker} (\#1011), lemma repetition in the source document (\#9991), average number of translations per source word in the document (\#1024) and average source token length (\#1006).
+We noticed that 15 of 25 features selected by the algorithm described the SL side (complexity features), seven features reflected target properties (fluency features), and 3 features were ratios of the two (adequacy features). 
+The five most prominent ST-related QuEst++ features included \textit{percentage of punctuation marks in the source} (\#1074), \textit{source sentence perplexity without end of sentence marker} (\#1011), lemma repetition in the source document (\#9991), average number of translations per source word in the document (\#1024) and average source token length (\#1006).
 % It can be seen that these features highlight the differences between the source texts in the two parallel subcorpora, implicitly introducing another reference corpus -- newspaper texts from the BNC -- into the comparison (see source sentence perplexity features). It looks like English texts translated by students were less familiar to the trigram LM learnt on the BNC.
-Given that the sources of student and professional translations are different, it is not surprising that this feature set works well. However, it is difficult to interpret the distinctions as related to professionalism or quality. For this feature set, which explicitly uses ST complexity features, either input to the translation process or the method of translation (type of human subjects, in our case) need to be the same.
+Given that the sources of student and professional translations were different, it was not surprising that QuEst++ feature set worked well. However, it is difficult to interpret the  distinctions revealed between student and professional translations by this feature set as related to professionalism or quality. For this feature set, which explicitly uses ST complexity features, either the input to the translation process or the method of translation (type of human subjects, in our case) need to be the same.
 
 The prominent fluency and adequacy features that can be viewed as relatively independent of the properties of ST and can be interpreted as related to quality in our experimental setup. Selected \textit{fluency features} were \textit{number of occurrences of the target word within the target hypothesis or TTR} (\# 1015), \textit{log probability of the target} (\# 1012), \textit{perplexity of the target document without end of sentence markers} (\# 1014). 
 The log probabilities of student translations were on average lower than for professional translations and perplexity scores were higher for students. We can hypothesize that student translations were more surprising than professionals for the Russian LM trained on a comparable corpus. This confirms our findings in Section~\ref{ssec:best_ngram} (page~\pageref{pg:stu_more_surprising_than_pro}) and can be indicative of the presence of `strange strings' and awkward word choice, a common problem in student translations, accounting for up to 30\% of all annotated errors (see Figure~\ref{fig:errors500stacked}, page~\pageref{fig:errors500stacked}).
-As expected TTR was lower for student translations. It is a well-known translationese indicator: translations tend to have lower TTR than non-translations. % But this feature can also be interpreted as reflecting the differences in the source text register.
+As expected, TTR was lower for student translations. It is a well-known translationese indicator: translations tend to have lower TTR than non-translations. % But this feature can also be interpreted as reflecting the differences in the source text register.
 % The absolute values for the negative log probability calculated by QuEST++ 
 
 \label{pg:quest_adequacy_feats_for_vars}
@@ -179,21 +178,20 @@ Despite QuEst++ feature set was not entirely fit for our purposes, the relevant 
 %The lack of punctuation marks in students subcorpus might reflect difference in the corpora content rather than true translation-related phenomena. We believe it is the lack of (heavily punctuated) direct speech in the full size newspaper reportage but limited in translations of the a few opening paragraphs of otherwise similar documents, a typical task in a translation class.
 
 %Best features (15): ['adp', 'cconj', 'content\_TTR', 'copula', 'neg', 'nn', 'sconj', 'acl:relcl', 'appos', 'case', 'conj', 'ccomp', 'iobj', 'mark', 'parataxis']
-Turning to the analysis of best performing UD feature, we can report that a classifier limited to \hypertarget{wd:15best-var}{15 RFECV-selected features} improved the performance on this task by three percentage points from F1-score 76.24\% to 79.39\%. % the difference was still NOT significant!
-Only six of these strong predictors of professional varieties in translations were also among strong translationese indicators. This list included frequencies of \hyperlink{acl:relcl}{relative clauses}, \hyperlink{ccomp}{clausal complements}, \hyperlink{copula}{copula verbs}, \hyperlink{neg}{negative particles}, \hyperlink{mark}{function words indicating the head of a subordinate clause}, \hyperlink{sconj}{subordinating conjunctions}.
+Turning to the analysis of best performing UD feature, we can report that a classifier limited to 15 RFECV-selected features improved the performance on this task by three percentage points from F1-score 76.24\% to 79.39\%. % the difference was still NOT significant!
+Only six of these 15 strong predictors of professional varieties in translations were also among strong translationese indicators\wlvfootnote{The lists of UD features include the shorthand names used for albathetised description in Appendix~\ref{appx:ud}}. This list included frequencies of \textit{relative clauses (acl:relcl)}, \textit{clausal complements (ccomp)}, \textit{copula verbs (copula)}, \textit{negative particles (neg)}, \textit{function words indicating the head of a subordinate clause (mark)}, \textit{subordinating conjunctions (sconj)}.
 
-Other six features come from the subsets of translationese indicators that were specific only to professional (\hyperlink{adp}{prepositions}, \hyperlink{case}{function of analytical case markers (mostly prepositions)}, \hyperlink{content\_TTR}{type-to-token ratio}) or student translations (\hyperlink{parataxis}{asyndetically introduced elements}, \hyperlink{iobj}{indirect objects}, \hyperlink{nn}{nouns}).
+Other six features come from the subsets of translationese indicators that were specific only to professional (\textit{prepositions (adp)} , \textit{function of analytical case markers (case)}, \textit{type-to-token ratio (content\_TTR)} ) or student translations (\textit{asyndetically introduced elements (parataxis)}, \textit{indirect objects (iobj)}, \textit{nouns (nn)}).
 
-The third subset (\hyperlink{appos}{appositional modifiers of nouns}, \hyperlink{cconj}{coordinating conjunctions}, \hyperlink{conj}{syntactic conjuncts}) included features that were not selected in either of the translationese classifications.
+The third subset (\textit{appositional modifiers of nouns (appos)}, \textit{coordinating conjunctions (cconj)}, \textit{syntactic conjuncts (conj)}) included features that were not selected in either of the translationese classifications.
 
 Based on the performance of single-feature classifier (if there were statistical distinctions between the categories in the first place), these features cannot be viewed as capturing large distributional dissimilarities between student and professional translations. 
-Only seven out of 15 selected features had statistically different values between the categories. The highest effect size among them was observed for \textit{parataxis}: LogReg F1-score for this feature was estimated at a very modest level of 34\%. 
+Only seven out of 15 selected features had statistically different values between the categories. The highest association score among them was observed for \textit{parataxis}: LogReg F1-score for this feature was estimated at a modest level of 34\%. 
 
-We have already seen in the previous chapter that both translation varieties deviate from the expected TL norm along the same dimensions suggestive of similar patterns in translational behaviour. 
-
+It was shown in the previous chapter that both translation varieties deviated from the expected TL norm along the same dimensions suggestive of similar patterns in translational behaviour. 
 Despite professionalism was captured fairly well by UD features (F1 = 79.39\% on the best-performing subset), the differences between the varieties can hardly be explained by translationese.
-\label{pg:more_professional_more_translated} If anything, some expected translationese trends were better expressed in professional translations (based on the features with statistical differences): they had more markers of dependent clauses, clausal complements, epistemic markers, modal predicates as well as fewer nouns. % (0.27 vs 0.24)
-In English-to-Russian translation these feature might indicate carrying over the English patterns rather than adopting to the TL norm. % given the
+\label{pg:more_professional_more_translated} If anything, some expected translationese trends were better expressed in professional translations (based on the features with statistical differences): professional translators used more markers of dependent clauses, clausal complements, epistemic markers, modal predicates as well as fewer nouns. % (0.27 vs 0.24)
+In English-to-Russian translation these features might indicate carrying over the English patterns rather than adopting to the TL norm. % given the
 Some strong translationese predictors (\textit{acl:relcl, copula, determiners, finite verbs}) did not have statistical differences between the categories.
 On the other hand, professional translations had more varied vocabulary evidenced by higher TTR, more indirect objects and negative particles, fewer analytical passives. These properties are indicative of stronger normalisation trends along these dimensions.
 
@@ -201,7 +199,7 @@ On the other hand, professional translations had more varied vocabulary evidence
 This section presents the results of the same analytical procedure applied to document-level quality labels. 
 Our major question is whether the identified translationese indicators consistently contribute to predicting `good' and `bad' translation. 
 
-The dataset with binary quality labels is summarised in Table~\ref{tab:binqua_pars}. It can be seen that we have a reasonably balanced corpus, with a bit fewer good translations. Recall from Section~\ref{sec:mygold} that these documents come from sets of multiple student translations for 57 English mass-media source texts, and include from one to four translations in each quality category for each ST.
+The dataset with binary quality labels is summarised in Table~\ref{tab:binqua_pars}. It can be seen that the categories are reasonably balanced, with a bit fewer good translations. Recall from Section~\ref{sec:mygold} that these documents come from sets of multiple student translations for 57 English mass-media source texts, and include from one to four translations in each quality category for each ST.
 
 \begin{table}[]
 	\centering
@@ -211,8 +209,8 @@ The dataset with binary quality labels is summarised in Table~\ref{tab:binqua_pa
 		       & documents & sentences & \multicolumn{2}{c|}{tokens} & \multicolumn{2}{c}{tokens per doc} \\
 		       &           &           & EN      &  RU              & EN      &  RU \\
 		\midrule  
-		bad     & 183  	   & 4 144    & 93,844 & 87,894           & 512.81 +/-117.39 & 480.30 +/-114.76 \\  
-		good    & 177      & 4 070    & 89,536 & 85,560           & 505.85 +/-108.44 & 483.39 +/-111.83 \\ 
+		bad     & 183  	   & 4 144    & 93,844 & 87,894           & 512.81 (+/-117.39) & 480.30 (+/-114.76) \\  
+		good    & 177      & 4 070    & 89,536 & 85,560           & 505.85 (+/-108.44) & 483.39 (+/-111.83) \\ 
 		\bottomrule
 	\end{tabular}
 	\caption{\label{tab:binqua_pars} Basic parameters of parallel subcorpus with binary quality labels (after preprocessing and lemmatisation)}
@@ -222,8 +220,8 @@ The dataset with binary quality labels is summarised in Table~\ref{tab:binqua_pa
 %Length of labels array: 360
 %Shape of mdeberta3 reps: (360, 768)
 
-Table~\ref{tab:bad-good} reports SVM outcomes for 10 representation of student translations annotated with binary quality labels. The results for the neural classifier appear in Appendix~\ref{appx:neural_res} (see Table~\ref{tab:stu-pro_neu}). 
-Out of 10 representations attempted for this classification, statistically significant differences between SVM and neural classifier were seen only on \textit{stsb-xlm-r-m} vectors, where SVM outperformed the neural model. 
+Table~\ref{tab:bad-good} reports SVM outcomes for 10 representation of student translations labelled for binary quality. The results for the neural classifier appear in Appendix~\ref{appx:neural_res} (see Table~\ref{tab:stu-pro_neu}). As before, below the performance of various representations is compared based on the agreed outcomes of SVM and neural model.
+Out of 10 representations attempted, statistically significant differences between SVM and neural classifier were seen only on \textit{stsb-xlm-r-m} vectors, where SVM outperformed the neural model. 
 
 \begin{table}[H]
 	\centering
@@ -248,47 +246,43 @@ Out of 10 representations attempted for this classification, statistically signi
 		\textbf{mdeberta3}  & 78.33 (+/-6.89) & 78.88 (+/-6.48) & 78.34 (+/-6.93) & \boxit{0.4in}78.14 (+/-7.13)\\
 		\bottomrule
 	\end{tabular}
-	\caption{\label{tab:bad-good}Binary quality classification results (The highest F1-score for manual features is shown in bold, the highest result for content-dependent representations is boxed)}
+	\caption{\label{tab:bad-good}Binary quality classification results by SVM. The highest F1-score for manual features is shown in bold, the highest result for content-dependent representations is boxed}
 \end{table}
+In this classification, UD performed significantly better than all other hand-engineered features, including features from QuEst++ framework. The concatenation of UD with collgram- and unigram-based features did not yield a significant increase in performance. 
 
-As before, below we compare the performance of various representations based on the agreed outcomes of SVM and neural model. 
-In this classification, UD perform significantly better than all other hand-engineered features, including features from QuEst++ framework. The concatenation of UD with collgram- and unigram-based features did not yield a significant increase in performance. 
-
-This task proved much more challenging for content-dependent classifiers than translation detection task or classification of professional varieties. It is not surprising as the classifiers were faced with a content-wise much more homogeneous set of documents, in fact, with multiple translations of the same source text. 
-
-There were no statistically significant differences between the performance of UD features and \textit{tf-idf} or vectors from two sentence embedding models (\textit{stsb-xlm-r-m} and \textit{TQmono-m}).
+This task proved much more challenging for content-dependent classifiers than translation detection task or classification of professional varieties. It is not surprising as the classifiers were faced with a content-wise much more homogeneous set of documents, in fact, with multiple translations of the same source text. There were no statistically significant differences between the performance of UD features and \textit{tf-idf} or vectors from two sentence embedding models (\textit{stsb-xlm-r-m} and \textit{TQmono-m}).
 However, representations produced as triple aggregation of word vectors using \textit{ruRoberta} and \textit{mdeberta3} models, remained unbeaten in absolute terms, with no difference between them, as was the case with all other classifications. 
-The results of statistical significance tests between representations are presented in Table~\ref{tab:sign_tests_qua_labels}. In each pair of markers in the table, the first one is for SVM and the second -- for the neural classifier; asterisk indicates statistical significance of observed differences.
+%The results of statistical significance tests between representations are presented in Table~\ref{tab:sign_tests_qua_labels}. In each pair of markers in the table, the first one is for SVM and the second -- for the neural classifier; asterisk indicates statistical significance of observed differences.
+%\todo[inline]{lose these tables}
+%\begin{table}[H]
+%	\centering
+%	\begin{tabular}{l|ccccccccc}
+%		\toprule
+%		& UD  & collgr & ngr & all & quest61  & tfidf & stsb-xlm & TQm & ruR \\
+%		\midrule
+%		UD              &     &      &    &         &         &       &  &   & \\
+%		collgram        & - - &      &    &         &         &       &  &  & \\
+%		ngram           & * - & * -  &    &         &         &       &   &    & \\
+%		all             & - - & - -  & * - &        &         &       &    & & \\
+%		quest61         & * * & * -  & - - & * *    &         &       &  & &  \\
+%		tfidf           & - - & - -  & * - & - -    & * *     &       &    &  &  \\
+%		stsb-xlm        & - - & - -  & * - & - -    & * -     & - -   &      &    &    \\
+%		TQmono          & - - & - *  & * * & - -    & * *     & - *   & - *  &      & \\
+%		ruRoberta       & * * & * *  & * * & * *    & * *     & * *   & * *  & * *  &   \\
+%		mdeberta3       & * * & * *  & * * & * *    & * *     & * *   & * *  & * *  & - - \\           
+%		\bottomrule
+%	\end{tabular}
+%	\caption{\label{tab:sign_tests_qua_labels}Quality labels: Results on pair-wise significance testing on SVM (left marker) and neural classifier (right marker)}
+%\end{table}
+Hand-crafted UD features designed to capture translationese (and successful in that task as was shown in Chapter~\ref{cha:translationese}) were secondary only to the recent large pre-trained word embeddings in the current task of document-level human translation quality estimation. UD features achieved $F1=61.00$\wlvfootnote{Note that feature selection improved this result to reach $F1=68.9$, see page~\pageref{pg:selection_helps_in_quality_classification}} vs $F1=78.14$ on \textit{mdeberta3} vectors.
+Admittedly, their performance was very limited in the proposed binary classification setup. It was still above the random baseline, which was not the case for alternative representations. 
 
-Hand-crafted UD features designed to capture translationese (and successful in that task as we have seen in Chapter~\ref{cha:translationese}) were secondary only to the recent large pre-trained word embeddings in the task of document-level human translation quality estimation. UD features achieved $F1=61.00$ vs $F1=78.14$ on \textbf{mdeberta3} vectors.
-Admittedly, their performance was very limited in the proposed binary classification setup, but it was still above the random baseline, which was not the case for alternative representations. 
-\todo[inline]{lose these tables}
-\begin{table}[H]
-		\centering
-	\begin{tabular}{l|ccccccccc}
-		\toprule
-						& UD  & collgr & ngr & all & quest61  & tfidf & stsb-xlm & TQm & ruR \\
-		\midrule
-		UD              &     &      &    &         &         &       &  &   & \\
-		collgram        & - - &      &    &         &         &       &  &  & \\
-		ngram           & * - & * -  &    &         &         &       &   &    & \\
-		all             & - - & - -  & * - &        &         &       &    & & \\
-		quest61         & * * & * -  & - - & * *    &         &       &  & &  \\
-		tfidf           & - - & - -  & * - & - -    & * *     &       &    &  &  \\
-		stsb-xlm        & - - & - -  & * - & - -    & * -     & - -   &      &    &    \\
-		TQmono          & - - & - *  & * * & - -    & * *     & - *   & - *  &      & \\
-		ruRoberta       & * * & * *  & * * & * *    & * *     & * *   & * *  & * *  &   \\
-		mdeberta3       & * * & * *  & * * & * *    & * *     & * *   & * *  & * *  & - - \\           
-			\bottomrule
-	\end{tabular}
-	\caption{\label{tab:sign_tests_qua_labels}Quality labels: Results on pair-wise significance testing on SVM (left marker) and neural classifier (right marker)}
-\end{table}
-
-Good performance of embedding models is reassuring, because it means that the quality distinctions annotated in our dataset were actually related to objective properties of the texts, and not as subjective as it was commonly believed with regard of human annotation of quality at document level. 
-
-Although we cannot be entirely sure which linguistic properties of translations were captured by the best performing \textit{mdeberta3} embedding, lack of topical variation between good and bad translations in this experimental setup, allows a cautious conclusion that the vectors actually reflect quality-related aspects of language. 
+Good performance of embedding models is reassuring, because it means that the quality distinctions annotated in our dataset were actually related to objective properties of the texts, and not as subjective as it was commonly believed with regard to human annotation of quality at document level. 
+Although we cannot be entirely sure which linguistic properties of translations were captured by the best performing \textit{mdeberta3} vectors, the lack of topical variation between good and bad translations in this experimental setup, allows a cautious conclusion that the vectors actually reflected quality-related aspects of language. 
 % These aspects may or may not be aligned with translationese properties of the documents.  % Aspects of quality manifested in the TT only and not translationese? 
 
+The panels in Figure~\ref{fig:pca_qua} reflect the differences between quality categories as captured by the full UD feature set and \textit{mdeberta3} model. UD features clearly put student translations in the gap between source and target languages, with top-ranking translations being a bit shifted towards the non-translated TL side of the continuum. 
+Vectors from \textit{mdeberta3}, a multilingual model, primarily capture the language distinction at D1. This squeezes the Russian language varieties into the same location on the plot and overshadows the differences between them. Nonetheless, top-ranking translations are clearly further away from sources, than low-ranking translations. This might mean that top-ranking translations are more distant from their sources and more adopted to the TL norm. 
 \begin{figure}[H]
 	\begin{minipage}[c]{0.5\linewidth}
 		\centering
@@ -303,13 +297,7 @@ Although we cannot be entirely sure which linguistic properties of translations 
 	\caption{\label{fig:pca_qua}Variability of PCA D1 values in quality-annotated documents (along with their sources and non-translations)}	
 \end{figure}   
 
-The panels in Figure~\ref{fig:pca_qua} reflect the differences between quality categories as captured by the full UD feature set and \textit{mdeberta3} model. UD features clearly put student translations in the gap between source and target languages, with top-ranking translations being a bit shifted towards the non-translated TL side of the continuum. 
-Vectors from \textit{mdeberta3}, a multilingual model, primarily capture the language distinction at D1. This squeezes the Russian language varieties into the same location on the plot and overshadows the differences between them. Nonetheless, top-ranking translations are clearly further away from sources, than low-ranking translations. This might mean that top-ranking translations are more distant from their sources and more adopted to the TL norm. 
-
 In turn, this suggests that the quality distinctions captured by \textit{mdeberta3} are, in fact, related to translationese, interpreted as the amount of deviations from the TL norm, especially on the axis capturing language contrast.
-
-However, as we have seen in the feature analysis for student translations in Section~\ref{ssec:best_ud}, shining-through does not exhaust translationese manifestations. Plotting the PCA results for just the best performing subset of UD features eliminates the distinctions between languages. This might mean that many of the 26 selected features (see below) are not necessarily shining-through indicators. Translation quality is partly captured along other dimensions of translated language, not the one defined by the contrast between languages. 
-
 \begin{figure}[H]
 	\begin{minipage}[c]{0.5\linewidth}
 		\centering
@@ -318,28 +306,26 @@ However, as we have seen in the feature analysis for student translations in Sec
 	\end{minipage}	
 	\begin{minipage}[c]{0.5\linewidth}
 		\centering
-		\textit{mdeberta3} PCA D1
+		\textit{mdeberta3} PCA
 		\includegraphics[width=\linewidth]{figures/pca/qua-ttype-mdeberta3-base-PCA-scatter}
 	\end{minipage}
 	\caption{\label{fig:pca_qua26}Variability of PCA D1 values in quality-annotated documents (no source texts)}	
-\end{figure}   
+\end{figure}
+However, as we have seen in the feature analysis for student translations in Section~\ref{ssec:best_ud}, shining-through does not exhaust translationese manifestations. Plotting the PCA results for just the best performing subset of UD features eliminated the distinctions between languages (compare the left-hand panels in Figures~\ref{fig:pca_qua} and~\ref{fig:pca_qua26}). This might mean that some of the 26 selected features (see below) are not necessarily shining-through indicators. Translation quality is partly captured along other dimensions of translated language, not just the one defined by the contrast between languages. 
 
-The right-hand panel in Figure~\ref{fig:pca_qua26} demonstrates that quality parameter of the dataset is captured on the orthogonal PCA dimension (D2): the lower-ranking translations (in red) can be identified as more distant from TL norm (grey cloud). 
+The right-hand panel in Figure~\ref{fig:pca_qua26} demonstrates that the PCA transform of the \textit{mdeberta3} captures the quality parameter of the dataset on the orthogonal PCA dimension (D2): the lower-ranking translations (in red) can be identified as more distant from TL norm (grey cloud). 
 % RU_1_245_25.txt
 %RU_1_245_11.txt
 %RU_1_245_18.txt
 %RU_1_245_14.txt
 
-\paragraph{Feature analysis} 
-Almost half of 26 most contributing UD features selected by RFECV in the quality learning task were in the intersection with strong translationese indicators identified in Section~\ref{ssec:best_ud}. This selection significantly improved the performance of the SVM classifier: F1-score went up by 8\% from 61.0 to 68.9\%. 
+\paragraph{\label{pg:selection_helps_in_quality_classification}Feature analysis} 
+Almost half of 26 most contributing UD features selected by RFECV in the classification task on quality labels were in the intersection with strong translationese indicators identified in Section~\ref{ssec:best_ud}. This selection significantly improved the performance of the SVM classifier: F1-score went up by 8\% from 61.0 to 68.9\%. 
 %68.86 (+/-7.15)
 %T-TEST: svm_bad-good_ud26 is significantly better with F1-score = 0.6886167230000001
 
-Table~\ref{tab:bad-good_indicators} aggregates parameters that characterise each feature in this selection from the point of view of: (1)  ability to predict quality categories alone (for features with statistically significant differences between the categories, otherwise `--' in \textit{LogR} column), (2) comparison of mean feature values across the categories, (3) SVM weights assigned to each feature and (4) translational trend in `bad' translations. 
-In the latter, we showed the hypothesised trend in bold if there were significant differences between `good' and `bad' categories. The regular font is used if there were significant differences between some of the three document categories involved in the comparison (src, bad, ref). In cases where there were no distinctions between the three categories, it was difficult to talk about any trend (--). The table is sorted by SVM weight.
-Features that were also identified as strong translationese indicators in previous analysis (see Section~\ref{ssec:best_ud}) are shown in bold in \textit{feature} column. Translationese features that were specific for either professional or student translations are shown in green and orange, respectively, as they were colour-coded in Section~\ref{sec:detect}. There were only three quality indicators that were not associated with translationese: \textit{frequency of syntactic conjuncts (\textit{conj}), appositive constructions (\textit{appos}) and possessive pronouns (\textit{possp})}.
-In \textit{means} column we used \textit{<=} and \textit{=>} signs to signal the comparison between categories, even in the absence of statistically significant differences.
-
+Table~\ref{tab:bad-good_indicators} aggregates parameters that characterise each feature in this selection from the point of view of: (1) ability to predict quality categories alone (for features with statistically significant differences between the categories, otherwise `--' in \textit{LogR} column), (2) comparison of mean feature values across the categories, (3) SVM weights assigned to each feature and (4) translational trend in `bad' translations. 
+The hypothesised trend is shown in bold if there were significant differences between `good' and `bad' categories. The regular font is used if there were significant differences between some of the three document categories involved in the comparison (src, bad, ref). In cases where there were no distinctions between the three categories, it was difficult to talk about any trend (--). The table is sorted by SVM weight.
 % for intersection with pro, it is everything except case
 % for intersection with student: not used for qua 7 of 14: 'aux', 'superl', 'xcomp', 'infs', 'mhd', 'nn', 'content_dens'
 
@@ -382,40 +368,34 @@ In \textit{means} column we used \textit{<=} and \textit{=>} signs to signal the
 		\textcolor{Dandelion}{caus} & -- & ref<=src<=bad<=good*  & 0.195 & -- \\
 		\textcolor{Dandelion}{mpred} & -- & src>bad=>good>ref & 0.116 & shining \\
 		\midrule
-		copula       & 0.14 +/-0.12 & src>bad>good>ref &  & \textbf{shining}           \\
-		finites      & 0.09 +/-0.13 & src>bad>good>ref &     & \textbf{shining}      \\
-		infs         & 0.08 +/-0.09 & src<bad<good<ref    &  & \textbf{shining}          \\		
+		\textbf{copula}       & 0.14 +/-0.12 & src>bad>good>ref &  & \textbf{shining}           \\
+		\textbf{finites}      & 0.09 +/-0.13 & src>bad>good>ref &     & \textbf{shining}      \\
+		\textcolor{Dandelion}{infs}         & 0.08 +/-0.09 & src<bad<good<ref    &  & \textbf{shining}          \\		
 		\bottomrule
 %	\end{tabular}
-\caption{\label{tab:bad-good_indicators}Features selected by RFECV with results of significance testing and comparison between quality categories}\\
+\caption{\label{tab:bad-good_indicators}Features selected by RFECV with results of significance testing and comparison between document categories}\\
 \end{longtable}
+Features that were also identified as strong translationese indicators in previous analysis (see Section~\ref{ssec:best_ud}) are shown in bold in \textit{feature} column. Translationese features that were specific for either professional or student translations are shown in green and orange, respectively, as they were colour-coded in Section~\ref{sec:detect}. There were only three quality indicators that were not associated with translationese: \textit{frequency of syntactic conjuncts (\textit{conj}), appositive constructions (\textit{appos}) and possessive pronouns (\textit{possp})}.
+In \textit{means} column we used \textit{<=} and \textit{=>} signs to signal the comparison between categories, even in the absence of statistically significant differences.
+The last three features in Table~\ref{tab:bad-good_indicators} had significant differences between the document categories in univariate analysis, but they were not selected as useful in quality classification (\textit{copula verbs, verbs in finite form and infinitives}). 
+%Copula verbs and finite verb forms were among shared translationese indicators, while frequency of infinitives was useful to separate student translations from non-translations.
 
-The last three features in Table~\ref{tab:bad-good_indicators} had significant differences between the quality categories in univariate analysis, but they were not selected as useful in quality classification (\textit{copula verbs, verbs in finite form and infinitives}). Copula verbs and finite verb forms were among shared translationese indicators, while frequency of infinitives was useful to separate student translations from non-translations.
-
-As can be seen from Table~\ref{tab:bad-good_indicators}, SVM classifier operated in the feature space where only a few features had statistically significant distinctions. All features had very modest association with the labels, too. It is not surprising as this experiment was run on a relatively small dataset.
-Nonetheless, it can be seen that in cases of significant difference between quality categories, \textit{bad} translations mostly passively follow SL patterns. This behaviour consists in either carrying over the items with higher SL frequencies (anglicisation, shining-through) or in lack of ability to come up with preferred TL patterns, where the frequencies in TL are higher than in the SL (\textit{underuse of TL}). 
-Most comparisons (even if insignificant) showed that \textit{good} translations were almost always closer to the TL reference than \textit{bad} translations (the six exceptions from this observations are marked with an asterisk).  
-
-Figure~\ref{fig:qua-weights} visualises the contribution of each feature to the improved classifier. 
- 
+As can be seen from Table~\ref{tab:bad-good_indicators}, SVM classifier operated in the feature space where only a few features had statistically significant distinctions. All features had modest association with the labels, too. It is not surprising as this experiment was run on a relatively small dataset.
+Nonetheless, it can be seen that in cases of significant difference between quality categories, \textit{bad} translations mostly passively followed SL patterns. This behaviour consists in either carrying over the items with higher SL frequencies (anglicisation, shining-through) or in lack of ability to come up with preferred TL patterns, where the frequencies in TL are higher than in the SL (\textit{underuse of TL}). 
+Most comparisons (even if insignificant) showed that \textit{good} translations were almost always closer to the TL reference than \textit{bad} translations (the six exceptions from this observations are marked with an asterisk in Table~\ref{tab:bad-good_indicators}).  
 \vspace{-2em}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.85\linewidth]{figures/bad-good-bars-ud26}
 	\caption{\label{fig:qua-weights}Weights loading the decision towards each category for 26 RFECV-selected items}	
 \end{figure}
+Figure~\ref{fig:qua-weights} visualises the contribution of each feature to the improved classifier. 
 
 We omitted the analysis of QuEst++ features on this dataset due to its poor performance, which was even lower than the random baseline.
 
-Concluding the observations from the experiments on document labels, let us see whether there were commonalities between the outcomes of professionalism and quality classifications. 
-
-% is professionalism related to quality? 
-Despite the classification results on UD features were higher in professional variety classification than in translation quality classification (79.39\% vs 68.9\% on the best-performing subsets of features), we would argue that translationese is more related to quality than to professionalism.
- 
-In Sections~\ref{ssec:var} (page~\pageref{pg:more_professional_more_translated}), we have shown that some translationese features were actually more typical to professional translations than to student translations. This finding was against our expectations, but helped the classifier. 
-On the contrary, quite in line with the expected, the properties of \textit{bad} translations on most translationese features indicated that these translations had major deviations from the expected TL norm. %, mostly because they carried over ST features. 
+Concluding the observations from the experiments on document labels, let us see whether there were commonalities between the outcomes of professionalism and quality classifications. Despite the classification results on UD features were higher in professional variety classification than in translation quality classification (79.39\% vs 68.9\% on the best-performing subsets of features), we would argue that translationese is more related to quality than to professionalism. Analysis in Sections~\ref{ssec:var} (page~\pageref{pg:more_professional_more_translated}) demonstrated that some translationese features were actually more typical to professional translations than to student translations. This finding was against our expectations, but helped the classifier. 
+However, quite in line with the expected, the properties of \textit{bad} translations on most translationese features indicated that these translations had major deviations from the expected TL norm. %, mostly because they carried over ST features. 
 %There were only two strong translationese predictors that worked for predicting both varieties and quality: (\hyperlink{acl:relcl}{relative clauses}, \hyperlink{mark}{subordinate clause introducers}).
- 
 %Interestingly, there were two features that were useless for any translationese classification among the other six features shared by professionalism and quality classifiers (\hyperlink{appos}{paranthetical modifiers of nouns}, \hyperlink{conj}{syntactic conjuncts}).  % we are talking here about the intersection of \hyperlink{wd:15best-var}{15} and 26 features.
 \label{pg:bad_tendencies}
 It means that distinctions between professional varieties and quality categories run along different directions. \textbf{Professional translations do not necessarily exhibit less translationese than student translations, while lower-ranking translations do demonstrate stronger translationese tendencies.} In particular, \textit{bad} translations feature longer sentences, more complex sentence structure (more clauses, especially relative clauses), lower TTR, more analytical passives and fewer passive constructions, more nouns functioning as subjects, more modal predicates, more verbal forms, including overuse of copula verbs, de-verbal nouns and participles. 
@@ -432,14 +412,14 @@ We want to find out which approach to benchmarking quality by human judges is be
 \subsection{\label{ssec:my_doc_regressors}Experimental Setup}
 
 \paragraph{Datasets} 
-The input for the quality prediction tasks, formulated as a regression problem was stored in a separate table of the structure similar to the dataset with document-level labels. It included instances in rows and features in columns. All tested scores, sentence-aligned documents and their lemmatised versions were added as columns as well. 
+The input for the quality prediction tasks, formulated as regression problems, was stored in a separate table of the structure similar to the dataset with document-level labels. It included instances in rows and features in columns. All tested scores, sentence-aligned documents and their lemmatised versions were added as columns as well. 
 %It included the total of 1106 instances (rows). 
 The intersection between quality-labelled and quality-scored student translations included about 17\% of the total number of unique student translations used in this thesis (206 of 1222 documents). 
 Therefore, the datasets were kept separate.
 
 In brief, the error-annotated subcorpus consists of 553 parallel documents, 140 of which are also annotated with DA scores. Both collections include multiple translations for 46 and 30 STs, respectively.
 The quality scores were generated as described on page~\pageref{pg:tq} in Section~\ref{ssec:err} for error-based scores and on page~\pageref{pg:final_da} in Section~\ref{ssec:da} for scores from direct assessment. 
-In particular:
+In particular, the quality scores included:
 \begin{description}\compresslist{}
 	\item[accuracy:] frequency of content errors weighted for error categories and normalised to the ST word count;
 	\item[fluency:] frequency of language errors weighted for error categories and normalised to the ST word count;
@@ -454,7 +434,7 @@ We used the same representations as for the labelled datasets.
 Given the poor performance on \textit{collgram}- and \textit{ngram}-based features and on \textit{stsb-xlm-r-m} vectors in the classification tasks, we omit them from the results in regression experiments reported in this section. 
 % this is a bad decision if we contend that error-based scores have a different perspective on quality.
 
-\paragraph{Learning algorithm}
+\paragraph{Learning algorithm and evaluation setup}
 % regressor = SVR(kernel='rbf', degree=3, gamma='scale', coef0=0.0, tol=0.001, C=1.0, epsilon=0.1, max_iter=-1, shrinking=True)
 For translated documents with quality scores, the ML task is formulated as a regression problem. We learn the target scores using \gls{SVR} as implemented in \textit{scikit-learn}, with the library default settings. In particular, the algorithm uses \textit{radial basis function (rbf)} kernel, with \textit{gamma} parameter set to `scale', \textit{C} to 1.0 and \textit{epsilon} to 0.1.
 We omit the results for the neural regressor, because they are not different from SVR performance in a principled way as was the case in Sections~\ref{sec:detect}, \ref{ssec:var} and~\ref{ssec:bin}.
@@ -480,24 +460,17 @@ The strength of the relationship between each variable (feature) and target labe
 % RMSE increases as the variance associated with the frequency distribution of error magnitudes also increases. RMSE does not necessarily increase with the variance of the errors. RMSE increases with the variance of the frequency distribution of error magnitudes.
 \subsection{\label{ssec:doc_err_res}Document Level: Error-based Scores}
 Based on the existing error annotation, we generated three quality scores. Accuracy and fluency score were calculated from content and language error frequencies, respectively. Overall translation score (tq) was obtained using raw overall error statistics. All scores were normalised to the ST word count.
-
 In an attempt to generate more theoretically justified scores, we also produced a weighted version of these scores using an elaborate weighting scheme. \textit{Weighted} accuracy and fluency scores in Table~\ref{tab:docs_err_par} take into account severities of errors (e.g. a critical error weights more than a minor error). Additionally, these scores are weighted by individual categories of content and language errors as recommended by \textit{TAUS}. For example, an error in collocation has a greater weight than a spelling error. 
-The overall quality score uses the severities and annotated positive assessment (kudos) in its weighted variant. This explains why tq score can go over the maximum bound of the absolute scale (100).
-
-Scaled tq score is tq score re-calculated for a 0-100 scale, using Formula~\ref{eq:squeezeit}:
-
+The overall quality score uses the severities and annotated positive assessment (kudos) in its weighted variant. This explains why tq score can go over the maximum bound of the absolute scale (100). Scaled tq score is tq score re-calculated for a 0-100 scale, using Formula~\ref{eq:squeezeit}:
 \begin{equation}\label{eq:squeezeit}
 \begin{split}
 scaled score = \frac{100\times (score - min)}{max - min} \\
 \end{split}
 \end{equation}
-
 where \textit{score} is normalised error frequency, \textit{min} and \textit{max} are respective values of the unscaled score range.
 
-The scaling was done to put the scores from error annotation on the same measuring scale as DA scores. 
-
-Detailed account of converting error statistics to scores is given in Section~\ref{ssec:err} (see page~\pageref{pg:err-score-generation}). 
-
+The scaling was done to put the scores from error annotation on the same measuring scale as DA scores. Detailed account of converting error statistics to scores is given in Section~\ref{ssec:err} (see page~\pageref{pg:err-score-generation}). 
+Table~\ref{tab:docs_err_par} has the parameters of each quality score distribution (across 553 translations). Note that weighted scores are better distributed across the 0-100 scale, while unweighted scores are hurdled around the maximum value.
 \begin{table}[H]
 	\centering
 	\begin{tabular}{l|ccc}
@@ -506,25 +479,28 @@ Detailed account of converting error statistics to scores is given in Section~\r
 		\midrule
 		\multicolumn{4}{c}{Unweighted scores} \\
 		\midrule
-		accuracy   & 93.55 & 100    & 98.12 +/-1.04  \\
-		fluency    & 90.88 & 99.8   & 97.36 +/-1.32  \\
-		tq         & 87.62 & 99.56  & 95.49 +/-1.92  \\
-		scaled\_tq & 0     & 100    & 65.86 +/-16.04 \\
+		accuracy   & 93.55 & 100    & 98.12 (+/-1.04)  \\
+		fluency    & 90.88 & 99.8   & 97.36 (+/-1.32)  \\
+		tq         & 87.62 & 99.56  & 95.49 (+/-1.92)  \\
+		scaled\_tq & 0     & 100    & 65.86 (+/-16.04) \\
 		\midrule
 		\multicolumn{4}{c}{Weighted scores} \\
 		\midrule
-		accuracy   & 61.28 & 98.9   & 86.03 +/-6.69  \\
-		fluency    & 59.21 & 98.46  & 86.52 +/-6.11  \\
-		tq         & 72.67 & 100.36 & 92.69 +/-4.35  \\
-		scaled\_tq & 0     & 100    & 72.3  +/-15.72 \\
+		accuracy   & 61.28 & 98.9   & 86.03 (+/-6.69)  \\
+		fluency    & 59.21 & 98.46  & 86.52 (+/-6.11)  \\
+		tq         & 72.67 & 100.36 & 92.69 (+/-4.35)  \\
+		scaled\_tq & 0     & 100    & 72.3  (+/-15.72) \\
 		\bottomrule
 	\end{tabular}
 	\caption{\label{tab:docs_err_par}Quantitative parameters of error-based scores across 553 documents}
 \end{table}
 
-Table~\ref{tab:docs_err_par} has the parameters of each quality score distribution (across 553 translations). Note that weighted scores are better distributed across the 0-100 scale, while unweighted scores are hurdled around the maximum value.
-
 Table~\ref{tab:doc_err_double} has the results of the document-level regression tasks for the error-based scores across seven representation.
+\paragraph{\label{pg:doc_err_ud_vs_all}Performance of UD against other representation}
+Similar to classification experiments on quality labels, morphosyntactic features, proposed in this thesis, were significantly outperformed only by \textit{mdeberta3} on unweighted accuracy and tq scores, and by \textit{mdeberta3} and \textit{ruRoberta} on fluency.
+The highest result of $r=0.67$ was seen on \textit{mdeberta3} representations for weighted overall quality (cf. $r=0.45$ for UD features). % not significantly outperformed in any other setting
+As expected, \textit{collgram} and \textit{ngram} features implicitly present in \textit{all} were not helpful and introduced noise, showing slightly lower performance than UD feature set across all scores. 
+Interestingly, a custom \textit{tf-idf} representation\wlvfootnote{produced on lemmatised corpus with proper names and numbers substituted with respective placeholders, see page~\pageref{pg:tfidf_meth}} consistently performed better than both morphosyntactic features and TQ-estimation-dedicated cross-lingual sentence embedding model from \textit{TransQuest} in absolute terms, but we do not have enough data to see statistically significant results on these comparisons.
 
 \begin{table}[H]
 	\centering
@@ -563,29 +539,19 @@ Table~\ref{tab:doc_err_double} has the results of the document-level regression 
 \caption{\label{tab:doc_err_double}Regression results for error-based quality scores (553 documents). The highest F1-score for manual features is shown in bold, the highest result for content-dependent representations is boxed}
 \end{table}
 
-\paragraph{\label{pg:doc_err_ud_vs_all}Performance of UD against other representation}
-Similar to classification experiments on quality labels, morphosyntactic features proposed in this thesis were significantly outperformed only by \textit{mdeberta3} on unweighted accuracy and tq scores, and by \textit{mdeberta3} and \textit{ruRoberta} on fluency.
-
-The highest result of $r=0.67$ was seen on \textit{mdeberta3} representations for weighted overall quality (cf. $r=0.45$ for UD features). % not significantly outperformed in any other setting
-
-As expected, \textit{collgram} and \textit{ngram} features implicitly present in \textit{all} were not helpful and introduced noise, showing slightly lower performance than UD feature set across all scores.
-
-Interestingly, a custom \textit{tf-idf} representation\wlvfootnote{produced on lemmatised corpus with proper names and numbers substituted with respective placeholders, see page~\pageref{pg:tfidf_meth}} consistently performed better than both morphosyntactic features and TQ-estimation-dedicated cross-lingual sentence embedding model from \textit{TransQuest} in absolute terms, but we do not have enough data to see statistically significant results on these comparisons.
-
 \paragraph{Comparison of regressors across types of scores}
 From Table~\ref{tab:doc_err_double}, Spearman's \textit{r} was higher for overall quality score (tq) than for accuracy, fluency or scaled\_tq for both weighted and unweighted versions. However, most differences between the results on accuracy, fluency or tq were not statistically significant. Whenever there was a significant difference (mostly between weighted fluency and tq), the results were always better for tq.
 
 Significant differences between weighted and unweighted versions were seen only for fluency on \textit{ruRoberta} and for scaled\_tq on \textit{mdeberta3}. However, it is impossible to say which version of scores was more learnable because the unweighted score returned higher results in the former setting and the weighted score was superior in the latter. 
-It is noteworthy that weighted scores returned much larger error between the gold scores and predictions as measured by \gls{RMSE}. 
+It is noteworthy that weighted scores returned much larger error between the gold scores and predictions as measured by \gls*{RMSE}. 
 Based on these observations, {unweighted scores are preferable to weighted scores}.
 
 \textbf{Scaled version of the overall quality scores was inferior to unscaled version} on almost all representations. % for all representations except \textit{mdeberta3} on unweighted scores. 
 Scaling the quality score tripled the average prediction error, too.
-
 In the subsequent experiments reported in this chapter, weighted scores and scaled version of overall quality (scaled\_tq) are excluded from the analysis.
 
 These results draw attention to a curious finding. Contrary to the expectations, we did not see statistically significant differences between accuracy and fluency in terms of performance on any representations, including translationese features. If these scores captured independent of each other aspects of quality, we would expect higher results for fluency on our TL-centred representations (even if not on translationese-aware UD features). We can cautiously suggest that \textbf{our data did not contain translations that were very inaccurate but fluent, and vice versa}. The two aspects of quality seem to be correlated. Indeed, on weighted scores Spearman's correlation coefficient between them was 0.897\wlvfootnote{We argue that weighted scores, which take into account the type of errors and their severities reflect the actual opinion of assessors' on quality}. % $r=0.309$ on unweighted scores based on simple normalised frequency of content and language errors disregarding severities or subtypes of these major categories
-This might mean that \textbf{an \gls{HTQE} approach to aimed at fluency can be a useful proxy for overall quality in human translation quality estimation based on document-level quality scores from error annotation}.
+This might mean that \textbf{an \gls*{HTQE} approach to aimed at fluency can be a useful proxy for overall quality in human translation quality estimation based on document-level quality scores from error annotation}.
 Another explanation is lack of training data. Our experiments were run on 553 annotated translations and did not reveal the differences between the two aspects of quality as captures by error annotation aggregated at document level. If more data is needed to see the differences between the two, then the difference must be really small. A more plausible explanation is that \textbf{scores from error annotation do not reflect translationese properties of translations, at least when they are generated for entire documents}. %; language errors are focused on other imperfections of student translations. 
 
 \paragraph{Feature analysis} 
@@ -600,7 +566,7 @@ To reveal the features that were better correlated with various quality scores, 
 Univariate correlation analysis did not reveal any features from UD, collgram, ngram or QuEst++ feature sets that were associated with any quality score for more than Spearman's $r=0.274$. % Interestingly, the values of $r$ between any single feature and (best-performing) fluency scores were more than 1.5 times lower than for accuracy or tq. % I am not sure how to explain this.
 % the highest r (positive or negative seen for collgram, ngram was on unweighted tq: bigram-tscore_std   0.189) 
 \label{pg:scores_not_translationese}
-Despite the correlation between the proposed quality indicators and various quality scores was small, we noticed that some important quality predictors from UD features (from the top 10 better-correlated features) contributed to all scores while others remain specific to accuracy or fluency. The intersection of top 10 features by correlation with unweighted accuracy, fluency and tq included \textit{nsubj, acl:relcl, obj}. These relatively strong predictors shared by all error-annotated scores capture syntactic complexity of sentence in translations: number of explicit syntactic subject and object dependencies across all clauses (\hyperlink{ft:nsubj}{nsubj}, \hyperlink{ft:obj}{obj} and number of relative clauses (\hyperlink{ft:acl:relcl}{acl:relcl}). All of them were weakly but positively correlated with the scores. This brings us to a counter-intuitive conclusion that the more well-developed finite clauses there were in the sentence, the higher was the quality score. This also contradicts the results on binary labels (see page~\ref{pg:bad_tendencies}).
+Despite the correlation between the proposed quality indicators and various quality scores was small, we noticed that some important quality predictors from UD features (from the top 10 better-correlated features) contributed to all scores while others remain specific to accuracy or fluency. The intersection of top 10 features by correlation with unweighted accuracy, fluency and tq included \textit{nsubj, acl:relcl, obj}. These relatively strong predictors shared by all error-annotated scores capture syntactic complexity of sentence in translations: number of explicit syntactic subject and object dependencies across all clauses (\textit{nsubj}, \textit{obj} and number of relative clauses (\textit{acl:relcl})). All of them were weakly but positively correlated with the scores. This brings us to a counter-intuitive conclusion that the more well-developed finite clauses there were in the sentence, the higher was the quality score. This also contradicts the results on binary labels (see page~\ref{pg:bad_tendencies}).
 
 One way to interpret this contradiction is to suggest that holistic document-level perception of quality incorporated translationese-related properties of translations, while error-based quality scores, even from fluency errors, did not reflect translation solutions that can be explained by translationese. 
 The fact that the more prominent quality predictors were equally associated with accuracy, fluency and tq, together with the observation that this association was weak ($r<0.243$), confirms that even if accuracy and fluency reflected different aspects of translation quality, these aspects were not related to translationese.
@@ -615,7 +581,7 @@ The comparable \textbf{performance of QuEst++ for all error-based scores was bas
 For the QuEst++ feature set the intersection between best-performing features on accuracy and fluency included six out of 10 top features. Five of them were complexity (ST-based) features that \textit{measured average number of translations per source word} counted with various Giza probability thresholds (including \#1016, \#1018, \#1020, \#1022, \#1024, e.g. document-level QuEst++ feature \#1024: ``average number of translations per source word in the sentence (threshold in giza1: prob > 0.05)''). Apart from that, number of sentences in the target document (\#9801) was relatively well correlated with all scores. It indicated that the more sentences there were in a translation, the higher was the quality score.
 
 The error-annotated dataset included multiple translations for 47 English sources. Apparently, the differences between them were most contributive to the regressor performance. We looked through the extended lists of top 15 most-associated features for accuracy and fluency, and found that they represented the properties of ST (with  the exception of two adequacy features). Over-reliance of this classifier on the ST side fits well with no distinction between accuracy and fluency. Indeed, a more demanding ST can trigger both content and language errors, as we demonstrated in~\cite{Kunilovskaya2022err}.
-However, it also shows that this feature set does not pick up any relevant distinctions between translations per se. 
+However, it also shows that this feature set does not pick up any relevant distinctions between translations per se. Analysis of intersections in \textit{tf-idf} top features did not reveal any patterns and was not enlightening. 
 
 %fluency	
 %qe_1024	average number of translations per source word in the document (threshold in giza1: prob > 0.5)
@@ -646,8 +612,6 @@ However, it also shows that this feature set does not pick up any relevant disti
 %qe_1020	average number of translations per source word in the sentence (threshold in giza1: prob > 0.10)
 %bqe_1022	average number of translations per source word in the sentence (as given by IBM 1 table thresholded so that prob(t|s) > 0.2)
 
-Analysis of intersections in \textit{tf-idf} top features did not reveal any patterns and was not enlightening. 
-
 % for weighted scores
 % Selected accuracy features 29: ['addit', 'anysome', 'content_dens', 'deverbals', 'finites', 'infs', 'interrog', 'mhd', 'mpred', 'nn', 'nnargs', 'numcls', 'passives', 'ppron', 'pverbals', 'sconj', 'simple', 'wdlength', 'advcl', 'amod', 'aux:pass', 'case', 'fixed', 'flat', 'nmod', 'nsubj', 'nummod', 'obj', 'obl']
 
@@ -664,8 +628,6 @@ Also, as explained in Section~\ref{ssec:da}, we were able to use only two rating
 
 The level of agreement between the two selected ratings in terms of Spearman's rank correlation co-efficient for document-level scores was 0.503 (p < 0.05). % z-transform does not play a role in calculating this correlation
 
-Table~\ref{tab:doc_err-da_corr} has the Spearman's correlation of averaged DA score (da\_mean) and the three major scores from error annotation. All results are significant at the confidence level of 5\%.
-
 % this is double-checked with the output of python3 get_input_tables/1_scores_doc_concatenator.py --err_type unweighted --da_type 2raters
 \begin{table}[H]
 	\centering
@@ -681,16 +643,18 @@ Table~\ref{tab:doc_err-da_corr} has the Spearman's correlation of averaged DA sc
 \caption{\label{tab:doc_err-da_corr}Correlation of averaged DA scores with quality aspects scores from error annotation (Spearman's r)}
 \end{table}
 
+Table~\ref{tab:doc_err-da_corr} has the Spearman's correlation of averaged DA score (da\_mean) and the three major scores from error annotation. All results are significant at the confidence level of 5\%.
+
 It can be seen from Table~\ref{tab:doc_err-da_corr} that weighted error-based scores were better aligned with perceived quality. To an extent, it justifies the error weighting scheme based on error categories and severities. Accuracy scores and overall scores are more correlated with perceived quality than fluency. It means that the \textbf{raters penalised content errors more than language errors}. 
 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{l|ccc}
 		\toprule
-		& Min   & Max    & Mean +/-\gls{STD}          \\
+		& Min   & Max    & Mean (+/-STD)          \\
 		\midrule
-		da\_mean  & 56.36 & 95.57 & 83.65 +/-7.99 \\
-		da\_zmean & -3.10 & 1.34  & 0.00 +/-0.88 \\
+		da\_mean  & 56.36 & 95.57 & 83.65 (+/-7.99) \\
+		da\_zmean & -3.10 & 1.34  & 0.00 (+/-0.88) \\
 		\bottomrule
 	\end{tabular}
 	\caption{\label{tab:doc_da_dist}Document-level: Parameters of DA scores distribution}
@@ -704,7 +668,7 @@ According to the results, presented in Table~\ref{tab:da_doc_res}, there was no 
 
 Further on, there were no statistically significant differences between the representations shown in rows, either. Despite we can observe that the value for Spearman's \textit{r}, averaged across 10 folds of the experiment, was higher for \textit{mdeberta3}, the performance of the regressor was very volatile from fold to fold, ranging from $r=0.068$ to $r=0.758$. 
 
-\todo[inline]{An suggests reporting res for folds} 
+%\todo[inline]{An suggests reporting res for folds} 
 
 \begin{table}[H]
 	\centering
@@ -762,8 +726,6 @@ Further on, there were no statistically significant differences between the repr
 
 We have to conclude that none of the representations was more successful than the other in learning DA scores. Clearly, this is the effect of small training data (140 documents) in conjunction with no strong signal coming from any attempted representations. 
 
-The results for document-level experiments on DA scores were twice lower than on error-based scores reported in Section~\ref{ssec:doc_err_res} above. To rule out the impact of data size (553 vs 140 documents for error-based and DA scores, respectively), we obtained the error-based results on 140 documents cross-annotated for errors and DA (see Table~\ref{tab:err140_res}).
-
 \begin{table}[H]
 	\centering
 	\begin{tabular}{l|cl|cl|cl|cl}
@@ -801,8 +763,10 @@ The results for document-level experiments on DA scores were twice lower than on
 	\caption{\label{tab:err140_res}Regression results on error-based scores for 140 cross-annotated documents}
 \end{table}
 
-\textit{Unweighted fluency} was the only error-based score that remained robust on a four times smaller dataset (553 documents vs. 140 documents cross-annotated for errors and DA). The regression results for unweighted fluency were almost twice higher than for DA scores on the same dataset, and the differences were statistically significant, unlike most other differences between Tables~\ref{tab:da_doc_res} and~\ref{tab:err140_res}.
-\todo[inline]{An suggests unpacking "all other differences"}
+The results for document-level experiments on DA scores were twice lower than on error-based scores reported in Section~\ref{ssec:doc_err_res} above. To rule out the impact of data size (553 vs 140 documents for error-based and DA scores, respectively), we obtained the error-based results on 140 documents cross-annotated for errors and DA (see Table~\ref{tab:err140_res}).
+
+\textit{Unweighted fluency} was the only error-based score that remained robust on a four times smaller dataset (553 documents vs. 140 documents cross-annotated for errors and DA). The regression results for unweighted fluency were almost twice higher than for mean DA scores on the same dataset, and the differences were statistically significant, unlike the differences between \textit{da\_mean} and accuracy, tq and scaled\_tg in Tables~\ref{tab:da_doc_res} and~\ref{tab:err140_res}.
+%\todo[inline]{An suggests unpacking "all other differences"}
 
 It seems that this setup returned the expected higher learnability of fluency, as opposed to accuracy, on the representations limited to the TL-side of the parallel corpora. Besides, it showed that error-based scores seem to be more consistent and reliable than DA scores. % how do I explain similar performance on accuracy and fluency in a larger dataset? Does it depend on the distribution of scores in the dataset?
  
@@ -851,18 +815,15 @@ The results of this experiment are aggregated in Table~\ref{tab:err140rand_res}.
 \end{table}
 
 With regard to the \textbf{comparison between error-based and DA scores}, we have seen statistically significant results only for \textit{mdeberta3}, which returned higher results for accuracy, tq and scaled\_tq scores than for da\_zmean scores. 
-All other comparisons were inconclusive. 
+All other comparisons were inconclusive. Interestingly, \textit{mdeberta3} was exceptional among all representations, including other embedding models. It returned stable and relatively high results regardless the type of error-based score, size of the dataset and distribution of scores. 
 
 %UD features were statistically inferior to \textit{mdeberta3} only in the experiments for accuracy scores.
-
-Interestingly, \textit{mdeberta3} was exceptional among all representations, including other embedding models. It returned stable and relatively high results regardless the type of error-based score, size of the dataset and distribution of scores. 
 
 In sum, the experiments on an random selection of error-annotated documents confirmed \textbf{no difference between the accuracy and fluency on any representations} reported in Section~\ref{ssec:doc_err_res} (see Table~\ref{tab:doc_err_double}). 
 We also \textbf{failed to obtain convincing proof that either error-based or DA scores were better aligned with the properties of translation} as represented in this work, except for \textit{mdeberta3} vectors that performed better on accuracy, tq and scaled\_tq scores than on da\_zmean scores. 
 
 \paragraph{Feature analysis} 
 We continue to trace the features that can be more predictive of the scores than other features from UD and QuEst++ using feature selection and univariate tests, and limiting the analysis to the top ten most successful quality predictors by both or either of these methods.
-
 In this paragraph we compared the set of features most associated with error-based scores to the set of features most correlated with DA scores. 
 
 % scores: no statistically significant differences between results on full feature set and on selected features
@@ -878,9 +839,7 @@ These observations contradict our assumption that higher-quality translations sh
 % trade-off relation between the structural complexity in the two dimensions partially proves the dynamic balance of code-switching from the listener’s and speaker’s perspectives. English tends to reduce the structural complexity in the hierarchical dimension (MHD), while Czech prefers to lessen the processing cost in the linear dimension (MDD).
 
 One common quality indicator among 61 QuEst++ features that cut across all types of quality scores (both DA and error-based) was \textit{the ratio of verbs in the source and target (\#1093)}. It was negatively correlated with the quality, i.e. the fewer verbs in the target, the higher the ratio, and the lower the quality. % which is contrary to what I think 
-If anything, this observation contradicts the expectations in the context of English-Russian language pair and translationese tendencies as was the case with some other results for translationese features for error-based (see page~\ref{pg:scores_not_translationese}) and DA scores on UD features. 
-
-Other DA predictors also useful for accuracy and tq (\#1052, \#1085), or fluency (\#1004) were: 
+If anything, this observation contradicts the expectations in the context of English-Russian language pair and translationese tendencies as was the case with some other results for translationese features for error-based (see page~\ref{pg:scores_not_translationese}) and DA scores on UD features. Other DA predictors also useful for accuracy and tq (\#1052, \#1085), or fluency (\#1004) were: 
 \begin{description}\compresslist{}
 	\item[1052] average bigram frequency in quartile 3 of frequency (lower frequency words) in the source corpus,
 	\item[1085] ratio of percentage of content words in the source and target,
@@ -889,7 +848,7 @@ Other DA predictors also useful for accuracy and tq (\#1052, \#1085), or fluency
 They were positively correlated with the respective quality scores. 
 
 % discussed on page~\pageref{pg:quest_feats4err} 
-To give examples of features that were specific for predicting DA scores, we list the most correlative variables below (in the decreasing order based on individual correlation with \textit{da\_mean} score): 
+To give examples of features that were specific for predicting DA scores, the most correlative variables are listed below (in the decreasing order based on individual correlation with \textit{da\_mean} score): 
 \begin{description}\compresslist{}
 	\item[9992] ratio of word repetitions in target and source documents,
 	\item[9993] ratio of lemma repetition between target and source documents,
@@ -899,15 +858,23 @@ To give examples of features that were specific for predicting DA scores, we lis
 \end{description}
 
 Interestingly, this list primarily includes adequacy features. Recall that error-based scores had ST complexity parameters as major quality predictors. 
-
 Lack of intersection between error-based quality predictors and DA quality predictors from two interpretable feature sets make us conclude that these \textbf{types of assessment reflect dissimilar aspects of translation quality} or our feature set is incomplete. 
-
 Admittedly, this feature analysis has very limited reliability, given weak association of any individual features with the DA scores (maximum $r=0.274$ for negative particles from UD feature set) and the general poor performance of any feature set on DA scores. 
 However, the interpretation of most correlative features indicates that \textbf{DA method does not reflect translationese properties of document}.
 
 \subsection{\label{ssec:sent_level}Sentence Level: Error-based and DA Scores}
 Given that error-based and DA scores originated at sentence level, we extended these experiments of the sentence-level version of the dataset. It included 3,224 sentences from 140 documents with error-based and DA scores. At sentence level the distribution of scores was not as affected by the selection of a polarised smaller sample and remained heavily right-skewed for all scores as shown in Figure~\ref{fig:sents_tq} (page~\pageref{fig:sents_tq}). Nonetheless, we report results on randomly selected 3,224 sentences. The stack of experiments was run only for unweighted scores. For consistency we present the results on the full dataset spanning 12,369 sentences, too.
-\todo[inline]{An suggests adding STD to regression tables}
+
+At sentence level there was enough data to establish that \textbf{translationese-aware features were relatively competitive only for fluency scores}. On the full dataset, they were outperformed for this type of quality only by \textit{ruRoberta} and \textit{mdeberta3}. For accuracy and tq, translationese-aware feature set was inferior to all other representations, including \textit{quest70}, \textit{tf-idf} and \textit{TQmono-m} in addition to \textit{ruRoberta} and \textit{mdeberta3}. This inferiority was lost on 3,224 sentences, except for \textit{ruRoberta} and \textit{mdeberta3}. It means that the differences in performance between UD, on the one hand, and \textit{quest70}, \textit{tf-idf} and \textit{TQmono-m}, on the other hand, were small. 
+
+\label{pg:downward_slide}
+The results for (unweighted) error-based scores at sentence level were generally almost twice lower than at document level for the full dataset of 553 documents/12,369 sentences (see Unweighted scores in Table~\ref{tab:doc_err_double}). For example, for fluency UD features achieved $r=0.43$ at document level and $r=0.24$ at sentence level, while \textit{mdeberta3}'s results were $r=0.58$ and $r=0.36$, respectively. Manual frequency features were expected to be affected by sparsity. However, it is not clear why a dedicated sentence-level QuEst++ feature set and vectorised representations did not benefit from the shift from document to sentence level.
+
+We noticed that the drop in performance caused by limiting the data to a (random) forth of the original size was bigger for documents than for sentences. For example, the ratio of \textit{r} obtained from full/small document-level experiments for unweighted fluency on UD features was 1.19, while for sentence level it was 1.04. For quest70 these ratios were 1.44 vs 1.04, for \textit{ruRoberta} 1.56 vs 1.12 and for \textit{mdeberta3} 1.2 vs 1.09.
+This means that there was less volatility between the folds, and the learning process was more stable at sentence level, even if not as successful as at document level, when enough data is available. 
+%This also helps explain increased comatitiveness of \textit{ruRoberta} against \textit{mdeberta3}. The latter might be more robust to double mean-pooling to generate document vectors. 
+These observations across many representations make us hypothesise that \textbf{error-based quality scores reflected the properties of texts better than they fit the properties of sentences}. 
+%\todo[inline]{An suggests adding STD to regression tables}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{l|cl|cl|cl|cl}
@@ -958,24 +925,13 @@ Given that error-based and DA scores originated at sentence level, we extended t
 \end{table}
 
 % where is my answer to the main question? How good are UD features for predicting sentence-level scores from errors and from DA? 
-At sentence level there was enough data (on 12,369 sentences) to establish that \textbf{translationese-aware UD features were relatively competitive only for fluency scores}. On the full dataset, they were outperformed for this type of quality only by \textit{ruRoberta} and \textit{mdeberta3}. For accuracy and tq, translationese-aware feature set was inferior to all other representations, including \textit{quest70}, \textit{tf-idf} and \textit{TQmono-m} in addition to \textit{ruRoberta} and \textit{mdeberta3}. This inferiority was lost on 3,224 sentences, except for \textit{ruRoberta} and \textit{mdeberta3}. It means that the differences in performance between UD, on the one hand, and \textit{quest70}, \textit{tf-idf} and \textit{TQmono-m}, on the other hand, were small. 
-
-\label{pg:downward_slide}
-The results for (unweighted) error-based scores at sentence level were generally almost twice lower than at document level for the full dataset of 553 documents/12,369 sentences (see Unweighted scores in Table~\ref{tab:doc_err_double}). For example, for fluency UD features achieved $r=0.43$ at document level and $r=0.24$ at sentence level, while \textit{mdeberta3}'s results were $r=0.58$ and $r=0.36$, respectively. Manual frequency features were expected to be affected by sparsity. However, it is not clear why a dedicated sentence-level QuEst++ feature set and vectorised representations did not benefit from the shift from document to sentence level.
-
-We noticed that the drop in performance caused by limiting the data to a (random) forth of the original size was bigger for documents than for sentences. For example, the ratio of \textit{r} obtained from full/small document-level experiments for unweighted fluency on UD features was 1.19, while for sentence level it was 1.04. For quest70 these ratios were 1.44 vs 1.04, for \textit{ruRoberta} 1.56 vs 1.12 and for \textit{mdeberta3} 1.2 vs 1.09.
-This means that there was less volatility between the folds, and the learning process was more stable at sentence level, even if not as successful as at document level, when enough data is available. 
-%This also helps explain increased comatitiveness of \textit{ruRoberta} against \textit{mdeberta3}. The latter might be more robust to double mean-pooling to generate document vectors. 
-These observations across many representations make us hypothesise that \textbf{error-based quality scores reflected the properties of texts better than they fit the properties of sentences}. 
 
 Sentence-level experiments, contrary to document-level, \textit{yielded evidence that fluency scores were more learnable than accuracy scores}, at least, on UD and \textit{mdeberta3} for both full and reduced datasets. 
 This is an expected and comforting outcome which provides circumstantial evidence of error annotation validity and of the distinctions between the accuracy and fluency in principle when enough data is available. At the same time, for the practical purposes of human translation quality estimation, these distinctions are negligibly small. 
 
 To cross-examine our conclusion from document level that neither error-based nor DA scores were better aligned with the properties of translation than the other, we obtained the results for DA at sentence level. 
 
-Spearman's \textit{r} between rater1 and rater2 on sentence-level DA scores was 0.408 (p < 0.05). This was a bit lower than for document-level perspective ($r=0.503$).
-
-To give more details on the parameters of the cross-annotated sentence-level variant of the dataset, we report correlation between error-based scores and DA in Table~\ref{tab:sent_err-da_corr}, measured with Spearman's \textit{r}.
+Spearman's \textit{r} between rater1 and rater2 on sentence-level DA scores was 0.408 (p < 0.05). This was a bit lower than for document-level perspective ($r=0.503$). To give more details on the parameters of the cross-annotated sentence-level variant of the dataset, we report correlation between error-based scores and DA in Table~\ref{tab:sent_err-da_corr}, measured with Spearman's \textit{r}. Correlation between two assessment methods at sentence-level was much lower than at document level (cf. Table~\ref{tab:doc_err-da_corr}, page~\pageref{tab:doc_err-da_corr}).
 
 \begin{table}[H]
 	\centering
@@ -991,10 +947,12 @@ To give more details on the parameters of the cross-annotated sentence-level var
 	\caption{\label{tab:sent_err-da_corr}Sentence-level: Correlation of averaged DA scores with error-based scores}
 \end{table}
 
-Correlation between two assessment methods at sentence-level was much lower than at document level (cf. Table~\ref{tab:doc_err-da_corr}, page~\pageref{tab:doc_err-da_corr}).
-
 Table~\ref{tab:da_sent_res} presents the results for DA scores on sentence-level version of the dataset. 
-
+% how did UD perform against other reps?? 
+With regard to the main question of this thesis -- whether translationese-aware UD features were competitive against other representations in predicting quality -- the results for DA scores demonstrated that they were inferior to \textit{ruRoberta} and \textit{mdeberta3} as before, but also to \textit{TQmono-m}. Note that \textit{TQmono-m} was specifically trained for predicting this type of quality -- DA scores -- on MT data. 
+\label{pg:no_slide_for_da_when_moving_to_sent}
+Sentence-level results for DA scores were better than at document-level on all representations, but especially for QuEst++ (cf. da\_mean: $r=0.33$ vs $r=0.18$) and \textit{ruRoberta} ($r=0.39$ vs $r=0.22$). Curiously, this was not the case with error-based scores where we discussed a unanimous downward slide on all representations (see page~\pageref{pg:downward_slide}). 
+This emphasises the differences between the two manual assessment methods. \textbf{Document-level translation quality scores can be produced more reliably using error annotation than DA setup}. 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{l|cl|cl}
@@ -1019,12 +977,9 @@ Table~\ref{tab:da_sent_res} presents the results for DA scores on sentence-level
 	\caption{\label{tab:da_sent_res}Sentence-level: Regression results for DA scores}
 \end{table}
 
-% how did UD perform against other reps?? 
-With regard to the main question of this thesis -- whether translationese-aware UD features were competitive against other representations in predicting quality -- the results for DA scores demonstrated that they were inferior to \textit{ruRoberta} and \textit{mdeberta3} as before, but also to \textit{TQmono-m}. Note that \textit{TQmono-m} was specifically trained for predicting this type of quality -- DA scores -- on MT data. 
 
-\label{pg:no_slide_for_da_when_moving_to_sent}
-Sentence-level results for DA scores were better than at document-level on all representations, but especially for QuEst++ (cf. da\_mean: $r=0.33$ vs $r=0.18$) and \textit{ruRoberta} ($r=0.39$ vs $r=0.22$). Curiously, this was not the case with error-based scores where we discussed a unanimous downward slide on all representations (see page~\pageref{pg:downward_slide}). 
-This emphasises the differences between the two manual assessment methods. \textbf{Document-level translation quality scores can be produced more reliably using error annotation than DA setup}. 
+
+
 % \textbf{Error annotation (as implemented in the \gls{RusLTC}, see Section~\ref{ssec:err}, page~\pageref{ssec:err}) is more fit to produce document-level scores than DA setup}. 
 
 %\textit{mdeberta3} did not match the other representations in the scale of gain when moving to sentence level for this type of score. It seems to be performing better at document level.
@@ -1065,17 +1020,17 @@ Despite these limitations, UD features were much more successful in this task, d
 \label{pg:translationese_indicators_work_for_binary_labels}
 Linguistically-motivated translationese-aware features were inferior only to \textit{ruRoberta} and \textit{mdeberta3}, large pre-trained contextualised word embedding models. Unlike in the other experiments, RFECV feature selection offered a significant gain in performance, bringing our classification result on UD features to $F1=68.9$ (vs $F1=78.14$ on \textit{mdeberta3}).
 
-We argue that the reasonably good performance of out-of-the-box contextualised word embeddings on this dataset, although not enlightening from the point of view of translation studies, indicates that human assessment of quality at document-level is actually related to the objective properties of the texts, and might not be as subjective as it is common to believe \todo[inline]{add a ref}, at least when it is trusted to translation professionals. 
+We argue that the reasonably good performance of out-of-the-box contextualised word embeddings on this dataset, although not enlightening from the point of view of translation studies, indicates that human assessment of quality at document-level is actually related to the objective properties of the texts, and might not be as subjective as it is common to believe in MT (see our discussion at page~\pageref{pg:pessimism}), at least, when it is trusted to translation professionals. 
 
 The results of feature analysis suggest that quality distinctions were much more related to translationese than differences between professional varieties of translation. 
 We demonstrated that there were only three (out of 26) quality predictors that were not among translationese indicators. Professionalism turned out to be a more vague concept than quality, at least from the point of view of translationese indicators.
 
-An explanatory analysis of translational trends in \textit{bad} translations demonstrated that \textbf{lower quality is almost entirely associated with the lack of ability to recognise and counteract the ST influence}. For the features where there was enough evidence to establish differences between \textit{good} and \textit{bad} translations, we observed translationese trends which implied passively following ST patterns, with little or no effort to adapt them to the TL norm. These included 
+An explanatory analysis of translational trends in \textit{bad} translations demonstrated that \textbf{lower quality is almost entirely associated with the lack of ability to recognise and counteract the ST influence}. For the features where there was enough evidence to establish differences between \textit{good} and \textit{bad} translations, we observed translationese trends which implied passively following ST patterns, with little or no effort to adapt them to the TL norm.
  
 Generally, lower-ranking translations were found further away from non-translations in Russian than higher-ranking translations for the same STs across most analysed features.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 31 October, 1 Novermber still here %%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Translationese indicators and continuous quality scores}
-In Sections~\ref{ssec:doc_err_res},~\ref{ssec:doc_da_res} and~\ref{ssec:sent_level}, we attempted to predict quality scores generated from error annotation and in DA setup. Our focus remains on evaluating the performance of translationese indicators against other representations, and on explaining the findings using interpretable features.
+Sections~\ref{ssec:doc_err_res},~\ref{ssec:doc_da_res} and~\ref{ssec:sent_level} reported the experiments to predict quality scores generated from error annotation and in DA setup. Our focus remains on evaluating the performance of translationese indicators against other representations, and on explaining the findings using interpretable features.
 
 Importantly, scores from error-annotation allow to disintegrate translation quality into accuracy and fluency, and test whether fluency returns higher results on the representations that have access to the TL-side of the corpus only. 
 Besides, scores offer an opportunity to extend document-level experiments to sentence level. On the one hand, this allows to alleviate the problem of small training data at document-level. On the other hand, it helps uncover important properties of scores generated by each assessment method.
@@ -1098,6 +1053,10 @@ Cross-lingual, dedicated Russian and multi-lingual embedding models (\textit{TQm
 
 Table~\ref{tab:_ud_vs_all} summarises the outcomes of all experiments showing the models that were statistically superior to UD. It uses unweighted versions of error-based scores and results on random 140/3224 error-annotated instances.
 
+\textbf{For document-level scores, linguistically-motivated translationese features returned compatible performance against other representations}. As can be seen from Table~\ref{tab:_ud_vs_all}, they were statistically surpassed only by \textit{mdeberta3}, the most recent embedding approach and current SOTA in NLP representation learning, in all experiments on both error-based and DA scores. Admittedly, the performance on document-level DA scores and on random 140 error-annotated documents was very poor due to the size of the dataset, and no statistically significant differences were seen between any two representation. 
+%This renders most of our observations anecdotal and less unreliable than expected. 
+Lack of a bigger annotated data prevents us from attempting any fine-tuning methods, especially for DA-annotated dataset.
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{l|p{2cm}c||p{3cm}p{3cm}}
@@ -1118,10 +1077,6 @@ Table~\ref{tab:_ud_vs_all} summarises the outcomes of all experiments showing th
 	\caption{\label{tab:_ud_vs_all}Representation superior to UD on quality scores}
 \end{table}
 
-\textbf{For document-level scores, linguistically-motivated translationese features returned compatible performance against other representations}. As can be seen from Table~\ref{tab:_ud_vs_all}, they were statistically surpassed only by \textit{mdeberta3}, the most recent embedding approach and current SOTA in NLP representation learning, in all experiments on both error-based and DA scores. Admittedly, the performance on document-level DA scores and on random 140 error-annotated documents was very poor due to the size of the dataset, and no statistically significant differences were seen between any two representation. 
-%This renders most of our observations anecdotal and less unreliable than expected. 
-Lack of a bigger annotated data prevents us from attempting any fine-tuning methods, especially for DA-annotated dataset.
-
 \textbf{At sentence level} on all available error-annotated instances (12,369), \textbf{UD features performed well on fluency scores only}, being secondary to the two word embedding models. For accuracy and overall translation quality, UD features were not competitive. This outcome make sense: if accuracy reflected semantic similarity between ST and TT, translationese indicators should not be able to predict this type of quality. However, these differences in performance are very small and can be picked on a large annotated dataset. They go away if not enough data is available (see last column in Table~\ref{tab:_ud_vs_all}).
 
 For sentence-level DA scores translationese-aware features were inferior to \textit{ruRoberta} and \textit{mdeberta3} as before, but also to \textit{TQmono-m}, a model optimised to predict DA scores on MT data. This observation might mean that \textbf{DA scores have specific properties shared between MT dataset and HT dataset} built for the purposes of this research. 
@@ -1141,7 +1096,7 @@ Another important comparative conclusion about various scores is that \textbf{er
 Although in both annotation scenarios annotators were exposed to the entire documents, while providing judgments on the properties of individual sentences, error-based scores were more learnable than DA scores at document level than at sentence level (including on the dataset of the same size). We have shown that unlike DA scores, error-based scores demonstrated a considerable decrease in performance when moving from document level to sentence level on the same dataset (see pages~\pageref{pg:downward_slide} and~\pageref{pg:no_slide_for_da_when_moving_to_sent}). 
 Document-level nature of error-based scores is further supported by a bigger drop in their performance for documents than for sentences when moving from full dataset (553 documents/12,369 sentences) to random forth of the data (140 documents/3224 sentences). The sentence-level performance of error-based scores was poor at the full dataset, so it did not suffer as great a tumble on limited data.
 % five separate speculations!
-Finally, we made an interesting observation about the relations between accuracy and fluency, the two major theoretical aspects of quality, which stir a lot of controversy \todo[inline]{An suggests a ref} in the literature on benchmarking translation quality by humans.
+Finally, we made an interesting observation about the relations between accuracy and fluency, the two major theoretical aspects of quality, which stir a lot of controversy in the literature on benchmarking translation quality by humans (see our discussion at page~\pageref{pg:controvercy_over_acc_and_flu}).
 According to our results, the difference between accuracy and fluency was visible only at sentence level and only for some representations. In particular, only UD and \textit{mdeberta3} returned expected statistically higher results for fluency than for accuracy on both full and reduced datasets. % QuEst++ also had statistically higher results for fluency but ONLY on random 3224, and surprising, not on the large dataset
 At document level, there was no evidence that either accuracy or fluency was more aligned with the properties of documents picked by any attempted representations. 
 This lack of evidence at document level can be explained by the lack of training data. 
