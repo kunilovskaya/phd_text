@@ -4,7 +4,6 @@
 Note: In Tables~\ref{tab:pro_indicators} and \ref{tab:stu_indicators} equals sign indicates no statistical differences; * marks cases where there are statistical differences between SL and TL (ref=src)
 
 \begin{longtable}{l|p{2cm}p{2cm}p{1.5cm}ccc}
-	\caption{\label{tab:pro_indicators}Properties of UD features sorted by degree of association between values in professional translations and non-translation}\\
 	\toprule
 	feature       & shapiro-tgt & shapiro-ref & bartlett & LogR & trend          & means \\
 	\midrule
@@ -67,14 +66,14 @@ Note: In Tables~\ref{tab:pro_indicators} and \ref{tab:stu_indicators} equals sig
 	superl        & -- & -- & equal    & 0.67    & adaptation     & tgt=ref\textless{}src           \\
 	tempseq       & -- & -- & --       & 0.67    & adaptation     & tgt=ref\textless{}src           \\
 	wdlength      & -- & normal       & --       & 0.4     & NA  & tgt\textless{}ref \\
-	xcomp         & -- & -- & --       & 0.68    & shining        & ref\textless{}src=tgt
-		
+	xcomp         & -- & -- & --       & 0.68    & shining        & ref\textless{}src=tgt \\
+	\bottomrule
+	\caption{\label{tab:pro_indicators}Properties of UD features sorted by degree of association between values in professional translations and non-translation}\\
 %		\bottomrule
 \end{longtable}
 
 
 \begin{longtable}{l|p{2cm}p{2cm}p{1.5cm}ccc}
-	\caption{\label{tab:stu_indicators}Properties of UD features sorted by degree of association between values in student translations and non-translations}\\
 	\toprule
 	feature       & shapiro-tgt & shapiro-ref & bartlett & LogR-F1 & trend          & means \\
 	\midrule
@@ -139,6 +138,6 @@ Note: In Tables~\ref{tab:pro_indicators} and \ref{tab:stu_indicators} equals sig
 	wdlength      & normal & normal & --    & 0.43 & NA  & ref\textless{}tgt \\
 	xcomp         & --     & --     & --    & 0.52 & shining        & ref\textless{}src=tgt			\\
 	\bottomrule
-
+	\caption{\label{tab:stu_indicators}Properties of UD features sorted by degree of association between values in student translations and non-translations}\\
 \end{longtable}
 

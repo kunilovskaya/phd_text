@@ -166,13 +166,13 @@ These peculiarities in the distributional properties of features also explain th
 
 Statistical significance was tested using \textit{two-tailed Mann-Whitney U Test for independent samples} and \textit{Wilcoxon signed-rank test for paired samples} as a non-parametric alternative for data that violates the assumption of normal distribution made by Student's t-test.
 
-Additionally, the strength of the relationship between each variable (feature) and target labels was measured using 5-fold cross-validated \textit{Logistic regression} which returned macro F1-scores in the classification setup. 
+Additionally, the strength of the relationship between each variable (feature) and target labels was measured using 5-fold cross-validated \textit{logistic regression} which returned macro F1-scores in the classification setup. 
 % we cannot use Spearman with 0, 1 labels as it relies on differences in ranks
 The choice of the method is explained as follows. \textit{Cohen's D} effect size metric or regular correlation coefficients cannot be used to estimate the association between a continuous variable and a binary categorical variable, because it is impossible to calculate the covariance in this setup. The use of a classifier as an association metric builds on an assumption that if a continuous variable can accurately predict a categorical variable, they can be considered correlated. 
 
 Scatter plots and line plots were used to visualise the results of \gls{PCA} for some of our representations. By analysing covariances between features, PCA attempts to reduce multidimensional data to a few new features that aggregate maximum information of the original representation. Although dimensionality reduction simplifies the relations between datapoints, it can be useful to visually study how well each representation captures the distinction between categories. 
 
-In the tables, the best results for manually engineered feature sets are shown in bold and the best results for content-dependent classifiers appear in a box. The best results are defined as the results that were not significantly outperformed by any other model in that category at the confidence level of 0.05. 
+In the tables, the highest results for manually engineered feature sets are shown in bold and the highest results for content-dependent classifiers appear in a box. The highest observed results are defined as the results that were not significantly outperformed by any other model in that category at the confidence level of 0.05, while being greater than the numbers returned by other models. 
 %All textual examples in Chapters~\ref{cha:translationese} and~\ref{cha:pro_qua}, unless indicated otherwise, are taken from student translations. 
 
 \section{\label{sec:detect}Translationese Classifications}
@@ -361,6 +361,9 @@ As discussed above (see page~\pageref{par:featanal_meths}), \gls{RFECV} was pref
 % 'deverbals' was #33 that was not reflected in the symmetric weights graph
 Feature selection on UD feature set returned $N=33$ and $N=42$ for translationese classifications on professional and student translations, respectively. 
 After discarding noisy and collinear features, the performance of both classification improved. It went up by 1.3 percentage points from 90.22 to 92.04\% for professional translations, and by 2.1 percentage points from 88.96 to 91.06\% for student translations (based on F1-scores). % the statistical differences were not significant in either case on the results of 10 runs in cross-validation setup (on either ttest and on WMW U test, yes, we tried both just in case).
+
+Figures~\ref{fig:pro-weights} and~\ref{fig:stu-weights} visualise the weights assigned to the respective subsets of best features in each classification. Features with larger absolute weights can be considered more predictive of the distinctions between categories. 
+Detailed explanations of shorthand used on the x-axis can be found in Appendix~\ref{appx:ud}.
 \vspace{-2em}
 \begin{figure}[H]
 	\centering
@@ -374,8 +377,6 @@ After discarding noisy and collinear features, the performance of both classific
 	\caption{\label{fig:stu-weights}Weights loading the decision towards each category for 42 RFECV-selected items}	
 \end{figure}
 \vspace{-2.5em}
-Figures~\ref{fig:pro-weights} and~\ref{fig:stu-weights} visualise the weights assigned to the respective subsets of best features in each classification. Features with larger absolute weights can be considered more predictive of the distinctions between categories. 
-Detailed explanations of shorthand used on the x-axis can be found in Appendix~\ref{appx:ud}.
 
 %RFECV: Shared best UD features for translation detection (28, sorted by average absolute weight): nsubj, amod, mark, sentlength, sconj, acl, pasttense, attrib, nnargs, copula, obj, nmod, neg, advcl, pverbals, wdlength, aux:pass, compar, fixed, ppron, advmod, addit, determ, deverbals, simple, finites, ccomp, acl:relcl
 To have a closer look at the commonalities between translation varieties and feature importance in these selections, the lists were intersected and ranked based on the weights assigned by the linear kernel SVM algorithm. Feature weights were obtained from classifiers run on full datasets (without reserving a fraction for testing). Experiments showed that the feature weights were approximately the same if the weights were averaged across the models learnt on each of the folds in a cross-validation setup.
@@ -482,7 +483,7 @@ The outcome of the above sequence of tests can be viewed as capturing the amount
 
 There was a group of features that were useless for a translationese study, because they had the same frequencies in translations and non-translations, and also did not distinguish the languages. In the classification based on professional translations, this group included frequencies of adpositions (prepositions) and discourse particles such as interjections. In student translation data, there were no statistically significant differences between document categories for interrogative sentences and adverbial quantifiers (e.g. \textcyrillic{\textit{совершенно}} [entirely],  \textcyrillic{\textit{чрезмерно}} [utterly]).
 
-Further on, we established the strength of association between each feature values and binary categorical labels (translation, non-translation) by measuring the quality of single-feature Logistic Regression classifier using macro F1-score (LogR F1). The results of significance tests and variable-label association analysis are collected in Table~\ref{tab:shared_rfecv_feats}. The features selected by RFECV are sorted by LogR F1-score averaged for students and professionals. Statistically significant results are indicated by \textit{less-than} and \textit{greater-than} signs, the lack thereof is shown with an \textit{equals} sign.
+Further on, we established the strength of association between each feature values and binary categorical labels (translation, non-translation) by measuring the quality of single-feature logistic regression classifier using macro F1-score (LogR F1). The results of significance tests and variable-label association analysis are collected in Table~\ref{tab:shared_rfecv_feats}. The features selected by RFECV are sorted by LogR F1-score averaged for students and professionals. Statistically significant results are indicated by \textit{less-than} and \textit{greater-than} signs, the lack thereof is shown with an \textit{equals} sign.
 
 %in a similar recent study \cite{Hu2021} reached an accuracy of 96.55\% on 160 cohesive markers alone
 %how discriminative these characteristics are?
@@ -552,9 +553,9 @@ The strength of association for most features is higher for professional than fo
 			non-translations          & 497  & 1053.80 (+/-539.18) & 20.48 (+/-3.04)    & 52.39 (+/-26.73) \\
 			\bottomrule
 		\end{tabular}
- \caption{\label{tab:corpus_means}Additional corpus parameters for translationese classifications (with standard deviation values in brackets)}
+ \caption{\label{tab:corpus_means}Additional corpus parameters for translationese classifications (with STD)}
 \end{table}
-
+\vspace{-2em}
 Besides, student translations had more diverse translation solutions for typical translation problems. Their renditions were less predictable than stable choices by professional translators, which resulted in a greater spread of values on translationese indicators. 
 
 %However, a few features managed to overcome the disadvantages of shorter documents and lower homogeneity of student translation collection and demonstrated stronger association with the class labels for student than for professional translations (e.g. \textit{fixed, amod, attrib, nmod, addit}). We hypothesise that they capture strong quality-related signals. \todo[inline]{Double check this!}  
@@ -649,7 +650,7 @@ For consistency, the results for all alphabetised features from each translation
 Conclusions from the analysis of UD features focus the properties of student translations as the more relevant variety for the subsequent TQ tasks. The outcomes of translationese classifiers on student and professional translations were affected by the differences in the underlying source text collections. Students seem to have worked with shorter and structurally less challenging documents that were more similar to the reference corpus. 
 The feature analysis indicated that students generated a wider range of renditions for typical translation problems which made them more diverse as a category and less predictable.
 
-RFECV revealed 42 strong translationese predictors for student translations. Two thirds of them were found useful to detect professional translations. Only 17 features out of 42 had a reasonably high association with translation/non-translation class labels, with F1-score in a single-feature Logistic Regression classifier in the range of 0.5 to 0.71. 
+RFECV revealed 42 strong translationese predictors for student translations. Two thirds of them were found useful to detect professional translations. Only 17 features out of 42 had a reasonably high association with translation/non-translation class labels, with F1-score in a single-feature logistic regression classifier in the range of 0.5 to 0.71. 
 
 Nine of these individually well-associated 17 features represented a tendency to carry over ST properties into the target text (overuse of ST patterns and shining-through)\wlvfootnote{inc. shining-through indicators: \textit{acl:relcl, acl, advcl, ccomp, copula, mark, obj, nsubj, xcomp}}. Seven more features reflected the tendency to avoid isomorphic (structurally parallel) solutions in favour of the options more typical for the TL (normalisation), which sometimes made translations over-emphasise TL properties (russification)\wlvfootnote{\textit{amod, attrib, fixed, nmod, nnargs, numcls, parataxis}}. One feature (\textit{mean hierarchical distance}) had frequencies dissimilar to both ST and TL.
 Sentence length and word length were excluded from this analysis because these parameters are imposed by the language system, which undermines their usefulness for the proposed analysis, at least in cross-linguistic comparisons.
@@ -676,7 +677,7 @@ Despite comparatively poor performance of \textit{collgram} features, an attempt
 
 % pro and stu intersection, when N=6: 'av_bigram-tscore>0', '%bigram-tscore>0', 'av_bigram-npmi>0',
 %
-The poor performance of collocational features indicates that they are unable to effectively pick theoretically expected collocational differences between translations and originally-authored texts. Indeed, the strength of association between feature values and category labels was small. As explained above, we measured the association between a variable and a category label using F1-score from a single-feature \textit{Logistic regression} classifier. 
+The poor performance of collocational features indicates that they are unable to effectively pick theoretically expected collocational differences between translations and originally-authored texts. Indeed, the strength of association between feature values and category labels was small. As explained above, we measured the association between a variable and a category label using F1-score from a single-feature \textit{logistic regression} classifier. 
 In classification on professional translations there were only four features with this score over 0.52 (\textit{bigram-tscore\_std, av\_bigram-tscore>0, av\_trigram-tscore>0, trigram-tscore\_std}), while for student translations only one feature surpassed F1=0.46 (\textit{trigram-tscore\_std}\footnote{standard deviation for the association scores in each document}). 
 
 We noticed that values for these most successful collocational features were lower in translations (professional or student) that in non-translations. In fact, lower values for translations are observed for all statistically significant differences in this feature set, except for OOV ratios. No statistical differences were found for features that captured the ratio of negatively-collocated items. 
@@ -758,7 +759,7 @@ The best result on UD features after feature selection for students was 91.06\% 
 The superior performance of the contextualised embeddings was expected as they had access to possible topical differences between the document categories. Although additional efforts were made to ensure that non-translated TL subcorpus was comparable to translations in terms of functional register (see Section~\ref{ssec:ref}), translations and non-translation might have retained considerable topical variation. The results for translationese classification by SVM were replicated by a neural classifier.
 
 The abstract lexical features arranged into \textit{collgram} and \textit{n-gram} feature sets \textbf{were less successful} in translation detection tasks than morphosyntactic features. 
-The poor performance of collocational features indicates that they are unable to effectively pick theoretically expected collocational differences between translations and originally-authored texts. The association between each continuous variable and binary categorical labels measured using \textit{Logistic regression F1-score}, was small on most of these features. There were only four features (out of the total of 34) with the association score over 0.52 in translationese classification on professional translation, for student translations only one feature surpassed $F1=0.46$. Although the performance on \textit{collgram} and \textit{n-gram} feature was well above the chance level, they did not provide statistically significant gains when combined with more successful morphosyntactic features. 
+The poor performance of collocational features indicates that they are unable to effectively pick theoretically expected collocational differences between translations and originally-authored texts. The association between each continuous variable and binary categorical labels measured using \textit{logistic regression F1-score}, was small on most of these features. There were only four features (out of the total of 34) with the association score over 0.52 in translationese classification on professional translation, for student translations only one feature surpassed $F1=0.46$. Although the performance on \textit{collgram} and \textit{n-gram} feature was well above the chance level, they did not provide statistically significant gains when combined with more successful morphosyntactic features. 
 
 Translationese classifications on professional and student translations yielded mildly surprising results when compared to each other. Against expectations, professionals were a bit more distinct from non-translations than students. Admittedly, the only statistically significant result between translationese classifications on student and professional translations was seen for \textit{stsb-xlm-r-m} for both SVM and neural classifier.  
 We explained this oddity by the scale of semantic and structural differences between Russian non-translations and English sources for student and professional translations, confirmed by PCA visualisations and feature analysis. 

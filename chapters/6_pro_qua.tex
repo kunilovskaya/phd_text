@@ -50,7 +50,7 @@ Table~\ref{tab:stu-pro} has the results on classification of translation varieti
 		collgram        & 65.02 (+/-5.29) & 65.50 (+/-6.24) & 63.70 (+/-5.27) & 63.25 (+/-5.74) \\
 		ngram           & 66.80 (+/-5.64) & 67.11 (+/-6.12) & 66.32 (+/-5.60) & 66.07 (+/-5.74) \\
 		all             & 79.67 (+/-3.50) & 79.85 (+/-3.48) & 79.46 (+/-3.32) & 79.43 (+/-3.46) \\
-		\midrule
+%		\midrule
 		quest61         & 83.20 (+/-2.85) & 83.20 (+/-2.91) & 82.96 (+/-2.85) & \textbf{83.00} (+/-2.87) \\
 %		quest17         & 77.78 (+/-4.71) & 77.92 (+/-4.85) & 77.76 (+/-4.96) & 77.57 (+/-4.80) \\
 		\midrule
@@ -234,8 +234,8 @@ Out of 10 representations attempted, statistically significant differences betwe
 		UD              & 61.39 (+/-5.75) & 61.60 (+/-5.81) & 61.29 (+/-5.82) & 61.00 (+/-5.93) \\
 		collgram        & 57.78 (+/-9.53) & 58.04 (+/-9.99) & 57.87 (+/-9.73) & 57.36 (+/-9.81) \\
 		ngram           & 47.22 (+/-4.48) & 47.29 (+/-4.53) & 47.42 (+/-4.41) & 46.73 (+/-4.51) \\
-		\textbf{all}             & 62.50 (+/-7.68) & 62.70 (+/-7.92) & 62.45 (+/-7.76) & \textbf{61.99} (+/-8.21) \\
-		\midrule
+		all             & 62.50 (+/-7.68) & 62.70 (+/-7.92) & 62.45 (+/-7.76) & \textbf{61.99} (+/-8.21) \\
+%		\midrule
 		quest61         & 47.22 (+/-6.92) & 47.23 (+/-6.96) & 47.28 (+/-6.91) & 46.96 (+/-6.92) \\
 %		quest17         & 51.94 (+/-7.66) & 51.84 (+/-8.05) & 51.82 (+/-7.81) & 51.56 (+/-7.87) \\
 		\midrule
@@ -243,7 +243,7 @@ Out of 10 representations attempted, statistically significant differences betwe
 		stsb-xlm-r-m          & 61.67 (+/-9.92) & 61.70 (+/-9.94) & 61.66 (+/-9.93) & 61.61 (+/-9.93) \\
 		TQmono-m        & 63.06 (+/-6.22) & 63.42 (+/-6.10) & 63.11 (+/-6.01) & 62.77 (+/-6.34) \\
 		ruRoberta & 75.00 (+/-7.14) & 75.50 (+/-7.42) & 75.02 (+/-7.14) & 74.89 (+/-7.13) \\
-		\textbf{mdeberta3}  & 78.33 (+/-6.89) & 78.88 (+/-6.48) & 78.34 (+/-6.93) & \boxit{0.4in}78.14 (+/-7.13)\\
+		mdeberta3  & 78.33 (+/-6.89) & 78.88 (+/-6.48) & 78.34 (+/-6.93) & \boxit{0.4in}78.14 (+/-7.13)\\
 		\bottomrule
 	\end{tabular}
 	\caption{\label{tab:bad-good}Binary quality classification results by SVM. The highest F1-score for manual features is shown in bold, the highest result for content-dependent representations is boxed}
@@ -442,7 +442,7 @@ We omit the results for the neural regressor, because they are not different fro
 The performance of \gls{SVR} is reported in terms of Spearman's rank correlation coefficient (r) and \gls{RMSE}. The former is selected because the quality scores are not normally distributed especially at sentence level (see Figures~\ref{fig:sents_weighed_aspects} and~\ref{fig:sents_tq} at page~\pageref{pg:skews} in Chapter~\ref{cha:quest}). \gls{RMSE} helps to keep track of the magnitude of errors in predicted scores. This metric is typically used in the quality estimation shared tasks by \gls{WMT}.
 
 \paragraph{Feature analysis methods}
-The strength of the relationship between each variable (feature) and target labels was measured using 5-fold cross-validated \textit{Linear regression} which returned Spearman's correlation coefficient for continuous response variable (scores) in a regression task. 
+The strength of the relationship between each variable (feature) and target labels was measured using 5-fold cross-validated \textit{linear regression} which returned Spearman's correlation coefficient for continuous response variable (scores) in a regression task. 
 
 % MAE measures the average magnitude of the errors in a set of predictions, without considering their direction. It’s the average over the test sample of the absolute differences between prediction and actual observation where all individual differences have equal weight.
 
@@ -470,6 +470,7 @@ scaled score = \frac{100\times (score - min)}{max - min} \\
 where \textit{score} is normalised error frequency, \textit{min} and \textit{max} are respective values of the unscaled score range.
 
 The scaling was done to put the scores from error annotation on the same measuring scale as DA scores. Detailed account of converting error statistics to scores is given in Section~\ref{ssec:err} (see page~\pageref{pg:err-score-generation}). 
+
 Table~\ref{tab:docs_err_par} has the parameters of each quality score distribution (across 553 translations). Note that weighted scores are better distributed across the 0-100 scale, while unweighted scores are hurdled around the maximum value.
 \begin{table}[H]
 	\centering
@@ -506,18 +507,18 @@ Interestingly, a custom \textit{tf-idf} representation\wlvfootnote{produced on l
 	\centering
 	\begin{tabular}{l|cl|cl|cl|cl}
 		\toprule
-		& \multicolumn{2}{c|}{accuracy} & \multicolumn{2}{c|}{fluency}  & \multicolumn{2}{c|}{\textbf{tq}} & \multicolumn{2}{c|}{scaled\_tq}    \\
+		& \multicolumn{2}{c|}{accuracy} & \multicolumn{2}{c|}{fluency}  & \multicolumn{2}{c|}{tq} & \multicolumn{2}{c|}{scaled\_tq}    \\
 		\midrule
 		\multicolumn{9}{c}{Unweighted scores} \\
 		\midrule
 		       & \textit{r}  & RMSE & \textit{r}  & RMSE & \textit{r}  & RMSE & \textit{r} & RMSE  \\
 		\midrule
-			\textbf{UD}     & \textbf{0.43} & 0.95 & \textbf{0.43} & 1.18 & \textbf{0.45} & 1.72 & 0.32 & 15.5  \\
+			UD     & \textbf{0.43} & 0.95 & \textbf{0.43} & 1.18 & \textbf{0.45} & 1.72 & 0.32 & 15.5  \\
 			all             & 0.41 & 0.96 & 0.43 & 1.19 & 0.43 & 1.74 & 0.32 & 15.56 \\
 			quest61         & 0.37 & 0.98 & 0.42 & 1.16 & 0.36 & 1.73 & 0.31 & 15.22 \\
 			\midrule
 			tfidf           & 0.48 & 0.92 & 0.49 & 1.14 & 0.47 & 1.69 & 0.39 & 15.59 \\
-			\midrule
+%			\midrule
 			TQmono-m        & 0.46 & 0.94 & 0.47 & 1.15 & 0.45 & 1.68 & 0.35 & 15.3  \\
 			ruRoberta & 0.51 & 0.91 & 0.53 & 1.08 & 0.54 & 1.57 & 0.44 & 14.84 \\
 			mdeberta3  & 0.58 & 0.87 & 0.58 & 1.05 & 0.62 & 1.5  & 0.56 & 14.62 \\
@@ -525,19 +526,21 @@ Interestingly, a custom \textit{tf-idf} representation\wlvfootnote{produced on l
 		\midrule
 		\multicolumn{9}{c}{Weighted scores} \\
 		\midrule
-		UD              & \textbf{0.38} & 6.31 & \textbf{0.37} & 5.72 & \textbf{0.44} & 4.02 & \textbf{0.38} & 15.13 \\
+		UD              & 0.38 & 6.31 & 0.37 & 5.72 & 0.44 & 4.02 & \textbf{0.38} & 15.13 \\
 		all             & 0.38 & 6.34 & 0.35 & 5.77 & 0.43 & 4.06 & 0.36 & 15.18 \\
 		quest61         & 0.32 & 6.34 & 0.33 & 5.68 & 0.37 & 4.1  & 0.33 & 15.13 \\
 		\midrule
 		tfidf           & 0.4  & 6.36 & 0.39 & 5.78 & 0.48 & 4.04 & 0.45 & 15.23 \\
-		\midrule
+%		\midrule
 		TQmono-m        & 0.4  & 6.13 & 0.37 & 5.64 & 0.47 & 3.92 & 0.38 & 14.85 \\
 		ruRoberta & 0.48 & 5.98 & 0.45 & 5.47 & 0.57 & 3.74 & 0.5  & 14.53 \\
-		\textbf{mdeberta3}  & \textbf{0.62} & 5.76 & \textbf{0.59} & 5.21 & \boxit{0.4in}\textbf{0.67} & 3.54 & \textbf{0.63} & 14.19 \\
+		mdeberta3  & \boxit{0.3in}0.62 & 5.76 & \boxit{0.3in}0.59 & 5.21 & \boxit{0.3in}0.67 & 3.54 & \boxit{0.3in}0.63 & 14.19 \\
 		\bottomrule
 	\end{tabular}
-\caption{\label{tab:doc_err_double}Regression results for error-based quality scores (553 documents). The highest F1-score for manual features is shown in bold, the highest result for content-dependent representations is boxed}
+\caption{\label{tab:doc_err_double}Regression results for error-based quality scores (553 documents). For each quality score, the boldface type is used to denote the highest $r$ for manual features; the highest $r$ for content-dependent representations is boxed}
 \end{table}
+
+Table~\ref{tab:doc_err_double} omits STD values for brevity. These values for $r$ vary in the following ranges across representations: accuracy (0.07--0.10), fluency (0.09--0.12), tq (0.08--0.13), scaled\_tq (0.06--0.12).
 
 \paragraph{Comparison of regressors across types of scores}
 From Table~\ref{tab:doc_err_double}, Spearman's \textit{r} was higher for overall quality score (tq) than for accuracy, fluency or scaled\_tq for both weighted and unweighted versions. However, most differences between the results on accuracy, fluency or tq were not statistically significant. Whenever there was a significant difference (mostly between weighted fluency and tq), the results were always better for tq.
@@ -550,9 +553,10 @@ Based on these observations, {unweighted scores are preferable to weighted score
 Scaling the quality score tripled the average prediction error, too.
 In the subsequent experiments reported in this chapter, weighted scores and scaled version of overall quality (scaled\_tq) are excluded from the analysis.
 
-These results draw attention to a curious finding. Contrary to the expectations, we did not see statistically significant differences between accuracy and fluency in terms of performance on any representations, including translationese features. If these scores captured independent of each other aspects of quality, we would expect higher results for fluency on our TL-centred representations (even if not on translationese-aware UD features). We can cautiously suggest that \textbf{our data did not contain translations that were very inaccurate but fluent, and vice versa}. The two aspects of quality seem to be correlated. Indeed, on weighted scores Spearman's correlation coefficient between them was 0.897\wlvfootnote{We argue that weighted scores, which take into account the type of errors and their severities reflect the actual opinion of assessors' on quality}. % $r=0.309$ on unweighted scores based on simple normalised frequency of content and language errors disregarding severities or subtypes of these major categories
-This might mean that \textbf{an \gls*{HTQE} approach to aimed at fluency can be a useful proxy for overall quality in human translation quality estimation based on document-level quality scores from error annotation}.
-Another explanation is lack of training data. Our experiments were run on 553 annotated translations and did not reveal the differences between the two aspects of quality as captures by error annotation aggregated at document level. If more data is needed to see the differences between the two, then the difference must be really small. A more plausible explanation is that \textbf{scores from error annotation do not reflect translationese properties of translations, at least when they are generated for entire documents}. %; language errors are focused on other imperfections of student translations. 
+These results draw attention to a curious finding. Contrary to the expectations, we did not see statistically significant differences between accuracy and fluency in terms of performance on any representations, including translationese features. If these scores captured independent aspects of quality, we would expect higher results for fluency on our TL-centred representations. We can cautiously suggest that \textbf{our data did not contain translations that were very inaccurate but fluent, and vice versa}. The two aspects of quality seem to be correlated. Indeed, on weighted scores, Spearman's correlation coefficient between them was 0.897\wlvfootnote{Intuitively, the weighted scores, which take into account the type of errors and their severities, reflect the actual opinion of assessors' on quality}. % $r=0.309$ on unweighted scores based on simple normalised frequency of content and language errors disregarding severities or subtypes of these major categories
+This might mean that \textbf{an \gls*{HTQE} approach aimed at fluency can be a useful proxy for overall document-level quality from error annotation}.
+Another explanation is lack of training data. Our experiments were run on 553 annotated translations and did not reveal the differences between the two aspects of quality. If more data is needed to reveal these differences, then the differences must be really small. 
+%A more plausible explanation is that \textbf{scores from error annotation do not reflect translationese properties of translations, at least when they are generated for entire documents}. %; language errors are focused on other imperfections of student translations. 
 
 \paragraph{Feature analysis} 
 Feature selection for UD set did not yield any sizeable improvements in performance on either weighted or unweighted scores. 
@@ -566,22 +570,22 @@ To reveal the features that were better correlated with various quality scores, 
 Univariate correlation analysis did not reveal any features from UD, collgram, ngram or QuEst++ feature sets that were associated with any quality score for more than Spearman's $r=0.274$. % Interestingly, the values of $r$ between any single feature and (best-performing) fluency scores were more than 1.5 times lower than for accuracy or tq. % I am not sure how to explain this.
 % the highest r (positive or negative seen for collgram, ngram was on unweighted tq: bigram-tscore_std   0.189) 
 \label{pg:scores_not_translationese}
-Despite the correlation between the proposed quality indicators and various quality scores was small, we noticed that some important quality predictors from UD features (from the top 10 better-correlated features) contributed to all scores while others remain specific to accuracy or fluency. The intersection of top 10 features by correlation with unweighted accuracy, fluency and tq included \textit{nsubj, acl:relcl, obj}. These relatively strong predictors shared by all error-annotated scores capture syntactic complexity of sentence in translations: number of explicit syntactic subject and object dependencies across all clauses (\textit{nsubj}, \textit{obj} and number of relative clauses (\textit{acl:relcl})). All of them were weakly but positively correlated with the scores. This brings us to a counter-intuitive conclusion that the more well-developed finite clauses there were in the sentence, the higher was the quality score. This also contradicts the results on binary labels (see page~\ref{pg:bad_tendencies}).
+Despite the correlation between the proposed quality indicators and various quality scores was small, we noticed that some important quality predictors from UD features (from the top 10 better-correlated features) contributed to all scores while others remain specific to accuracy or fluency. The intersection of top 10 features by correlation with unweighted accuracy, fluency and tq included \textit{nsubj, acl:relcl, obj}. These relatively strong predictors shared by all error-annotated scores capture syntactic complexity of sentences in translations: number of explicit syntactic subject and object dependencies across all clauses (\textit{nsubj}, \textit{obj} and number of relative clauses (\textit{acl:relcl})). All of them were weakly but positively correlated with the scores. This brings us to a counter-intuitive conclusion that the more well-developed finite clauses there were in the sentence, the higher was the quality score. This also contradicts the results on binary labels (see page~\ref{pg:bad_tendencies}).
 
 One way to interpret this contradiction is to suggest that holistic document-level perception of quality incorporated translationese-related properties of translations, while error-based quality scores, even from fluency errors, did not reflect translation solutions that can be explained by translationese. 
-The fact that the more prominent quality predictors were equally associated with accuracy, fluency and tq, together with the observation that this association was weak ($r<0.243$), confirms that even if accuracy and fluency reflected different aspects of translation quality, these aspects were not related to translationese.
+The fact that prominent quality predictors were equally associated with accuracy, fluency and tq, together with the observation that this association was weak ($r<0.243$), confirms that even if accuracy and fluency reflected different aspects of translation quality, these aspects were not related to translationese.
 
 \label{pg:errors_some_coherence_with_translationese_theory_of_quality}
-The look at other translationese features that were found among the top 10 by correlation with either accuracy or fluency suggests an interpretation coherent with the translationese hypothesis of quality for some of them. 
-For example, accuracy scores had returned $r=0.226$ for Spearman's correlation with the frequency of negative particles. This aligns well with the translationese explanation: the more negative particles, the higher the translation quality. Less fluent translations tend to underuse negative constructions and follow the English affirmative way of expression. Accuracy scores also had $r=-0.1$ correlation with epistemic markers. The overuse of Russian literal translations for the phrases like \textit{certainly, as far as we know, of course, no doubt, it appears that}, which are more common in English, seemed to predict lower-ranking translations. The most prominent negative indicator of fluency was the frequency of modal predicates ($r=-0.106$). From translationese theory perspective, in the English-to-Russian translation, it makes sense that the overuse of modal predicates imposed by SL should signal lower quality.
-If these observations are acceptable, given their low potency, they do not explain either error-based scores or the difference between them convincingly.   
+A look at other translationese features that were found among the top 10 by correlation with either accuracy or fluency suggests an interpretation coherent with the translationese hypothesis of quality for some of them. 
+For example, accuracy scores returned $r=0.226$ for Spearman's correlation with the frequency of negative particles. This aligns well with the translationese explanation: the more negative particles, the higher the translation quality. Less fluent translations tend to underuse negative constructions and follow the English affirmative way of expression. Accuracy scores also had $r=-0.1$ correlation with epistemic markers. The overuse of literal translations for the phrases like \textit{certainly, as far as we know, of course, no doubt, it appears that}, which are more common in English, seemed to predict lower-ranking translations. The most prominent indicator of fluency was the frequency of modal predicates ($r=-0.106$). From translationese theory perspective, the overuse of modal predicates in English-to-Russian translation signals lower quality.
+Even if these observations are acceptable, they do not explain either error-based scores or the difference between them convincingly due to their low potency.   
 
 \label{pg:quest_feats4err}
 The comparable \textbf{performance of QuEst++ for all error-based scores was based on ST complexity features}.
-For the QuEst++ feature set the intersection between best-performing features on accuracy and fluency included six out of 10 top features. Five of them were complexity (ST-based) features that \textit{measured average number of translations per source word} counted with various Giza probability thresholds (including \#1016, \#1018, \#1020, \#1022, \#1024, e.g. document-level QuEst++ feature \#1024: ``average number of translations per source word in the sentence (threshold in giza1: prob > 0.05)''). Apart from that, number of sentences in the target document (\#9801) was relatively well correlated with all scores. It indicated that the more sentences there were in a translation, the higher was the quality score.
-
-The error-annotated dataset included multiple translations for 47 English sources. Apparently, the differences between them were most contributive to the regressor performance. We looked through the extended lists of top 15 most-associated features for accuracy and fluency, and found that they represented the properties of ST (with  the exception of two adequacy features). Over-reliance of this classifier on the ST side fits well with no distinction between accuracy and fluency. Indeed, a more demanding ST can trigger both content and language errors, as we demonstrated in~\cite{Kunilovskaya2022err}.
-However, it also shows that this feature set does not pick up any relevant distinctions between translations per se. Analysis of intersections in \textit{tf-idf} top features did not reveal any patterns and was not enlightening. 
+For the QuEst++ feature set, the intersection between best-performing features on accuracy and fluency included six out of 10 top features. Five of them were complexity (ST-based) features that \textit{measured average number of translations per source word} counted with various Giza probability thresholds (including \#1016, \#1018, \#1020, \#1022, \#1024, e.g. document-level QuEst++ feature \#1024: ``average number of translations per source word in the sentence (threshold in giza1: prob > 0.05)''). Apart from that, number of sentences in the target document (\#9801) was relatively well correlated with all scores. It indicated that the more sentences there were in a translation, the higher was the quality score.
+The error-annotated dataset included multiple translations for 47 English sources. Apparently, the differences between them were most contributive to the QuEst++ regressor performance. We looked through the extended lists of top 15 most-associated features for accuracy and fluency, and found that they represented the properties of ST (with the exception of two adequacy features). Over-reliance of this classifier on the ST side fits well with no distinction between accuracy and fluency. Indeed, a more demanding ST can trigger both content and language errors, as we demonstrated in~\cite{Kunilovskaya2022err}.
+However, it also shows that QuEst++ feature set did not pick up any relevant distinctions between translations per se. 
+%Analysis of intersections in \textit{tf-idf} top features did not reveal any patterns and was not enlightening. 
 
 %fluency	
 %qe_1024	average number of translations per source word in the document (threshold in giza1: prob > 0.5)
@@ -619,13 +623,13 @@ However, it also shows that this feature set does not pick up any relevant disti
 % Selected tq features 21: ['anysome', 'deverbals', 'finites', 'interrog', 'neg', 'nn', 'nnargs', 'passives', 'ppron', 'sentlength', 'simple', 'wdlength', 'advcl', 'amod', 'aux:pass', 'case', 'conj', 'fixed', 'nmod', 'nsubj', 'obl']
 
 \subsection{\label{ssec:doc_da_res}Document Level: Direct Assessment}
-While our annotation setup for perceived quality was sentence-level, document-level DA scores were obtained by averaging sentence scores. Recall that the annotation setup did not present sentences in isolation. Instead, the raters could see the entire parallel document. They were asked to read the ST before annotation. 
+Our annotation setup for perceived quality was sentence-level, and document-level scores were obtained by averaging sentence scores. Recall that the annotation setup did not present sentences in isolation. Instead, the raters could see the entire parallel document. They were asked to read the ST before annotation. 
 
 In the description below, \textit{da\_mean} stands for the mean raw score between the raters. 
 Following the practice adopted in \gls{WMT} quality estimation shared tasks, raw scores were standardised by rater using z-transformation and then averaged to obtain \textit{da\_zmean} scores. % NB! from WMT 2021: DA scores are standardised using the z-score by rater. Participating systems are required to score sentences according to z-standardised DA scores.
 
-Also, as explained in Section~\ref{ssec:da}, we were able to use only two ratings from six sentence-wise cross-annotations of 150 documents due to strict thresholds for internal rater reliability. Ten documents were discarded because their annotations were incomplete or there were other technical problems preventing the recovery of trustworthy results. 
-
+Also, as explained in Section~\ref{ssec:da}, there were only two admissible ratings from six sentence-wise cross-annotations of 140 documents due to strict thresholds for internal rater reliability. 
+%Ten documents were discarded because their annotations were incomplete or there were other technical problems preventing the recovery of trustworthy results. 
 The level of agreement between the two selected ratings in terms of Spearman's rank correlation co-efficient for document-level scores was 0.503 (p < 0.05). % z-transform does not play a role in calculating this correlation
 
 % this is double-checked with the output of python3 get_input_tables/1_scores_doc_concatenator.py --err_type unweighted --da_type 2raters
@@ -640,12 +644,12 @@ The level of agreement between the two selected ratings in terms of Spearman's r
 		da\_mean & 0.509      & 0.169   & 0.391 & 0.514    & 0.408   & 0.559 \\
 		\bottomrule
 	\end{tabular}
-\caption{\label{tab:doc_err-da_corr}Correlation of averaged DA scores with quality aspects scores from error annotation (Spearman's r)}
+\caption{\label{tab:doc_err-da_corr}Spearman's $r$ between DA scores and quality scores from error annotation}
 \end{table}
 
 Table~\ref{tab:doc_err-da_corr} has the Spearman's correlation of averaged DA score (da\_mean) and the three major scores from error annotation. All results are significant at the confidence level of 5\%.
 
-It can be seen from Table~\ref{tab:doc_err-da_corr} that weighted error-based scores were better aligned with perceived quality. To an extent, it justifies the error weighting scheme based on error categories and severities. Accuracy scores and overall scores are more correlated with perceived quality than fluency. It means that the \textbf{raters penalised content errors more than language errors}. 
+It can be seen from Table~\ref{tab:doc_err-da_corr} that weighted error-based scores were better aligned with perceived quality. To an extent, it justifies the error weighting scheme based on error categories and severities. Perceived quality (DA scores) were more correlated with accuracy and overall scores than with fluency. It means that the \textbf{raters penalised content errors more than language errors}. 
 
 \begin{table}[H]
 	\centering
@@ -661,14 +665,10 @@ It can be seen from Table~\ref{tab:doc_err-da_corr} that weighted error-based sc
 \end{table}
 % unique values 140
 
-The resulting distribution of scores from DA annotation for 140 documents (averaged from sentence scores) has the parameters reflected in Table~\ref{tab:doc_da_dist}. They are also visualised in Figure~\ref{fig:da_scores} on page~\ref{pg:da_score_hists}. The distribution of DA scores is skewed to the right. 
+The resulting distribution of scores from DA annotation for 140 documents (averaged from sentence scores) has the parameters reflected in Table~\ref{tab:doc_da_dist}. They are also visualised in Figure~\ref{fig:da_scores} on page~\pageref{pg:da_score_hists}. The distribution of DA scores is skewed to the right. 
 
-According to the results, presented in Table~\ref{tab:da_doc_res}, there was no consistency in performance of the regressors across the representations on either raw mean DA scores or on mean z-transformed scores. In fact, none of the differences between the two \textit{r} columns in Table~\ref{tab:da_doc_res} were statistically significant.
+According to the results, presented in Table~\ref{tab:da_doc_res}, there was no consistent differences between the performance of the regressors on raw mean DA scores and on mean z-transformed scores. In fact, none of the differences between the two \textit{r} columns in Table~\ref{tab:da_doc_res} were statistically significant.
 %In our setting, it indicates that the raters did not differ much in how they used the assessment scale. Their judgments were well-calibrated. % Actually the RMSE for the scores returned by the two raters was 
-
-Further on, there were no statistically significant differences between the representations shown in rows, either. Despite we can observe that the value for Spearman's \textit{r}, averaged across 10 folds of the experiment, was higher for \textit{mdeberta3}, the performance of the regressor was very volatile from fold to fold, ranging from $r=0.068$ to $r=0.758$. 
-
-%\todo[inline]{An suggests reporting res for folds} 
 
 \begin{table}[H]
 	\centering
@@ -690,15 +690,14 @@ Further on, there were no statistically significant differences between the repr
 %		\midrule
 %		\multicolumn{5}{c}{2raters}     \\ 
 %		\midrule
-			UD              & \textbf{0.23} & 7.27 & 0.16 & 0.81 \\
-			all             & 0.21 & 7.29 & \textbf{0.23} & 0.79 \\
-			quest61         & 0.18 & 7.44 & 0.11 & 0.88 \\
+            UD        & \textbf{0.23} (+/-0.25) & 7.27 (+/-1.92) & 0.16 (+/-0.23) & 0.81 (+/-0.19) \\
+			all       & 0.21 (+/-0.21) & 7.29 (+/-1.93) & \textbf{0.23} (+/-0.26) & 0.79 (+/-0.20) \\
+			quest61   & 0.18 (+/-0.22) & 7.44 (+/-1.90) & 0.11 (+/-0.27) & 0.88 (+/-0.17) \\
 			\midrule
-			tfidf           & 0.19 & 7.56 & 0.2  & 0.79 \\
-			\midrule
-			TQmono-m        & 0.23 & 7.31 & 0.22 & 0.78 \\
-			ruRoberta & 0.22 & 7.35 & 0.23 & 0.78 \\
-			\textbf{mdeberta3}  & \boxit{0.4in}\textbf{0.37} & 7.22 & \textbf{0.32} & 0.75 \\
+			tfidf     & 0.19 (+/-0.26) & 7.56 (+/-1.93) & 0.20 (+/-0.23) & 0.79 (+/-0.17) \\
+			TQmono-m  & 0.23 (+/-0.20) & 7.31 (+/-1.74) & 0.22 (+/-0.20) & 0.78 (+/-0.16) \\
+			ruRoberta & 0.22 (+/-0.27) & 7.35 (+/-1.91) & 0.23 (+/-0.22) & 0.78 (+/-0.18) \\
+			mdeberta3 & \boxit{0.3in}0.37 (+/-0.20) & 7.22 (+/-1.89) & \boxit{0.3in}0.32 (+/-0.22) & 0.75 (+/-0.18) \\
 %		\midrule
 %		\multicolumn{5}{c}{3raters}   \\
 %		\midrule
@@ -721,8 +720,11 @@ Further on, there were no statistically significant differences between the repr
 %			mdeberta3  & 0.3  & 4.74 & 0.33 & 0.47 \\
 		\bottomrule
 	\end{tabular}
-\caption{\label{tab:da_doc_res}Document-level: Regression results for DA scores (140 documents)}
+\caption{\label{tab:da_doc_res}Document-level: Regression results with STD for DA scores (140 documents). The highest $r$ for each score by manual features and content-dependent regressors are highlighted}
 \end{table}
+
+Further on, there were no statistically significant differences between the representations shown in rows, either. Although we can observe that the value for Spearman's $r$, averaged across 10 folds of the experiment, was higher for \textit{mdeberta3}, the performance of the regressor was very volatile from fold to fold, ranging from $r=0.068$ to $r=0.758$. In particular, Spearman's $r$ values across 10 runs of the \textit{mdeberta3} regressor on \textit{da\_mean} scores were: [0.179, 0.385, 0.464, 0.389, 0.666, 0.244, 0.759, 0.301, 0.275, 0.068].
+%\todo[inline]{An suggests reporting res for folds} 
 
 We have to conclude that none of the representations was more successful than the other in learning DA scores. Clearly, this is the effect of small training data (140 documents) in conjunction with no strong signal coming from any attempted representations. 
 
@@ -736,15 +738,15 @@ We have to conclude that none of the representations was more successful than th
 		\midrule
 		& \textit{r}        & RMSE & \textit{r}       & RMSE & \textit{r}    & RMSE & \textit{r}    & RMSE  \\
 		\midrule
-		\textbf{UD}                & \textbf{0.13}  & 1.32 & \textbf{0.4}     & 1.48 & \textbf{0.24}  & 2.48 & \textbf{0.21}       & 20.62 \\
+		UD                & 0.13  & 1.32 & \textbf{0.4}     & 1.48 & 0.24  & 2.48 & 0.21       & 20.62 \\
 		all               & 0.02  & 1.34 & 0.33    & 1.51 & 0.14  & 2.5  & 0.13       & 20.66 \\
 		quest61           & -0.07 & 1.46 & 0.39    & 1.47 & 0.15  & 2.47 & 0.1        & 20.59 \\
 		\midrule
 		tfidf             & 0.07  & 1.3  & 0.45    & 1.48 & 0.22  & 2.42 & 0.21       & 20.59 \\
-		\midrule
+%		\midrule
 		TQmono-m          & 0.01  & 1.38 & 0.42    & 1.46 & 0.24  & 2.42 & 0.2        & 20.54 \\
 		ruRoberta   & 0.04  & 1.38 & 0.45    & 1.41 & 0.25  & 2.37 & 0.29       & 20.31 \\
-		mdeberta3    & 0.52  & 1.12 & \textbf{0.54}    & 1.35 & 0.52  & 2.1  & 0.46       & 19.93 \\
+		mdeberta3    & 0.52  & 1.12 & \boxit{0.3in}0.54    & 1.35 & 0.52  & 2.1  & 0.46       & 19.93 \\
 %		\midrule
 %		\midrule
 %		\multicolumn{9}{c}{Weighted scores} \\
@@ -760,7 +762,7 @@ We have to conclude that none of the representations was more successful than th
 %		\textbf{mdeberta3}    & \textbf{0.53}  & 8.48 & \textbf{0.5}     & 7.15 & \boxit{0.4in}\textbf{0.58}  & 5.35 & \textbf{0.55}       & 20.69 \\
 		\bottomrule
 	\end{tabular}
-	\caption{\label{tab:err140_res}Regression results on error-based scores for 140 cross-annotated documents}
+	\caption{\label{tab:err140_res}Regression results on error-based scores for 140 cross-annotated documents. The highest results across all scores by manual features and content-dependent regressors are highlighted}
 \end{table}
 
 The results for document-level experiments on DA scores were twice lower than on error-based scores reported in Section~\ref{ssec:doc_err_res} above. To rule out the impact of data size (553 vs 140 documents for error-based and DA scores, respectively), we obtained the error-based results on 140 documents cross-annotated for errors and DA (see Table~\ref{tab:err140_res}).
@@ -768,9 +770,9 @@ The results for document-level experiments on DA scores were twice lower than on
 \textit{Unweighted fluency} was the only error-based score that remained robust on a four times smaller dataset (553 documents vs. 140 documents cross-annotated for errors and DA). The regression results for unweighted fluency were almost twice higher than for mean DA scores on the same dataset, and the differences were statistically significant, unlike the differences between \textit{da\_mean} and accuracy, tq and scaled\_tg in Tables~\ref{tab:da_doc_res} and~\ref{tab:err140_res}.
 %\todo[inline]{An suggests unpacking "all other differences"}
 
-It seems that this setup returned the expected higher learnability of fluency, as opposed to accuracy, on the representations limited to the TL-side of the parallel corpora. Besides, it showed that error-based scores seem to be more consistent and reliable than DA scores. % how do I explain similar performance on accuracy and fluency in a larger dataset? Does it depend on the distribution of scores in the dataset?
+It seems that this setup returned the expected higher learnability of fluency, as opposed to accuracy, on the representations limited to the TL-side of the parallel corpora. Besides, it showed that error-based scores seemed to be more consistent and reliable than DA scores. % how do I explain similar performance on accuracy and fluency in a larger dataset? Does it depend on the distribution of scores in the dataset?
  
-However, the distributions of accuracy scores in the error-annotated and cross-annotated datasets (see Figure~\ref{fig:acc140binomial} were quite different. In the full dataset it is close to normal, while in the cross-annotated it is almost binomial. The fluency and tq scores were not as affected by the selection of 140 documents. Recall from Section~\ref{ssec:da} (page~\pageref{pg:intersection140}) that the documents for cross annotation were specifically selected to be in the intersection of error-annotated data and binary quality data. We also aimed to include approximately the same number of \textit{good} and \textit{bad} translations. The observed change in distribution of accuracy scores provides a further confirmation that human judges paid more attention to the accuracy of meaning transfer than to disfluencies in translations. 
+However, the distributions of accuracy scores in the error-annotated and cross-annotated datasets (see Figure~\ref{fig:acc140binomial} were quite different. In the full dataset, it is close to normal, while in the cross-annotated it is almost binomial. The fluency and tq scores were not as affected by the selection of 140 documents. Recall from Section~\ref{ssec:da} (page~\pageref{pg:intersection140}) that the documents for DA annotation were specifically selected to be in the intersection of error-annotated data and binary quality data. We also aimed to include approximately the same number of \textit{good} and \textit{bad} translations. The observed change in distribution of accuracy scores provides a further confirmation that human judges paid more attention to the accuracy of meaning transfer than to disfluencies in translations. 
 
 \begin{figure}
 	\begin{minipage}[c]{0.45\linewidth}
@@ -787,7 +789,7 @@ However, the distributions of accuracy scores in the error-annotated and cross-a
 \end{figure}
 
 These details on data selection invalidate the differences in performance between accuracy and fluency on the cross-annotated dataset, while the observation about lack of difference between the two aspects from the point of view of all attempted representations stands. 
-This conclusion was confirmed by \textbf{lack of statistical difference between accuracy and fluency} for all attempted representations on a randomly selected 140 error-annotated documents. 
+This conclusion was confirmed by \textbf{lack of statistical difference between accuracy and fluency} for all attempted representations on a random selection of 140 error-annotated documents. 
 The results of this experiment are aggregated in Table~\ref{tab:err140rand_res}.
 
 \begin{table}[H]
@@ -800,18 +802,18 @@ The results of this experiment are aggregated in Table~\ref{tab:err140rand_res}.
 		\midrule
 		& \textit{r}        & RMSE & \textit{r}       & RMSE & \textit{r}    & RMSE & \textit{r}    & RMSE  \\
 		\midrule
-		\textbf{UD}              & 0.2  & 1.11 & \textbf{0.36} & 1.02 & \textbf{0.36} & 1.72 & \textbf{0.34} & 14.8  \\
+		UD              & 0.2  & 1.11 & \textbf{0.36} & 1.02 & \textbf{0.36} & 1.72 & \textbf{0.34} & 14.8  \\
 		all             & 0.28 & 1.08 & 0.25 & 1.04 & 0.3  & 1.74 & 0.27 & 14.9  \\
-		quest64         & \textbf{0.29} & 1.09 & 0.29 & 1.03 & 0.28 & 1.77 & 0.26 & 14.94 \\
+		quest61         & \textbf{0.29} & 1.09 & 0.29 & 1.03 & 0.28 & 1.77 & 0.26 & 14.94 \\
 		\midrule
 		tfidf           & 0.38 & 1.06 & 0.33 & 1.03 & 0.33 & 1.74 & 0.3  & 15.04 \\
-		\midrule
+%		\midrule
 		TQmono-m        & 0.32 & 1.05 & 0.31 & 1.04 & 0.34 & 1.7  & 0.23 & 14.8  \\
 		ruRoberta-large & 0.38 & 1.06 & 0.34 & 1.01 & 0.38 & 1.69 & 0.39 & 14.74 \\
-		\textbf{mdeberta3-base}  & \textbf{0.53} & 0.99 &\textbf{0.45} & 0.95 & \textbf{0.58} & 1.56 & 0.54 & 14.6 \\
+		mdeberta3-base  & \boxit{0.3in}0.53 & 0.99 &\boxit{0.3in}0.45 & 0.95 & \boxit{0.3in}0.58 & 1.56 & \boxit{0.3in}0.54 & 14.6 \\
 		\bottomrule
 	\end{tabular}
-	\caption{\label{tab:err140rand_res}Regression results for random 140 documents with error-based scores}
+	\caption{\label{tab:err140rand_res}Regression results for random 140 documents with error-based scores. For each quality score, the boldface type is used to denote the highest $r$ for manual features; the highest $r$ for content-dependent representations is boxed}
 \end{table}
 
 With regard to the \textbf{comparison between error-based and DA scores}, we have seen statistically significant results only for \textit{mdeberta3}, which returned higher results for accuracy, tq and scaled\_tq scores than for da\_zmean scores. 
@@ -819,27 +821,28 @@ All other comparisons were inconclusive. Interestingly, \textit{mdeberta3} was e
 
 %UD features were statistically inferior to \textit{mdeberta3} only in the experiments for accuracy scores.
 
-In sum, the experiments on an random selection of error-annotated documents confirmed \textbf{no difference between the accuracy and fluency on any representations} reported in Section~\ref{ssec:doc_err_res} (see Table~\ref{tab:doc_err_double}). 
+In sum, the experiments on an random selection of error-annotated documents confirmed \textbf{no difference in regression results for accuracy and fluency on any attempted representations} reported in Section~\ref{ssec:doc_err_res} (see Table~\ref{tab:doc_err_double}). 
 We also \textbf{failed to obtain convincing proof that either error-based or DA scores were better aligned with the properties of translation} as represented in this work, except for \textit{mdeberta3} vectors that performed better on accuracy, tq and scaled\_tq scores than on da\_zmean scores. 
 
 \paragraph{Feature analysis} 
-We continue to trace the features that can be more predictive of the scores than other features from UD and QuEst++ using feature selection and univariate tests, and limiting the analysis to the top ten most successful quality predictors by both or either of these methods.
-In this paragraph we compared the set of features most associated with error-based scores to the set of features most correlated with DA scores. 
+We continue to trace the correlation of UD and QuEst++ features with the scores using feature selection and univariate tests, and limiting the analysis to the top ten most successful quality predictors according to both or either of these methods.
+In this paragraph, we compared the set of features most associated with error-based scores to the set of features most correlated with DA scores. 
 
 % scores: no statistically significant differences between results on full feature set and on selected features
-Feature selection improved the results for \textit{da\_mean} on UD from 0.23 to 0.27 by limiting the feature set to just \textit{deverbals, nmod, nsubj}. The results on QuEst++ went from 0.18 to 0.24 after limiting the feature set to 24 features. However, we forgo their analysis because the differences were not statistically significant.
+Feature selection improved the results for \textit{da\_mean} on UD from 0.23 to 0.27 by limiting the feature set to just \textit{deverbals, nmod, nsubj}. The results on QuEst++ went up from 0.18 to 0.24 after limiting the feature set to 24 features. However, we forgo their analysis because the differences were not statistically significant.
 %QuEST for da\_mean (24 fets r 0.18 -> 0.24) ['qe_1003', 'bqe_1009', 'qe_1011', 'bqe_1012', 'qe_1013', 'bqe_1015', 'qe_1018', 'qe_1024', 'qe_1028', 'qe_1034', 'bqe_1036', 'qe_1038', 'qe_1044', 'qe_1048', 'qe_1052', 'bqe_1054', 'qe_1055', 'bqe_1074', 'qe_1088', 'qe_1090', 'qe_1091', 'qe_1092', 'qe_1093', 'qe_9994']
 \label{pg:da_ignores_translationese_feats}
 The analysis of individual correlation of feature values and scores revealed \textbf{a noticeably different set of features correlated with DA scores than with error-based scores for UD and QuEst++}. 
 In fact, there was only one UD feature that was in top ten by correlation with DA scores and with three error-based scores (\textit{nsubj}), while \textit{mark, neg, advcl} and \textit{sentlength} were shared with only accuracy or fluency, respectively.
-None of these quality indicators support the translationese approach to quality, except, maybe, number of negations (\textit{neg}). If anything, these results mean that the longer and more complex the sentence, the higher the quality. In all likelihood, in \textbf{DA assessment setup translationese properties of texts were ignored}.  
+None of these quality indicators support the translationese approach to quality, except, maybe, number of negations (\textit{neg}). If anything, these results mean that the longer and more complex the sentence, the higher the quality. In all likelihood, in \textbf{DA assessment setup translationese properties of texts were ignored by the raters}.  
 
-UD features that were correlated with DA scores (but not with error-based scores) included \textit{mdd, aux, tempseq, aux:pass, mark, copula, advers}. They were positively correlated with DA scores. Higher MDD means higher comprehension difficulty, with sentences requiring additional effort for transforming longer linear distances into syntactic trees at understanding time~\cite[p.162]{Jing2015}. The value in the DA dataset was greater than in non-translated Russian. Increased frequencies of copula and auxiliary verbs, analytical passives are signs of more noticeable translationese. The frequency of adversative discourse markers was negatively correlated with DA scores ($r=-0.224$), i.e. the more explicit markers of contrast were used in a translation, the lower was the perceived quality (e.g. \foreignlanguage{russian}{\textit{однако, несмотря на, тем не менее}} [however, despite, nonetheless]).
-These observations contradict our assumption that higher-quality translations should show less signs of translationese. 
+UD features that were correlated with DA scores (but not with error-based scores) included \textit{mdd, aux, tempseq, aux:pass, mark, copula, advers}. They were positively correlated with DA scores. Higher MDD means higher comprehension difficulty, with sentences requiring additional effort for transforming longer linear distances into syntactic trees at understanding time~\cite[p.162]{Jing2015}. MDD values were greater in translations than in non-translated Russian, inviting a counter-intuitive conclusion that higher complexity correlated with higher quality. Increased frequencies of copula and auxiliary verbs, analytical passives are also signs of more noticeable translationese, which seems to be correlated with higher DA quality. The frequency of adversative discourse markers was negatively correlated with DA scores ($r=-0.224$), i.e. the more explicit markers of contrast were used in a translation, the lower was the perceived quality (e.g. \foreignlanguage{russian}{\textit{однако, несмотря на, тем не менее}} [however, despite, nonetheless]).
+\textbf{These observations contradict our assumption that higher-quality translations should show less signs of translationese.}
 % trade-off relation between the structural complexity in the two dimensions partially proves the dynamic balance of code-switching from the listener’s and speaker’s perspectives. English tends to reduce the structural complexity in the hierarchical dimension (MHD), while Czech prefers to lessen the processing cost in the linear dimension (MDD).
 
 One common quality indicator among 61 QuEst++ features that cut across all types of quality scores (both DA and error-based) was \textit{the ratio of verbs in the source and target (\#1093)}. It was negatively correlated with the quality, i.e. the fewer verbs in the target, the higher the ratio, and the lower the quality. % which is contrary to what I think 
-If anything, this observation contradicts the expectations in the context of English-Russian language pair and translationese tendencies as was the case with some other results for translationese features for error-based (see page~\ref{pg:scores_not_translationese}) and DA scores on UD features. Other DA predictors also useful for accuracy and tq (\#1052, \#1085), or fluency (\#1004) were: 
+If anything, this observation contradicts the expectations in the context of English-to-Russian translationese tendencies as was the case with other results for translationese-aware features on error-based (see page~\ref{pg:scores_not_translationese}) and DA scores. Other DA predictors useful for accuracy and tq, or fluency were: 
+% tq (\#1052, \#1085), fluency (\#1004)
 \begin{description}\compresslist{}
 	\item[1052] average bigram frequency in quartile 3 of frequency (lower frequency words) in the source corpus,
 	\item[1085] ratio of percentage of content words in the source and target,
@@ -848,7 +851,7 @@ If anything, this observation contradicts the expectations in the context of Eng
 They were positively correlated with the respective quality scores. 
 
 % discussed on page~\pageref{pg:quest_feats4err} 
-To give examples of features that were specific for predicting DA scores, the most correlative variables are listed below (in the decreasing order based on individual correlation with \textit{da\_mean} score): 
+Most correlative features that were specific for experiments on DA scores are listed below (in the decreasing order based on individual correlation with \textit{da\_mean} score): 
 \begin{description}\compresslist{}
 	\item[9992] ratio of word repetitions in target and source documents,
 	\item[9993] ratio of lemma repetition between target and source documents,
@@ -858,20 +861,20 @@ To give examples of features that were specific for predicting DA scores, the mo
 \end{description}
 
 Interestingly, this list primarily includes adequacy features. Recall that error-based scores had ST complexity parameters as major quality predictors. 
-Lack of intersection between error-based quality predictors and DA quality predictors from two interpretable feature sets make us conclude that these \textbf{types of assessment reflect dissimilar aspects of translation quality} or our feature set is incomplete. 
-Admittedly, this feature analysis has very limited reliability, given weak association of any individual features with the DA scores (maximum $r=0.274$ for negative particles from UD feature set) and the general poor performance of any feature set on DA scores. 
+Lack of intersection between error-based quality predictors and DA quality predictors from two interpretable feature sets make us conclude that these \textbf{types of assessment reflect dissimilar aspects of translation quality} or our feature sets are incomplete. 
+Admittedly, this feature analysis has limited reliability, given weak association of any individual features with the DA scores (maximum $r=0.274$ for negative particles from UD feature set) and the general poor performance of any feature set on DA scores. 
 However, the interpretation of most correlative features indicates that \textbf{DA method does not reflect translationese properties of document}.
 
 \subsection{\label{ssec:sent_level}Sentence Level: Error-based and DA Scores}
-Given that error-based and DA scores originated at sentence level, we extended these experiments of the sentence-level version of the dataset. It included 3,224 sentences from 140 documents with error-based and DA scores. At sentence level the distribution of scores was not as affected by the selection of a polarised smaller sample and remained heavily right-skewed for all scores as shown in Figure~\ref{fig:sents_tq} (page~\pageref{fig:sents_tq}). Nonetheless, we report results on randomly selected 3,224 sentences. The stack of experiments was run only for unweighted scores. For consistency we present the results on the full dataset spanning 12,369 sentences, too.
+Given that error-based and DA scores originated at sentence level, we extended these experiments to the sentence-level version of the dataset. It included 3,224 sentences from 140 documents with error-based and DA scores. At sentence level, the distribution of scores was not as affected by the selection of a polarised smaller sample and remained heavily right-skewed for all scores as shown in Figure~\ref{fig:sents_tq} (page~\pageref{fig:sents_tq}). Nonetheless, we report results on randomly selected 3,224 sentences. The stack of experiments was run only for unweighted scores. For consistency, we present the results on the full dataset spanning 12,369 sentences, too.
 
-At sentence level there was enough data to establish that \textbf{translationese-aware features were relatively competitive only for fluency scores}. On the full dataset, they were outperformed for this type of quality only by \textit{ruRoberta} and \textit{mdeberta3}. For accuracy and tq, translationese-aware feature set was inferior to all other representations, including \textit{quest70}, \textit{tf-idf} and \textit{TQmono-m} in addition to \textit{ruRoberta} and \textit{mdeberta3}. This inferiority was lost on 3,224 sentences, except for \textit{ruRoberta} and \textit{mdeberta3}. It means that the differences in performance between UD, on the one hand, and \textit{quest70}, \textit{tf-idf} and \textit{TQmono-m}, on the other hand, were small. 
+At sentence level, there was enough data to establish that \textbf{translationese-aware features were relatively competitive only for fluency scores}. On the full dataset, they were outperformed for this type of quality only by \textit{ruRoberta} and \textit{mdeberta3}. For accuracy and tq, translationese-aware feature set was inferior to all other representations, including \textit{quest70} ()a dedicated sentence-level QuEst++ feature set), \textit{tf-idf} and \textit{TQmono-m} in addition to \textit{ruRoberta} and \textit{mdeberta3}. This inferiority was lost on 3,224 sentences, except for \textit{ruRoberta} and \textit{mdeberta3}. It means that the differences in performance between UD, on the one hand, and \textit{quest70}, \textit{tf-idf} and \textit{TQmono-m}, on the other hand, were small. 
 
 \label{pg:downward_slide}
-The results for (unweighted) error-based scores at sentence level were generally almost twice lower than at document level for the full dataset of 553 documents/12,369 sentences (see Unweighted scores in Table~\ref{tab:doc_err_double}). For example, for fluency UD features achieved $r=0.43$ at document level and $r=0.24$ at sentence level, while \textit{mdeberta3}'s results were $r=0.58$ and $r=0.36$, respectively. Manual frequency features were expected to be affected by sparsity. However, it is not clear why a dedicated sentence-level QuEst++ feature set and vectorised representations did not benefit from the shift from document to sentence level.
+The results for (unweighted) error-based scores at sentence level were generally almost twice lower than at document level for the full dataset of 553 documents/12,369 sentences (see Unweighted scores in Table~\ref{tab:doc_err_double}). For example, for fluency, UD features achieved $r=0.43$ at document level and $r=0.24$ at sentence level, while \textit{mdeberta3}'s results were $r=0.58$ and $r=0.36$, respectively. Manual frequency features were expected to be affected by sparsity. However, it is not clear why a dedicated sentence-level QuEst++ feature set and vectorised representations did not benefit from the shift from document to sentence level.
 
-We noticed that the drop in performance caused by limiting the data to a (random) forth of the original size was bigger for documents than for sentences. For example, the ratio of \textit{r} obtained from full/small document-level experiments for unweighted fluency on UD features was 1.19, while for sentence level it was 1.04. For quest70 these ratios were 1.44 vs 1.04, for \textit{ruRoberta} 1.56 vs 1.12 and for \textit{mdeberta3} 1.2 vs 1.09.
-This means that there was less volatility between the folds, and the learning process was more stable at sentence level, even if not as successful as at document level, when enough data is available. 
+We noticed that the drop in performance caused by limiting the data to a (random) forth of the original size was bigger for documents than for sentences. For example, the ratio of \textit{r} obtained from full/small document-level experiments for unweighted fluency on UD features was 1.19, while for sentence level it was 1.04. For \textit{quest70} these ratios were 1.44 vs 1.04, for \textit{ruRoberta} 1.56 vs 1.12 and for \textit{mdeberta3} 1.2 vs 1.09.
+This means that at sentence level there was less volatility between the folds, and the learning process was more stable, even if not as successful as at document level, when enough data was available. 
 %This also helps explain increased comatitiveness of \textit{ruRoberta} against \textit{mdeberta3}. The latter might be more robust to double mean-pooling to generate document vectors. 
 These observations across many representations make us hypothesise that \textbf{error-based quality scores reflected the properties of texts better than they fit the properties of sentences}. 
 %\todo[inline]{An suggests adding STD to regression tables}
@@ -887,13 +890,13 @@ These observations across many representations make us hypothesise that \textbf{
 		\midrule
 		UD                & 0.21 & 3.91  & 0.24 & 4.7   & 0.21 & 3.91  & 0.2  & 11.97 \\
 		all               & 0.21 & 3.91  & 0.26 & 4.67  & 0.21 & 3.91  & 0.21 & 11.97 \\
-		\textbf{quest70}  & \textbf{0.24} & 3.93  & \textbf{0.26} & 4.67  & \textbf{0.24} & 3.93  & \textbf{0.23} & 11.96 \\
+		quest70  & \textbf{0.24} & 3.93  & \textbf{0.26} & 4.67  & \textbf{0.24} & 3.93  & \textbf{0.23} & 11.96 \\
 		\midrule
 		tfidf             & 0.31 & 3.8   & 0.28 & 4.62  & 0.31 & 3.8   & 0.31 & 11.84 \\
-		\midrule
+%		\midrule
 		TQmono-m          & 0.27 & 3.88  & 0.27 & 4.66  & 0.27 & 3.88  & 0.26 & 11.94 \\
-		\textbf{ruRoberta}   & \textbf{0.35} & 3.78  & 0.35 & 4.52  & \textbf{0.35} & 3.78  & \textbf{0.33} & 11.74 \\
-		mdeberta3    & 0.32 & 3.82  & \textbf{0.36} & 4.49  & 0.32 & 3.82  & 0.31 & 11.8  \\
+		ruRoberta   & \boxit{0.4in}0.35 & 3.78  & 0.35 & 4.52  & \boxit{0.4in}0.35 & 3.78  & \boxit{0.4in}0.33 & 11.74 \\
+		mdeberta3    & 0.32 & 3.82  & \boxit{0.4in}0.36 & 4.49  & 0.32 & 3.82  & 0.31 & 11.8  \\
 		\midrule
 %		\midrule
 %		\multicolumn{9}{c}{Error-based scores (3,224 cross-annotated sentences)} \\
@@ -910,18 +913,18 @@ These observations across many representations make us hypothesise that \textbf{
 %		\midrule
 		\multicolumn{9}{c}{Error-based scores (random 3,224 sentences)} \\
 		\midrule
-		UD              & 0.17 & 3.84 & 0.23 & 4.74 & 0.17 & 3.84 & 0.17 & 11.77 \\
+		UD              & \textbf{0.17} & 3.84 & 0.23 & 4.74 & \textbf{0.17} & 3.84 & \textbf{0.17} & 11.77 \\
 		all             & 0.17 & 3.84 & 0.24 & 4.71 & 0.17 & 3.84 & 0.17 & 11.77 \\
-		quest70         & 0.14 & 3.87 & 0.25 & 4.7  & 0.14 & 3.87 & 0.13 & 11.79 \\
+		quest70         & 0.14 & 3.87 & \textbf{0.25} & 4.7  & 0.14 & 3.87 & 0.13 & 11.79 \\
 		\midrule
 		tfidf           & 0.21 & 3.77 & 0.22 & 4.73 & 0.21 & 3.77 & 0.21 & 11.69 \\
-		\midrule
+%		\midrule
 		TQmono-m        & 0.21 & 3.83 & 0.24 & 4.72 & 0.21 & 3.83 & 0.21 & 11.75 \\
-		\textbf{ruRoberta} & \textbf{0.29} & 3.75 & 0.31 & 4.6  & \textbf{0.29} & 3.75 & \textbf{0.29} & 11.63 \\
-		mdeberta3  & 0.27 & 3.77 & \textbf{0.33} & 4.56 & 0.27 & 3.77 & 0.27 & 11.66 \\
+		ruRoberta & \boxit{0.4in}0.29 & 3.75 & 0.31 & 4.6  & \boxit{0.4in}0.29 & 3.75 & \boxit{0.4in}0.29 & 11.63 \\
+		mdeberta3  & 0.27 & 3.77 & \boxit{0.4in}0.33 & 4.56 & 0.27 & 3.77 & 0.27 & 11.66 \\
 		\bottomrule
 	\end{tabular}
-	\caption{\label{tab:sent_err_double}Sentence-level results for unweighted error-based scores}
+	\caption{\label{tab:sent_err_double}Sentence-level results for unweighted error-based scores. For each quality score, the boldface type is used to denote the highest $r$ for manual features; the highest $r$ for content-dependent representations is boxed}
 \end{table}
 
 % where is my answer to the main question? How good are UD features for predicting sentence-level scores from errors and from DA? 
@@ -931,7 +934,7 @@ This is an expected and comforting outcome which provides circumstantial evidenc
 
 To cross-examine our conclusion from document level that neither error-based nor DA scores were better aligned with the properties of translation than the other, we obtained the results for DA at sentence level. 
 
-Spearman's \textit{r} between rater1 and rater2 on sentence-level DA scores was 0.408 (p < 0.05). This was a bit lower than for document-level perspective ($r=0.503$). To give more details on the parameters of the cross-annotated sentence-level variant of the dataset, we report correlation between error-based scores and DA in Table~\ref{tab:sent_err-da_corr}, measured with Spearman's \textit{r}. Correlation between two assessment methods at sentence-level was much lower than at document level (cf. Table~\ref{tab:doc_err-da_corr}, page~\pageref{tab:doc_err-da_corr}).
+Spearman's \textit{r} between rater1 and rater2 on sentence-level DA scores was 0.408 (p < 0.05). This was a bit lower than for document-level perspective ($r=0.503$). To give more details on the parameters of the cross-annotated sentence-level variant of the dataset, the correlation between error-based scores and DA is reported in Table~\ref{tab:sent_err-da_corr}, measured with Spearman's $r$. Correlation between two assessment methods at sentence-level was much lower than at document level (cf. Table~\ref{tab:doc_err-da_corr}, page~\pageref{tab:doc_err-da_corr}).
 
 \begin{table}[H]
 	\centering
@@ -944,7 +947,7 @@ Spearman's \textit{r} between rater1 and rater2 on sentence-level DA scores was 
 		da\_mean & 0.291 & 0.149 & 0.291 & 0.311 & 0.165 & 0.33 \\
 		\bottomrule
 	\end{tabular}
-	\caption{\label{tab:sent_err-da_corr}Sentence-level: Correlation of averaged DA scores with error-based scores}
+	\caption{\label{tab:sent_err-da_corr}Sentence-level: Spearman's $r$ between averaged DA scores and each of the error-based scores}
 \end{table}
 
 Table~\ref{tab:da_sent_res} presents the results for DA scores on sentence-level version of the dataset. 
@@ -957,28 +960,25 @@ This emphasises the differences between the two manual assessment methods. \text
 	\centering
 	\begin{tabular}{l|cl|cl}
 		\toprule
-		& da\_mean &      & da\_zmean &      \\
+		           & da\_mean &      & da\_zmean &      \\
 		\midrule
-		rep             & r         & RMSE & r          & RMSE \\
+		               & r         & RMSE & r          & RMSE \\
 		\midrule
-		\multicolumn{5}{c}{2raters}     \\ 
-		\midrule
+%		\multicolumn{5}{c}{2raters}     \\ 
+%		\midrule
 		UD              & 0.29 & 12.89 & 0.29 & 0.84 \\
 		all             & 0.3  & 12.86 & 0.3  & 0.83 \\
-		\textbf{quest70}         & \textbf{0.33} & 12.74 & \textbf{0.33} & 0.82 \\
+		quest70         & \textbf{0.33} & 12.74 & \textbf{0.33} & 0.82 \\
 		\midrule
 		tfidf           & 0.27 & 12.94 & 0.31 & 0.82 \\
-		\midrule
+%		\midrule
 		TQmono-m        & 0.35 & 12.56 & 0.37 & 0.81 \\
-		\textbf{ruRoberta} & \textbf{0.39} & 12.41 & \boxit{0.4in}\textbf{0.42} & 0.78 \\
+		ruRoberta & \boxit{0.4in}0.39 & 12.41 & \boxit{0.4in}0.42 & 0.78 \\
 		mdeberta3  & 0.39 & 12.45 & 0.38 & 0.80 \\
 		\bottomrule
 	\end{tabular}
-	\caption{\label{tab:da_sent_res}Sentence-level: Regression results for DA scores}
+	\caption{\label{tab:da_sent_res}Sentence-level: Regression results for DA scores by SVR. The highest result for manually engineered feature sets is shown in bold; the highest result for content-dependent classifiers appears in a box}
 \end{table}
-
-
-
 
 % \textbf{Error annotation (as implemented in the \gls{RusLTC}, see Section~\ref{ssec:err}, page~\pageref{ssec:err}) is more fit to produce document-level scores than DA setup}. 
 
@@ -986,46 +986,48 @@ This emphasises the differences between the two manual assessment methods. \text
 
 At document level, there was no evidence that either error-based scores or DA scores returned higher results on any representations, except marginal superiority for accuracy and tq over DA on \textit{mdeberta3} (see page~\pageref{tab:err140rand_res}).
 
-Sentence level experiments provide ample evidence that \textbf{DA scores were more learnable than any error-based scores, given the same sample size}. In fact, the experiments on sentences from the same 140 cross-annotated documents and on a random sample of 3224 sentences returned results that were higher for DA scores than for error-based scores on an overwhelming majority of representations. 
-For example, UD results was $r=0.29$ for da\_mean score and $r=0.23$ for fluency on random 3224 sentences; \textit{mdeberta3} returned $r=0.39$ for da\_mean score and $r=0.33$ for fluency.
+Sentence-level experiments provide ample evidence that \textbf{DA scores were more learnable than any error-based scores, given the same sample size}. In fact, the experiments on sentences from the same 140 cross-annotated documents and on a random sample of 3,224 sentences returned results that were higher for DA scores than for error-based scores on an overwhelming majority of representations. 
+For example, UD results was $r=0.29$ for da\_mean score and $r=0.23$ for fluency on random 3,224 sentences; \textit{mdeberta3} returned $r=0.39$ for da\_mean score and $r=0.33$ for fluency.
 
 We leave out feature analysis at sentence level for two reasons. First, we believe that translationese is primarily a document-level property. Second, UD features are heavily affected by sparsity in this setting. 
 
 \section{\label{sec:qua_disc}Discussion}
 % overview
-This chapter evaluates the ability of linguistically-motivated translationese indicators to predict professional varieties and human translation quality against alternative document representations and using various annotation methods to generate quality judgments. 
+This chapter evaluates the ability of linguistically-motivated translationese indicators to predict professional varieties and human translation quality against alternative document representations and with regard to various methods to generate quality judgments. 
 
-The performance of ML algorithms on hand-engineered translationese features was contrasted with the results on document-level features from QuEst++, a MT quality estimation framework, on \textit{tf-idf} representation, and on vectors from two types of embeddings: cross-lingual sentence embeddings and word embedding (large dedicate TL model and the most recent multilingual SOTA in representation learning).
+The performance of ML algorithms on hand-engineered translationese features was contrasted with the results on document-level features from QuEst++, a MT quality estimation framework, on \textit{tf-idf} representation, and on vectors from two types of embeddings: cross-lingual sentence embeddings and word embedding (a large dedicate TL (Russian) model and the most recent multilingual SOTA in representation learning).
 
 We evaluated the ability of our representations to distinguish between student and professional translations viewed in this work as a possible proxy for translationese-related quality.
-
 In quality estimation tasks, we explored the learnability of three types of quality judgments, including (i) binary quality labels from holistic document-level assessment of translations, (ii) continuous quality scores generated from error annotation and (iii) continuous quality scores from sentence-level DA annotation. 
 
 \paragraph{Translationese indicators for translation varieties and `good/bad' translations}  % binary quality
-The classification experiments to distinguish professional and student translations demonstrated that the differences between them were only marginally related to translationese. The week signal picked by translationese indicators was overshadowed by other (semantic and functional) dissimilarities between the two parallel corpora. This limitation of our setup was anticipated, and measures were taken to obtain most comparable subsets from a much larger corpus resource (see Section~\ref{ssec:mypro}, page~\pageref{pg:stu_pro_made_comparable}).
+The classification experiments to distinguish professional and student translations demonstrated that the differences between them were only marginally related to translationese. The weak signal picked by translationese indicators was overshadowed by other (semantic and functional) dissimilarities between the two parallel corpora. This limitation of our setup was anticipated, and measures were taken to obtain most comparable subsets from a much larger corpus resource (see Section~\ref{ssec:mypro}, page~\pageref{pg:stu_pro_made_comparable}).
+We found that in this experiment QuEst++ significantly outperformed all other hand-engineered feature sets, reaching $F1=86.17$ after feature selection. The success of the feature set was explained by the performance of complexity features that captured the diverging properties of the STs in the two parallel corpora. 
 
-We found that in this experiment QuEst++ significantly outperformed all other hand-engineered feature sets, reaching $F1=86.17$ after feature selection. The success of the feature set was explained by the performance of complexity features that captured the properties of the STs. 
 Our representations did not target accuracy specifically. The only feature set that implicitly compared ST and TT to access relations between them was QuEst++. It did not perform well on any task targeting quality labels or scores. Therefore, we omitted feature analysis for those tasks.
-On the varieties dataset, QuEst++ features performed well but it relied on ST-related features that in our setting cannot be reliably interpreted as quality indicators. The three best-performing QuEst++ adequacy features demonstrated that student translations were less wordy but more repetitive than professional translations (see page~\pageref{pg:quest_adequacy_feats_for_vars}). QuEst++ fluency features confirmed that student translations were more perplexity to a TL model. They probably used a greater ratio of n-grams unseen in non-translations. n student and professional translations without using ST was limited to several fluency features and three adequacy features. The findings on these features confirmed that student translations were more repetitive and more perplexing to a trigram LM, i.e. more distinct from non-translations than professional translations. 
 
-The best-performing UD subset of 15 features achieved $F1=79.39$ on this task. This subset included only six features that were also strong translationese predictors, mostly reflecting the syntactic complexity of target sentences (number of clauses, clausal complements and subordinating conjunctions). On these features student translations were closer to the reference corpus although the effect size of the differences was small. On other translationese features, contributing to the varieties distinction, students seem to demonstrate a bit stronger translationese tendencies due to underuse of negation, overuse of copula verbs and relative clauses but we did not have enough data to obtain statistical evidence for this observation. 
+On the varieties dataset, QuEst++ feature set performed well but it relied on ST-related components that in our setting could not be reliably interpreted as quality indicators. 
+The selection of well-performing QuEst++ features that did not depend entirely on the properties of ST was limited to several fluency features and three adequacy features. QuEst++ fluency features confirmed that student translations were more perplexing to a TL model than professional translations. Student translations used a greater ratio of n-grams unseen in non-translations. The three adequacy features demonstrated that student translations were less wordy but more repetitive than professional translations (see page~\pageref{pg:quest_adequacy_feats_for_vars}).
 
-The most prominent quality indicators from UD features did not have strong association with the labels, maximising at the level of 0.34 for \textit{parataxis}. Comparative analysis for this feature demonstrated that students preferred to use explicit markers of cohesion, which led to a lack of asyndetically introduced elements. This makes student translations most distinct from professional translations, and especially from non-translations.
+The best-performing UD subset of 15 features achieved $F1=79.39$ on this task. This subset included only six features that were also strong translationese predictors, mostly reflecting the syntactic complexity of target sentences (number of clauses, clausal complements and subordinating conjunctions). On these features student translations were simpler and closer to the reference corpus than professional translations although the differences between the document categories were small. On other translationese features, contributing to the varieties distinction, students demonstrated stronger translationese tendencies due to underuse of negation, overuse of copula verbs and relative clauses but we did not have enough data to obtain statistical evidence for those observations. 
+
+The most prominent quality indicators from UD features did not have strong association with the labels, maximising at the level of 0.34 for \textit{parataxis} (measured as F1-score from a single-feature classifier). Comparative analysis for this feature demonstrated that students preferred to use explicit markers of cohesion, which led to a lack of asyndetically introduced elements. This makes student translations most distinct from professional translations, and especially from non-translations.
 % Professionals are clearly avoid using analitical passives, a quite legitimate grammatical form in Russian, which might be associated with perceived as unwanted shining-through effect in English-to-Russian translation. This leads to a conspicuous lack of analytical passive forms in the professional subcorpus. 
 %%%%%%%%%
-\textbf{Translation quality classification} proved to be an even more challenging task for all representations. First, there was little content variation between the categories because good and bad translations were produced from the same 57 English STs. Second, the quality labelled dataset was almost twice smaller than professionalism dataset (708 vs 360 instances). % 
+
+\textbf{Translation quality classification} proved to be an even more challenging task for all representations. First, there was little content variation between the categories because good and bad translations were produced from the same 57 English STs. Second, the quality-labelled dataset was almost twice smaller than the professionalism dataset (708 vs 360 instances). % 
 
 Despite these limitations, UD features were much more successful in this task, demonstrating that the \textbf{amount of translationese is well-correlated with the document-level quality assessment}. 
 
 \label{pg:translationese_indicators_work_for_binary_labels}
 Linguistically-motivated translationese-aware features were inferior only to \textit{ruRoberta} and \textit{mdeberta3}, large pre-trained contextualised word embedding models. Unlike in the other experiments, RFECV feature selection offered a significant gain in performance, bringing our classification result on UD features to $F1=68.9$ (vs $F1=78.14$ on \textit{mdeberta3}).
 
-We argue that the reasonably good performance of out-of-the-box contextualised word embeddings on this dataset, although not enlightening from the point of view of translation studies, indicates that human assessment of quality at document-level is actually related to the objective properties of the texts, and might not be as subjective as it is common to believe in MT (see our discussion at page~\pageref{pg:pessimism}), at least, when it is trusted to translation professionals. 
+We argue that a reasonably good performance of out-of-the-box contextualised word embeddings on this dataset indicates that human assessment of quality at document-level is actually related to the objective properties of the texts (even if not enlightening), and might not be as subjective as it is common to believe in MT (see our discussion at page~\pageref{pg:pessimism}), at least, when it is trusted to translation professionals. 
 
 The results of feature analysis suggest that quality distinctions were much more related to translationese than differences between professional varieties of translation. 
 We demonstrated that there were only three (out of 26) quality predictors that were not among translationese indicators. Professionalism turned out to be a more vague concept than quality, at least from the point of view of translationese indicators.
 
-An explanatory analysis of translational trends in \textit{bad} translations demonstrated that \textbf{lower quality is almost entirely associated with the lack of ability to recognise and counteract the ST influence}. For the features where there was enough evidence to establish differences between \textit{good} and \textit{bad} translations, we observed translationese trends which implied passively following ST patterns, with little or no effort to adapt them to the TL norm.
+An explanatory analysis of translational trends in \textit{bad} translations demonstrated that \textbf{lower quality was associated with the lack of ability to recognise and counteract the ST influence} to a considerable extent. For the features, where there was enough evidence to establish differences between \textit{good} and \textit{bad} translations, we observed translationese trends which implied passively following ST patterns, with little or no effort to adapt them to the TL norm.
  
 Generally, lower-ranking translations were found further away from non-translations in Russian than higher-ranking translations for the same STs across most analysed features.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% 31 October, 1 Novermber still here %%%%%%%%%%%%%%%%%%%%%%%
@@ -1033,7 +1035,7 @@ Generally, lower-ranking translations were found further away from non-translati
 Sections~\ref{ssec:doc_err_res},~\ref{ssec:doc_da_res} and~\ref{ssec:sent_level} reported the experiments to predict quality scores generated from error annotation and in DA setup. Our focus remains on evaluating the performance of translationese indicators against other representations, and on explaining the findings using interpretable features.
 
 Importantly, scores from error-annotation allow to disintegrate translation quality into accuracy and fluency, and test whether fluency returns higher results on the representations that have access to the TL-side of the corpus only. 
-Besides, scores offer an opportunity to extend document-level experiments to sentence level. On the one hand, this allows to alleviate the problem of small training data at document-level. On the other hand, it helps uncover important properties of scores generated by each assessment method.
+Besides, scores offer an opportunity to extend document-level experiments to sentence level. On the one hand, this allows to alleviate the problem of small training data at document level. On the other hand, it helps uncover important properties of scores generated by each assessment method.
 
 Section~\ref{sec:_scores} brought together several aspects of this multi-faceted comparison, namely, experimental results are compared across:
 
@@ -1045,13 +1047,13 @@ Section~\ref{sec:_scores} brought together several aspects of this multi-faceted
 
 We have seen that the outcomes of these comparisons were largely dependent on the level of analysis: document or sentence.
 
-\paragraph{Translationese-aware features vs. contextualised embeddings}
+\paragraph{1. Translationese-aware features vs. contextualised embeddings}
 %\pageref{pg:doc_err_ud_vs_all} %Performance of UD against other representation
 Our major hypothesis was that translation quality (calculated from error statistics or perceived in DA setting) can be captured by looking at the amount of translationese in a translation. 
 
 Cross-lingual, dedicated Russian and multi-lingual embedding models (\textit{TQmono-m, ruRoberta, mdeberta3}, respectively) were comparable to the proposed hand-engineered translationese-aware feature sets in that they did not recur to the source text and encoded the properties of the target side of the dataset only.
 
-Table~\ref{tab:_ud_vs_all} summarises the outcomes of all experiments showing the models that were statistically superior to UD. It uses unweighted versions of error-based scores and results on random 140/3224 error-annotated instances.
+Table~\ref{tab:_ud_vs_all} summarises the outcomes of all experiments showing the models that were statistically superior to UD. It uses unweighted versions of error-based scores and results on random 140/3,224 error-annotated instances.
 
 \textbf{For document-level scores, linguistically-motivated translationese features returned compatible performance against other representations}. As can be seen from Table~\ref{tab:_ud_vs_all}, they were statistically surpassed only by \textit{mdeberta3}, the most recent embedding approach and current SOTA in NLP representation learning, in all experiments on both error-based and DA scores. Admittedly, the performance on document-level DA scores and on random 140 error-annotated documents was very poor due to the size of the dataset, and no statistically significant differences were seen between any two representation. 
 %This renders most of our observations anecdotal and less unreliable than expected. 
@@ -1074,10 +1076,10 @@ Lack of a bigger annotated data prevents us from attempting any fine-tuning meth
 		da\_zmean  & NA & -- & NA & TQmono-m ruRoberta mdeberta3 \\
 		\bottomrule
 	\end{tabular}
-	\caption{\label{tab:_ud_vs_all}Representation superior to UD on quality scores}
+	\caption{\label{tab:_ud_vs_all}Representation superior to translationese-aware UD on quality scores}
 \end{table}
 
-\textbf{At sentence level} on all available error-annotated instances (12,369), \textbf{UD features performed well on fluency scores only}, being secondary to the two word embedding models. For accuracy and overall translation quality, UD features were not competitive. This outcome make sense: if accuracy reflected semantic similarity between ST and TT, translationese indicators should not be able to predict this type of quality. However, these differences in performance are very small and can be picked on a large annotated dataset. They go away if not enough data is available (see last column in Table~\ref{tab:_ud_vs_all}).
+\textbf{At sentence level} on all available error-annotated instances (12,369), \textbf{UD features performed well on fluency scores only}, being secondary to two word embedding models. For accuracy and overall translation quality, UD features were not competitive (they were outperformed by all other representations). This outcome make sense: if accuracy reflected semantic similarity between ST and TT, translationese indicators should not be able to predict this type of quality. However, the differences in performance between various representations were very small. They were picked on a large annotated dataset only. They went away if not enough data was available (cf. sentence-level results on 12K and 3K observations in last column in Table~\ref{tab:_ud_vs_all}).
 
 For sentence-level DA scores translationese-aware features were inferior to \textit{ruRoberta} and \textit{mdeberta3} as before, but also to \textit{TQmono-m}, a model optimised to predict DA scores on MT data. This observation might mean that \textbf{DA scores have specific properties shared between MT dataset and HT dataset} built for the purposes of this research. 
 
@@ -1088,13 +1090,13 @@ We obtained the highest Spearman's $r=0.45$ on UD features for overall quality, 
 %We recalculated the results in Table~\ref{tab:doc_err_double} for Pearson's correlation in our setting and obtained the highest result of $r=0.45$ on UD features for overall quality, with QuEst++ features returning $r=0.44$ (the difference is not statistically significant). The absolute best result on our dataset is $r=0.64$ (\textit{mdeberta3}).
 % was not significantly different from QuEst++ performance of $r=0.44$ on the best-performing subset of 31 features.   
 
-\paragraph{Error-based scores vs. DA}
+\paragraph{2. Error-based scores vs. DA}
 Our experiments put under scrutiny 10 continuous quality scores and their versions from two annotation methods.
-In general, it seems that no modification of raw scores was able to yield better results across all representations than their raw counterparts. If anything they performed worse. This applies to weighted error-based scores, scaled overall quality from error annotation (scaled\_tq) and to z-transformed DA scores (da\_mean).
+In general, it seems that no modification of raw scores was able to yield better results across all representations than their raw counterparts. If anything, they performed worse. This applies to weighted error-based scores, scaled overall quality from error annotation (scaled\_tq) and to z-transformed DA scores (da\_mean).
 
-Another important comparative conclusion about various scores is that \textbf{error-based scores seem to capture document properties of documents better than DA scores, but DA scores are superior for sentence-level experiments}. 
+Another important comparative conclusion about various scores is that \textbf{error-based scores seem to capture document-level properties better than DA scores, but DA scores are superior for sentence-level experiments}. 
 Although in both annotation scenarios annotators were exposed to the entire documents, while providing judgments on the properties of individual sentences, error-based scores were more learnable than DA scores at document level than at sentence level (including on the dataset of the same size). We have shown that unlike DA scores, error-based scores demonstrated a considerable decrease in performance when moving from document level to sentence level on the same dataset (see pages~\pageref{pg:downward_slide} and~\pageref{pg:no_slide_for_da_when_moving_to_sent}). 
-Document-level nature of error-based scores is further supported by a bigger drop in their performance for documents than for sentences when moving from full dataset (553 documents/12,369 sentences) to random forth of the data (140 documents/3224 sentences). The sentence-level performance of error-based scores was poor at the full dataset, so it did not suffer as great a tumble on limited data.
+Document-level nature of error-based scores is further supported by a bigger drop in their performance for documents than for sentences when moving from full dataset (553 documents/12,369 sentences) to random forth of the data (140 documents/3,224 sentences). The sentence-level performance of error-based scores was poor at the full dataset, so it did not suffer as great a tumble on limited data.
 % five separate speculations!
 Finally, we made an interesting observation about the relations between accuracy and fluency, the two major theoretical aspects of quality, which stir a lot of controversy in the literature on benchmarking translation quality by humans (see our discussion at page~\pageref{pg:controvercy_over_acc_and_flu}).
 According to our results, the difference between accuracy and fluency was visible only at sentence level and only for some representations. In particular, only UD and \textit{mdeberta3} returned expected statistically higher results for fluency than for accuracy on both full and reduced datasets. % QuEst++ also had statistically higher results for fluency but ONLY on random 3224, and surprising, not on the large dataset
@@ -1109,7 +1111,7 @@ The relation between scores from the two assessment methods provide an important
 At the same time, most attempted representations, including those that were not focused on translationese-related fluency and could pick up the signal coming from the ST directly (QuEst++) or indirectly (\textit{TQmono-m}, \textit{mdeberta3}), had a tendency to return higher results for fluency or tq, especially on smaller datasets. It means that machines struggle with picking those aspects of quality that are deemed more important by the humans. Arguably, fluency is the least `non-binary' aspect of translation quality. Unlike accuracy, it does not rely too much on human understanding and interpretation of language, context or cross-linguistic correspondences. 
 %It is also noteworthy that the comparison of two manual annotation schemes on our sample suggests that the semantic accuracy component of quality is not as subjective as it is commonly believed. The two types of annotation schemes achieve reasonably high agreement of Spearman's $r=0.509$ between DA scores and weighted accuracy. For weighted overall quality scores the correlation was even higher (Spearman's $r=0.559$).
 
-\paragraph{Feature analysis results by score type}
+\paragraph{3. Feature analysis results by score type}
 In the regression experiments, the feature selection process and univariate feature analysis proved less enlightening than in classification tasks. It was limited to the document-level scores only.
 
 We have seen but very modest improvements in regressor performance, if any, on feature selections returned by \gls{RFECV} (setup with a linear kernel, $C=1.0$ and Spearman's r as a scoring function).  

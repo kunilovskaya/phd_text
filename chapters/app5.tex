@@ -12,17 +12,17 @@
 		UD              & 90.56 (+/-4.14) & 90.59 (+/-4.12) & 90.38 (+/-4.30) & 90.43 (+/-4.22) \\
 		collgram        & 70.82 (+/-5.05) & 70.85 (+/-5.17) & 70.43 (+/-5.11) & 70.33 (+/-5.10) \\
 		ngram           & 69.80 (+/-3.67) & 69.95 (+/-4.45) & 68.99 (+/-3.63) & 69.02 (+/-3.62) \\
-		\textbf{all}             & 92.01 (+/-3.78) & 92.04 (+/-3.74) & 91.85 (+/-3.91) & \textbf{91.90} (+/-3.84) \\
+		all             & 92.01 (+/-3.78) & 92.04 (+/-3.74) & 91.85 (+/-3.91) & \textbf{91.90} (+/-3.84) \\
 		\midrule
 		tfidf           & 95.34 (+/-2.04) & 95.31 (+/-2.10) & 95.34 (+/-2.05) & 95.29 (+/-2.05) \\
-		\midrule
+%		\midrule
 		stsb-xlm-r-m         & 93.01 (+/-1.50) & 93.04 (+/-1.53) & 92.91 (+/-1.51) & 92.93 (+/-1.51) \\
 		TQmono-m       & 94.23 (+/-2.76) & 94.31 (+/-2.86) & 94.12 (+/-2.76) & 94.16 (+/-2.78) \\
 		ruRoberta & 96.34 (+/-2.28) & 96.34 (+/-2.29) & 96.29 (+/-2.30) & 96.30 (+/-2.30) \\
-		\textbf{mdeberta3}  & 96.45 (+/-1.84) & 96.47 (+/-1.77) & 96.40 (+/-1.93) & \boxit{0.4in} \textbf{96.41} (+/-1.87) \\
+		mdeberta3  & 96.45 (+/-1.84) & 96.47 (+/-1.77) & 96.40 (+/-1.93) & \boxit{0.4in}96.41 (+/-1.87) \\
 	\bottomrule
 	\end{tabular}
-	\caption{\label{tab:pro-ref_neu}Professional translations: results of translationese classification (neural classifier)}
+	\caption{\label{tab:pro-ref_neu}Professional translations: results of translationese classification by a neural classifier. The highest result for manually engineered feature sets is shown in bold; the highest result for content-dependent classifiers appears in a box}
 \end{table}
 
 \begin{table}[H]
@@ -36,17 +36,17 @@
 		UD              & 90.49 (+/-2.87) & 90.25 (+/-2.95) & 90.17 (+/-3.05) & 90.12 (+/-2.98) \\
 		collgram        & 67.75 (+/-1.62) & 66.63 (+/-2.02) & 64.03 (+/-2.14) & 64.12 (+/-2.37) \\
 		ngram           & 75.81 (+/-5.60) & 76.69 (+/-6.15) & 72.43 (+/-6.55) & 72.91 (+/-6.73) \\
-		\textbf{all}             & 92.30 (+/-2.02) & 92.35 (+/-2.03) & 91.76 (+/-2.25) & \textbf{91.94} (+/-2.13) \\
+		all             & 92.30 (+/-2.02) & 92.35 (+/-2.03) & 91.76 (+/-2.25) & \textbf{91.94} (+/-2.13) \\
 		\midrule
 		tfidf           & 94.11 (+/-2.49) & 93.64 (+/-2.57) & 94.68 (+/-2.39) & 93.96 (+/-2.54) \\
-		\midrule
+%		\midrule
 		stsb-xlm-r-m   & 89.54 (+/-3.34) & 89.41 (+/-3.15) & 89.00 (+/-3.66) & 89.06 (+/-3.52) \\
 		TQmono-m & 95.79 (+/-2.02) & 95.69 (+/-2.05) & 95.65 (+/-2.16) & 95.63 (+/-2.10) \\
 		ruRoberta & 97.59 (+/-1.78) & 97.50 (+/-1.83) & 97.55 (+/-1.91) & 97.50 (+/-1.86) \\
-		\textbf{mdeberta3}  & 97.84 (+/-2.12) & 97.94 (+/-1.92) & 97.61 (+/-2.48) & \boxit{0.4in} \textbf{97.73} (+/-2.25) \\
+		mdeberta3  & 97.84 (+/-2.12) & 97.94 (+/-1.92) & 97.61 (+/-2.48) & \boxit{0.4in}97.73 (+/-2.25) \\
 	\bottomrule
 	\end{tabular}
-	\caption{\label{tab:stu-ref_neu}Student translations: results of translationese classification (neural classifier)}
+	\caption{\label{tab:stu-ref_neu}Student translations: results of translationese classification  by a neural classifier. The highest result for manually engineered feature sets is shown in bold; the highest result for content-dependent classifiers appears in a box}
 \end{table}
 
 
@@ -63,19 +63,19 @@
 		collgram        & 65.99 (+/-5.39) & 66.42 (+/-6.08) & 64.86 (+/-5.43) & 64.60 (+/-5.58) \\
 		ngram           & 67.34 (+/-4.19) & 67.95 (+/-4.59) & 65.93 (+/-4.54) & 65.57 (+/-5.05) \\
 		all             & 81.02 (+/-2.24) & 81.18 (+/-2.25) & 80.60 (+/-2.18) & 80.71 (+/-2.23) \\
-		\midrule
-		quest61         & 82.66 (+/-4.48) & 83.00 (+/-4.51) & 82.33 (+/-4.47) & 82.38 (+/-4.52) \\
+%		\midrule
+		quest61         & 82.66 (+/-4.48) & 83.00 (+/-4.51) & 82.33 (+/-4.47) & \textbf{82.38} (+/-4.52) \\
 %		quest17         & 78.44 (+/-4.63) & 79.07 (+/-4.63) & 78.21 (+/-4.67) & 78.07 (+/-4.67) \\
 		\midrule
 		tfidf           & 82.51 (+/-5.42) & 82.64 (+/-5.26) & 82.76 (+/-5.29) & 82.45 (+/-5.39) \\
-		\midrule
+%		\midrule
 		stsb-xlm-r-m          & 79.54 (+/-3.13) & 79.65 (+/-3.18) & 79.29 (+/-3.18) & 79.27 (+/-3.21) \\
 		TQmono-m        & 84.55 (+/-4.46) & 84.81 (+/-4.44) & 84.10 (+/-4.60) & 84.26 (+/-4.58) \\
 		ruRoberta & 89.43 (+/-2.68) & 89.65 (+/-2.70) & 89.18 (+/-2.75) & 89.28 (+/-2.74) \\
-		\textbf{mdeberta3}  & 91.06 (+/-3.38) & 91.48 (+/-3.28) & 90.87 (+/-3.39) & \boxit{0.4in} \textbf{90.93} (+/-3.43) \\
+		mdeberta3  & 91.06 (+/-3.38) & 91.48 (+/-3.28) & 90.87 (+/-3.39) & \boxit{0.4in}90.93 (+/-3.43) \\
 	\bottomrule
 	\end{tabular}
-\caption{\label{tab:stu-pro_neu}Student vs Professional translations (neural classifier)}
+\caption{\label{tab:stu-pro_neu}Student vs Professional translations (neural classifier). The highest result for manually engineered feature sets is shown in bold; the highest result for content-dependent classifiers appears in a box}
 \end{table}
 
 
@@ -87,22 +87,22 @@
 		\midrule
 		chance          & 51.67 (+/-7.78)  & 51.67 (+/-7.80)  & 51.67 (+/-7.78)  & 51.63 (+/-7.78)  \\
 		\midrule
-		\textbf{UD}              & 56.94 (+/-7.98)  & 57.08 (+/-7.95)  & 57.01 (+/-7.91)  & \textbf{56.74} (+/-8.07)  \\
+		UD              & 56.94 (+/-7.98)  & 57.08 (+/-7.95)  & 57.01 (+/-7.91)  & \textbf{56.74} (+/-8.07)  \\
 		collgram        & 52.22 (+/-10.45) & 52.45 (+/-10.6) & 52.30 (+/-10.43) & 52.03 (+/-10.4) \\
 		ngram           & 49.17 (+/-9.13)  & 49.32 (+/-9.66)  & 49.19 (+/-9.33)  & 48.66 (+/-9.17)  \\
 		all             & 53.89 (+/-8.98)  & 53.92 (+/-9.15)  & 53.86 (+/-8.98)  & 53.60 (+/-9.06)  \\
-		\midrule
+%		\midrule
 		quest61 		& 47.22 (+/-8.43) & 47.29 (+/-8.78) & 47.15 (+/-8.48) & 46.88 (+/-8.26)  \\
-		quest17         & 52.50 (+/-8.65)  & 52.59 (+/-8.76)  & 52.55 (+/-8.68)  & 52.19 (+/-8.72)  \\
+%		quest17         & 52.50 (+/-8.65)  & 52.59 (+/-8.76)  & 52.55 (+/-8.68)  & 52.19 (+/-8.72)  \\
 		\midrule
 		tfidf           & 56.39 (+/-6.70)  & 56.93 (+/-7.12)  & 56.52 (+/-6.77)  & 55.76 (+/-6.91)  \\
-		\midrule
+%		\midrule
 		stsb-xlm-r-m          & 49.17 (+/-7.86)  & 49.09 (+/-8.10)  & 49.21 (+/-7.91)  & 48.77 (+/-8.09)  \\
 		TQmono-m        & 62.50 (+/-4.69)  & 63.20 (+/-4.40)  & 62.72 (+/-4.35)  & 62.11 (+/-5.05)  \\
 		ruRoberta & 72.22 (+/-7.95)  & 72.55 (+/-7.79)  & 72.33 (+/-7.86)  & 72.14 (+/-8.01)  \\
-		\textbf{mdeberta3}  & 79.44 (+/-6.83)  & 79.91 (+/-6.52)  & 79.49 (+/-6.84)  & \boxit{0.4in} \textbf{79.32} (+/-6.97) \\
+		mdeberta3  & 79.44 (+/-6.83)  & 79.91 (+/-6.52)  & 79.49 (+/-6.84)  & \boxit{0.4in}79.32 (+/-6.97) \\
 		\bottomrule
 	\end{tabular}
-\caption{\label{tab:bad-good_neu}Bad vs Good: Binary quality classification (neural classifier)}
+\caption{\label{tab:bad-good_neu}Bad vs Good: Binary quality classification (neural classifier). The highest result for manually engineered feature sets is shown in bold; the highest result for content-dependent classifiers appears in a box}
 \end{table}
 
