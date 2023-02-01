@@ -48,14 +48,14 @@ We also used four pre-trained contextualised embedding models to infer vectors f
 We selected the models that were trained to solve various NLP tasks deemed more suitable for our purposes. The list below gives a brief description of each model. 
 \label{pg:embeddings}
 \begin{description}\compresslist{}
-	\item[stsb-xlm-r-m:] a multilingual model\wlvfootnote{\url{huggingface.co/sentence-transformers/stsb-xlm-r-multilingual}} trained using Sentence-BERT (SBERT), a~\gls{SOTA} framework to compute sentence representation~\cite{Reimers2019}. SBERT is a generic name for contextualised embedding models fine-tuned on various sentence-level tasks such as question-answering, sentiment, paraphrasing, etc. The model is a multilingual XLM-R fine-tuned on \gls{STS} task;
+	\item[stsb-xlm-r-m:] a multilingual model\wlvfootnote{\url{https://huggingface.co/sentence-transformers/stsb-xlm-r-multilingual}} trained using Sentence-BERT (SBERT), a~\gls{SOTA} framework to compute sentence representation~\cite{Reimers2019}. SBERT is a generic name for contextualised embedding models fine-tuned on various sentence-level tasks such as question-answering, sentiment, paraphrasing, etc. The model is a multilingual XLM-R fine-tuned on \gls{STS} task;
 	
-	\item[TQmono-m:] a cross-lingual model for many languages\wlvfootnote{\url{TransQuest/monotransquest-da-multilingual}} trained by the more successful architecture from \textit{TransQuest} package~\cite{Ranasinghe2020}, to solve MT quality estimation task based on DA scores;
+	\item[TQmono-m:] a cross-lingual model for many languages\wlvfootnote{\url{https://TransQuest/monotransquest-da-multilingual}} trained by the more successful architecture from \textit{TransQuest} package~\cite{Ranasinghe2020}, to solve MT quality estimation task based on DA scores;
 	% these models generate word embeddings that are mean-pooled under the hood by SentenceTransformers library 
 	
-	\item[ruRoberta:] a dedicated Russian model\wlvfootnote{\url{huggingface.co/sberbank-ai/ruRoberta-large}} trained as a full-mask language model using \textit{RoBERTa}, an optimised BERT transformers training method proposed by~\citet{Liu2019};
+	\item[ruRoberta:] a dedicated Russian model\wlvfootnote{\url{https://huggingface.co/sberbank-ai/ruRoberta-large}} trained as a full-mask language model using \textit{RoBERTa}, an optimised BERT transformers training method proposed by~\citet{Liu2019};
 	
-	\item[mdeberta3:] a multilingual version of \textit{DeBERTa}~\cite{He2021}, an improvement on \textit{BERT} and~\textit{RoBERTa} word embedding architectures, trained on 2.5T CommonCrawl corpus for 100 languages \wlvfootnote{\url{huggingface.co/microsoft/mdeberta-v3-base}}. At the time of writing, it is \gls{SOTA} in word-level representation learning. 
+	\item[mdeberta3:] a multilingual version of \textit{DeBERTa}~\cite{He2021}, an improvement on \textit{BERT} and~\textit{RoBERTa} word embedding architectures, trained on 2.5T CommonCrawl corpus for 100 languages\wlvfootnote{\url{https://huggingface.co/microsoft/mdeberta-v3-base}}. At the time of writing, it is \gls{SOTA} in word-level representation learning. 
 \end{description}
 
 The first two models generate sentence embeddings, while the last two output word embeddings, which were averaged to get sentence embeddings. Further on, the sentence embeddings were mean-pooled to obtain document vectors. 
@@ -65,7 +65,7 @@ Note that in most experiments we might not have enough datapoints to train these
 For all experiments and representations, the input data was transformed with \textit{scikit-learn Standard Scaler}. This function standardises the values of each feature column-wise (i.e. independently) to have zero mean and unit variance of 1. It helps to put all features on the same scale regardless of the original measurement unit, and avoid the situation when features with large variance dominate the learning process overshadowing the differences on other features.
 
 \paragraph{Algorithms} Both classification and regression experiments (reported in Chapter~\ref{cha:pro_qua}) are based on \gls{SVM} algorithm as implemented in \textit{scikit-learn}, a Python library for machine learning. 
-This algorithm was shown to be superior to tested alternatives for translationese classification in a number of research projects (see, for example,~\cite{Ilisei2010}). It is also known to be robust to high-dimensional datasets where the number of instances is similar or even smaller than the number of features.
+This algorithm was shown to be superior to tested alternatives for translationese classification in a number of research projects~\cite[see, for example,][]{Ilisei2010}. It is also known to be robust to high-dimensional datasets where the number of instances is similar or even smaller than the number of features.
 
 This research is focused on testing the hypothesis whether translationese indicators are correlated with translation quality, and on exploring the relations between a number of diverse representations and quality labels. Our aims did not include achieving the best performance possible for given datasets, therefore, the results for various SVM kernels and other parameters of algorithms that can be discovered through optimisation studies are omitted. 
 Instead, the classification experiments are based on a linear kernel SVM and regularisation parameter $C=1.0$ (default for SVM \textit{scikit-learn} setting).
@@ -75,7 +75,7 @@ SVM uses pairwise distances between the datapoints from given categories and ide
 %
 %Although the datasets in our experiments are reasonably well-balanced we kept the \textit{class\_weight} parameter of the algorithm set to \textit{balanced}. 
 
-For quality control, we implemented a simple sequential neural model to replicate the performance of SVM-based classifiers on exactly the same inputs. The neural model~\label{pg:neural} was designed using \textit{Keras} \gls{API} integrated into \textit{TensorFlow 2.0} (tf.keras)\wlvfootnote{Both \textit{TensorFlow} (\url{github.com/tensorflow/tensorflow}) and \textit{Keras} (\url{keras.io/}) are open-source libraries for deep learning with Python.}. The neural model used document vectors as input and was compiled with two dense (i.e. fully-connected) hidden layers. The first layer was  made of 16 neurons and was activated with \gls{ReLU} function, which output zero for negative input values and returned the input directly if the input was positive. The output layer for the classification task was activated with a \textit{sigmoid} function, which mapped all inputs in the real number domain into the range of 0 to 1. % It transformed input values that were much larger than 1.0 to 1.0, values much smaller than 0.0 were snapped to 0.0. 
+For quality control, we implemented a simple sequential neural model to replicate the performance of SVM-based classifiers on exactly the same inputs. The neural model~\label{pg:neural} was designed using \textit{Keras} \gls{API} integrated into \textit{TensorFlow 2.0} (tf.keras)\wlvfootnote{Both \textit{TensorFlow} (\url{https://github.com/tensorflow/tensorflow}) and \textit{Keras} (\url{https://keras.io/}) are open-source libraries for deep learning with Python.}. The neural model used document vectors as input and was compiled with two dense (i.e. fully-connected) hidden layers. The first layer was  made of 16 neurons and was activated with \gls{ReLU} function, which output zero for negative input values and returned the input directly if the input was positive. The output layer for the classification task was activated with a \textit{sigmoid} function, which mapped all inputs in the real number domain into the range of 0 to 1. % It transformed input values that were much larger than 1.0 to 1.0, values much smaller than 0.0 were snapped to 0.0. 
 This layer output the probability of a test instance belonging to a positive class. The threshold of 0.5 was used to obtain the model predictions of binary categories. 
 %For the regression task, we use \textit{linear} activation function, which scales each input by a learnt factor and assumes linear relation between inputs and targets. 
 % mean absolute error can be used as loss function for regression
@@ -184,12 +184,6 @@ They are put into perspective of chance level and the performance on \textit{mde
 This is done to demonstrate the achievable in our setup, and to answer the question raised in \citet{Hu2021} about the level of accuracy that is high enough to accept a feature or a feature set as discriminative. Statistical tests showed that there were no statistically significant differences between the performance on \textit{mdeberta3}, on the one hand, and on either \textit{ruRoberta-large} or on \textit{tf-idf}, on the other hand. For considerations of space, the results on \textit{ruRoberta-large} and \textit{tf-idf} are omitted.
 %Note that most of translationese indicators proposed by~\citet{Volansky2015} (and used as a baseline in some translationese research) were implemented in this study and included in either \textit{UD}, \textit{collgram} or \textit{ngram} feature sets.  
 
-Results for a neural classifier (see description at page~\pageref{pg:neural}), which was run in the same settings as an alternative for a linear SVM, appear in Appendix~\ref{appx:neural_res}. Systematic comparison between the SVM and neural classifier showed that out of 40 settings across various feature sets in four binary classifications, statistically significant differences between the algorithms were observed in only four cases (as measured with a two-sided t-test using F1-scores from 10 cross-validation folds, at confidence level $\alpha=0.05$). It confirms that in terms of learnability, SVM achieved a reasonable performance level in all tasks. 
-
-Generally, both translation varieties were easily separable from originally-authored document on all attempted representations. Both lowest and highest F1-scores were seen on student translations: 65.63\% on \textit{collgram} feature set and 98.36\% on \textit{mdeberta3} vectors. 
-
-Structural morphosyntactic classifiers (UD) with linear SVM kernel demonstrated competitive performance and returned macro F1-score of 90.22\% and 88.96\% for professional and student translations, respectively.
-
 \begin{table}[H]
 	\centering
 	\begin{tabular}{p{2.9cm}|llll}
@@ -214,6 +208,12 @@ Structural morphosyntactic classifiers (UD) with linear SVM kernel demonstrated 
 	\end{tabular}
 	\caption{\label{tab:pro-ref}Professionals: translationese classification. Support: N(pro)=404, N(ref)=497}
 \end{table}
+
+Results for a neural classifier (see description at page~\pageref{pg:neural}), which was run in the same settings as an alternative for a linear SVM, appear in Appendix~\ref{appx:neural_res}. Systematic comparison between the SVM and neural classifier showed that out of 40 settings across various feature sets in four binary classifications, statistically significant differences between the algorithms were observed in only four cases (as measured with a two-sided t-test using F1-scores from 10 cross-validation folds, at confidence level $\alpha=0.05$). It confirms that in terms of learnability, SVM achieved a reasonable performance level in all tasks. 
+
+Generally, both translation varieties were easily separable from originally-authored document on all attempted representations. Both lowest and highest F1-scores were seen on student translations: 65.63\% on \textit{collgram} feature set and 98.36\% on \textit{mdeberta3} vectors. 
+
+Structural morphosyntactic classifiers (UD) with linear SVM kernel demonstrated competitive performance and returned macro F1-score of 90.22\% and 88.96\% for professional and student translations, respectively.
 
 The superior performance of content-dependent classifiers on this task is expected, because translations and non-translations can be on different topics. Classifiers that exploit lexical (string) features are likely to capture less interesting topical distinctions between the corpora.
 
@@ -257,7 +257,6 @@ According to this test, there was no evidence that professional translations wer
 The difference observed on \textit{stsb-xlm-r-m} indicated that professional translations were semantically less similar to the reference subcorpus than texts translated by students.
 
 To visually explore the relations between categories in the two experiments, multidimensional document vectors  were cast into a 2D space using PCA. 
-The scatter plot in the left-hand panel of Figure~\ref{fig:vars-ud} presents non-translations, student and professional translations along with their sources using the first two principal components, constructed by PCA from UD vectors.
 
 \begin{figure}[H]
 	\begin{minipage}[c]{0.5\linewidth}
@@ -272,7 +271,8 @@ The scatter plot in the left-hand panel of Figure~\ref{fig:vars-ud} presents non
 	\end{minipage}
 	\caption{\label{fig:vars-ud}Visualisations of PCA transform based on \textit{UD} features}	
 \end{figure}
-  
+The scatter plot in the left-hand panel of Figure~\ref{fig:vars-ud} presents non-translations, student and professional translations along with their sources using the first two principal components, constructed by PCA from UD vectors.
+
 Each marker represents a document from the respective colour-coded category. Coloured diamonds are used for translations, dots for source texts in English and dark grey crosses are non-translations in the TL. 
 The most obvious distinction is between the two languages: Russian is on the left, English is on the right. 
 It can be seen that most translations (coloured markers) are shifted to the right away from grey non-translations and towards source texts. 

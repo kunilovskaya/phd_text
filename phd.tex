@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,twoside,openright]{report} % uses the default cls report, no separate cls file:  ,twoside,openright
+\documentclass[12pt,a4paper,oneside,openright]{report} % uses the default cls report, no separate cls file:  ,twoside
 
 \usepackage{xpatch} % an extention to etoobox for redefining commands 
 \makeatletter % the redefined macro name contains @
@@ -29,7 +29,7 @@
 
 \usepackage{amsmath} % allows align environments for equations
 
-\usepackage[a4paper,inner=25mm,outer=25mm, top=20mm]{geometry} % recto and verso pages
+\usepackage[a4paper,inner=23mm,outer=25mm,top=15mm,bottom=30mm,includehead]{geometry} % recto and verso pages
 \setlength{\headheight}{15pt}% to address the warning:\headheight is too small (12.0pt): Make it at least 14.49998pt
 
 %%% Add any other packages you need to use here.
@@ -145,8 +145,7 @@
 \include{abbr} % add all abbreviations to abbr.tex, call then in-text as \gls{} or \gls*{}
 
 \pagenumbering{arabic}\setcounter{page}{1}
-%\pagestyle{fancy} % this is used after \usepackage{fancyhdr} and before \fancyhead[RO,LE]{Thesis Title}
-
+\pagestyle{fancy} % see \usepackage{fancyhdr} in thesis.sty
 % Your own thesis chapters go here.
 \include{chapters/1_intro}
 \include{chapters/2_features}
