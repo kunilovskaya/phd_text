@@ -3,12 +3,12 @@ This chapter discusses previous work related to the study of professionalism in 
 
 Section~\ref{sec:competence} overviews previous work related to:
 \begin{itemize}\compresslist{}
-	\item building and exploiting \gls{LTC};
+	\item building and exploiting \gls{LTC},
 	\item defining professional levels and
 	\item building comparable corpora of non-translations in translationese studies.
 \end{itemize}
 
-This research relies on a hoist of resources, most importantly two self-compiled comparable parallel subcorpora containing student and professional translations of mass-media texts, which we refer to as \textit{human translation varieties}. 
+This research relies on a host of resources, most importantly two self-compiled comparable parallel subcorpora containing student and professional translations of mass-media texts, which we refer to as \textit{human translation varieties}. 
 Section~\ref{sec:data} gives details on the research corpus in this project and presents other language resources used to generate the features.
 
 \section{\label{sec:competence}Competence Levels}
@@ -28,7 +28,7 @@ Another potential source of quality-annotated translations is the assessment pro
 The advent of available corpus building technology enabled the researchers to convert error-annotated and graded student translations into research corpora and gave rise to a number of corpus-building initiatives.
 This paragraph contains a description of typical practices in building learner translator corpora with a focus on error annotation, which is their main feature.
 
-Inspired by \textit{MeLLANGE}~\cite{Castagnoli2011b}\wlvfootnote{\url{http://corpus.leeds.ac.uk/mellange/about\_mellange.html}}, there appeared half a dozen of learner translator corpora projects \cite{Wurm2013, Lapshinova2013, Stepankova2014, Espunya2014, Kutuzov2014rltc,Fictumova2017}, many of which included error annotation. More recent additions to this family of corpora are described in \citet{Granger2018,Alfuraih2019}. The former presents \textit{MUST} project and deserves a special mention for being a large-scale multilingual inter-university project, led by the Louvain Centre for English Corpus Linguistics with an extended expertise in corpus-based learner language research. In their annotation scheme, dubbed `translation-oriented annotation', they lay special emphasis on the description of translator solutions: they have \textit{Translation procedures} along with the traditional categories that reflect \textit{ST-TT transfer} and \textit{Language} categories. 
+Inspired by \textit{MeLLANGE}~\cite{Castagnoli2011b}\wlvfootnote{\url{http://corpus.leeds.ac.uk/mellange/about\_mellange.html}}, there appeared half a dozen of learner translator corpora projects \cite{Wurm2013, Lapshinova2013, Stepankova2014, Espunya2014, Kutuzov2014rltc,Fictumova2017}, many of which included error annotation. More recent additions to this family of corpora are described in \citet{Granger2018,Alfuraih2019}. The former presents the \textit{MUST} project and deserves a special mention for being a large-scale multilingual inter-university project, led by the Louvain Centre for English Corpus Linguistics with an extended expertise in corpus-based learner language research. In their annotation scheme, dubbed `translation-oriented annotation', they lay special emphasis on the description of translator solutions: they have \textit{Translation procedures} along with the traditional categories that reflect \textit{ST-TT transfer} and \textit{Language} categories. 
 
 Most of learner translator corpus projects rely on the outputs of translation-teaching frameworks as their
 source of error annotation. The choice of error taxonomy underlying a learner translator corpus or an annotation project covering student translations is governed by studies and observations from translator education, teaching procedures in place and criteria for \gls{TQA}. 
@@ -46,7 +46,7 @@ Typically, error classifications designed for annotating student translations in
 Learner translator corpora can be multi-parallel, i.e. they include a number of translations of the same ST by many students. Besides, it is typical to maintain some register balance in these resources. For example, \textit{VARTRA} includes student translations of texts in seven registers: political essays, fiction, manuals, popular-scientific articles, letters to share-holders, political essays and touristic leaflets~\cite{Lapshinova2013}.
 It is not uncommon for \gls{LTC} to store extensive metadata about students' gender, \gls{L1}, level of the second language, level of education, situation of translation, etc~\cite[see, for example,]{Bowker2003}. As it will be shown in Section~\ref{ssec:subsets} these parameters can be used to extract a more homogeneous sample of translations for experiments.
 
-However, the exploitation of these translation-error-annotated corpora remains tricky: there are few publications that shows how the information retrieved from error annotation is applied in education process (the major intended use) or for any other purpose that goes beyond individual case studies and error tag statistics, typically released with the corpus.
+However, the exploitation of these translation-error-annotated corpora remains tricky: there are few publications that show how the information retrieved from error annotation is applied in education process (the major intended use) or for any other purpose that goes beyond individual case studies and error tag statistics, typically released with the corpus.
 
 In some projects, annotated translations are made available to students as a form of feedback, error statistics are used for tracking and analysing students’ individual progress, and corpus data is used for generating exercises and tests~\cite{Kutuzov2014rltc,Fictumova2017}.
 
@@ -68,11 +68,11 @@ One of the objectives in this thesis is to establish which assessment approach i
 % as labels in a machine learning setting. 
 Additionally, Section~\ref{sec:mygold} reports the results of three inter-annotator reliability studies that demonstrate the level of agreement between humans in translation assessment task in various annotation setups. % and correlation between estimates made for the same instances using different asssessment techniques
 
-\subsection{\label{ssec:pro}Expertise level and Quality}
+\subsection{\label{ssec:pro}Expertise Level and Quality}
 % ontological labels
 Student and professional translations can be viewed as forming a continuous scale reflecting competence and expertise levels. These ontological categories offer objective labels for machine learning experiments, provided that the criteria of professionalism are clearly defined and other important parameters of the communicative situation with translation, such as register and mode, are controlled for as much as possible. 
 
-Ideally, students and professional translations should come from the same source texts like in \textit{VARTRA}~\cite{Lapshinova2013} or in a study by~\citet{Carl2010} who used translations from 12 professionals and 12 students for two short texts specifically obtained for the their study. However, in many cases researches rely on register-comparable collections of human translations obtained from different groups of subjects. \citet{Popovic2020} used comparable ST for language pairs where the same ST for translators from different groups was unavailable. To minimise the effects of this setup, she suggested \textit{relative difference} between ST and TT as values for their features (sentence length, word length, morphosyntactic variety, lexical variety and lexical density). The results confirmed that there were machine-learnable differences between translations produced at the different levels of expertise.
+Ideally, students and professional translations should come from the same source texts like in \textit{VARTRA}~\cite{Lapshinova2013} or in a study by~\citet{Carl2010} who used translations from 12 professionals and 12 students for two short texts specifically obtained for the their study. However, in many cases researchers rely on register-comparable collections of human translations obtained from different groups of subjects. \citet{Popovic2020} used comparable ST for language pairs where the same ST for translators from different groups was unavailable. To minimise the effects of this setup, she suggested \textit{relative difference} between ST and TT as values for their features (sentence length, word length, morphosyntactic variety, lexical variety and lexical density). The results confirmed that there were machine-learnable differences between translations produced at the different levels of expertise.
 
 % what is a student or a professional translation?
 \paragraph{Defining the categories} There are some acknowledged problems with delineating the two types of translators. Admittedly, students can vary in terms of how much translation practice they have been through. \citet{Tirkkonen1990} compares the output of students in their first and fifth years of professional degree. The students can vary with respect to their mother tongue and mastery of the foreign language (L2). It is best to have a homogeneous group of students with regard to the socio-demographic factors relevant in translation. 
@@ -141,7 +141,7 @@ According to~\citet{Lee01}, \textit{register} is a text-internal approach to tex
 The description of \textit{genres} as text categories is built around extra-linguistic criteria, ranging from domain to the perceived speaker's goal and social roles of the parties involved. Genres are conventionally recognised communicative templates enabled under the appropriate sociocultural circumstances to achieve specific communicative purposes. They provide a more flexible and practical, although be it more subjective, approach to explain the real-life text variety. 
 The concepts captured by terms \textit{register} and \textit{genre} are complementary: text categories delineated on extra-linguistic parameters are expected to share linguistic properties. 
 
-Besides, calculating frequencies of tokens (lexis-based categorisation typical for domain-oriented approach), can be as effective in genre classification as more elaborate register features. \citet{Xiao2005} showed that keywords analysis performed on par with Biber's features~\cite{Biber1988} in detecting both similar (everyday conversation vs official speech) and distant genres (spoken genres vs. academic prose). Their analysis demonstrated that the important differences in frequencies had to do with the function words, which formed the top of their keyness statistics results. It was shown that a set of `register features' -- as small as frequencies of nouns and frequencies of pronouns -- could be effectively used to capture four major text categories in the BNC~\cite{Lijffijt2017}. Another important register feature is the distribution of connectives and other cohesive devices. \citet[p.286]{Kunz2017} reported ``considerable variation across registers, language internally. The differences between registers in German were more pronounced than in English''. Note that features useful in register analysis were also among important translationese indicators discussed in Section~\ref{ssec:feats}. 
+Besides, calculating frequencies of tokens (lexis-based categorisation typical for domain-oriented approach), can be as effective in genre classification as more elaborate register features. \citet{Xiao2005} showed that keywords analysis performed on par with Biber's features~\cite{Biber1988} in detecting both similar (everyday conversation vs official speech) and distant genres (spoken genres vs. academic prose). Their analysis demonstrated that the important differences in frequencies had to do with function words, which formed the top of their keyness statistics results. It was shown that a set of `register features' -- as small as frequencies of nouns and frequencies of pronouns -- could be effectively used to capture four major text categories in the BNC~\cite{Lijffijt2017}. Another important register feature is the distribution of connectives and other cohesive devices. \citet[p.286]{Kunz2017} reported ``considerable variation across registers, language internally. The differences between registers in German were more pronounced than in English''. Note that features useful in register analysis were also among important translationese indicators discussed in Section~\ref{ssec:feats}. 
 There have been numerous attempts to establish a link between genres and their linguistic features, while ignoring domain differences inside genre categories (including~\citet{Lee01} and~\citet{Braslavski2010}). 
 In this thesis, we prefer the term \textit{register} which is more in line with the analysis of linguistic properties of texts, our key research interest.
 
@@ -167,10 +167,10 @@ We view document as our main granularity level. Throughout this thesis, \textit{
 The primary component of our research corpus -- various subsets of student translations -- comes from the \textit{Russian Learner Translator Corpus} (RusLTC)~\cite{Kutuzov2014rltc}.
 
 % multi-parallel bidirectional
-\paragraph{RusLTC description} It is a large parallel bidirectional corpus of student translations in the English-Russian language pair. The project was conceptualised in 2012 at the \textit{Translation Studies Department, University of Tyumen (Russia)}, by translation teachers and translation degree students. The corpus collects outputs of professional translation degree programmes from 14 universities in Russia, however, most translations are by students with the University of Tyumen. %It is an ongoing project, and new translations are being added after every semester. The most labour-intensive step in this process is manual correction of automatic sentence-level alignment. The alignment is done with \textit{hunalign} library~\cite{Varga2007} and then manually corrected in \textit{Heartsome TMX Editor}, version 8\wlvfootnote{\url{https://github.com/heartsome/tmxeditor8}}. Aligned bitexts are stored in \gls{TMX} format, a subtype of \gls{XML}. The source and translation segments are identified by corresponding  attributes. In TMX, they retain the associated metadata, including links to original plain text files, which allows to retrieve the whole text if needed. Originally, TMX format is intended to store translations in several languages (`translation unit variants'). In \textit{RusLTC}, this functionality is used to organise translations by several students.
+\paragraph{RusLTC description} It is a large parallel bidirectional corpus of student translations in the English-Russian language pair, counting over 2.3 mln word tokens in total. It includes 402 English source texts and 125 Russian source texts sentence-aligned to their multiple translations in the other language. The project was conceptualised in 2012 at the \textit{Translation Studies Department, University of Tyumen (Russia)}, by translation teachers and translation degree students. The corpus collects outputs of professional translation degree programmes from 14 universities in Russia, however, most translations are by students with the University of Tyumen. %It is an ongoing project, and new translations are being added after every semester. The most labour-intensive step in this process is manual correction of automatic sentence-level alignment. The alignment is done with \textit{hunalign} library~\cite{Varga2007} and then manually corrected in \textit{Heartsome TMX Editor}, version 8\wlvfootnote{\url{https://github.com/heartsome/tmxeditor8}}. Aligned bitexts are stored in \gls{TMX} format, a subtype of \gls{XML}. The source and translation segments are identified by corresponding  attributes. In TMX, they retain the associated metadata, including links to original plain text files, which allows to retrieve the whole text if needed. Originally, TMX format is intended to store translations in several languages (`translation unit variants'). In \textit{RusLTC}, this functionality is used to organise translations by several students.
 
 % languages and size
-Although the corpus is bidirectional, the English-to-Russian direction is much more represented. RusLTC counts over 450 English source texts and over 4,000 of their Russian translations. The number of translations per source ranges from 1 to more than 60 and averages at 8. In the most typical scenario, students translated an extract of about 400 words. Students who donated their translations to the corpus have Russian as their mother tongue. At the time of translation, they would have been through at least three full years of English training at the university level, their English competence is assessed as B2 level.
+Although the corpus is bidirectional, the English-to-Russian direction is much more represented. RusLTC counts over 450 English source texts and over 4,000 of their Russian translations. The number of translations per source ranges from 1 to more than 60 and averages at 8. In the most typical scenario, BA students translated an extract of about 400 words. BA students who donated their translations to the corpus have Russian as their mother tongue. At the time of translation, they would have been through at least three full years of English training at the university level, their English competence is assessed as B2 level.
 
 % subjects and translation conditions
 Translations are produced as part of routine and exam assignments or as submissions to various translation contests. %There are, however, translations from trainees who study translation as a supplementary course or study translation part-time. We also include translations from internship tasks by students majoring in translation and as graduation translation projects by part-time students. These student populations are described in the searchable corpus metadata. 
@@ -212,18 +212,19 @@ Over 750 translations (300,000 words) were annotated for translation errors as p
 \paragraph{Sampling} This thesis relies on various \textit{RusLTC} subsets. Sampling is necessary to ensure homogeneity of textual data in terms of register, translation conditions, translators' professional status and type of quality assessment. Figure~\ref{fig:perspective} puts the four extracted subsets (solid coloured circles) into perspective of all available materials, which helps to explain the rationale behind the selection.
 The size of each circle is proportional to the number of translated texts in each category. %The numbers in brackets indicate the number of English source texts, translations and aligned sentences in ST-TT pairs. 
 
-\wlvfig[0.5]{perspective}{RusLTC subsets by type of annotation. The numbers in brackets indicate the number of English source texts, translations and aligned sentences in ST-TT pairs}
-%\todo[inline]{add the picture description}
+\wlvfig[0.5]{perspective}{RusLTC subsets by type of annotation. The numbers in brackets indicate the number of English source texts, translations and aligned sentences in ST-TT pairs. The sizes of the circles are proportional to the number of translated documents in each subcorpus}
+\vspace{-1em}
+
 Note that for the purposes of this research we could not rely on the default \textit{RusLTC} multi-parallel TMX, because our feature extraction setup required plain text documents aligned at sentence-level. We found that it was impossible to reliably restore respective source and multiple target texts from TMX as it did not retain the order of sentences in a document. Even though TMX is not designed to retain document structure, it usually does\wlvfootnote{Lack of context is identified as a current problem  in MT training. \citet{Voita2019} observed that in most practical scenarios, the sentence-aligned parallel data did not consist of complete documents undermining the development of context-aware NMT}. However, in our case, standard TMX underwent additional processing needed to put several translations of a segment into one translation unit as alternative translation unit variants, which interfered with the true order of sentences. Besides, there was lack of uniformity in sentence segmentation (sentence tokenisation) for each ST-TT pair amplified by lack of one-to-one correspondence between source and target sentences due to sentence splitting and merging operations. This resulted in loss of some sentences in our multi-parallel TMX as compared to plain text collection.
 
 To guarantee true sentence-level alignment for each ST-TT pair, we had to fall back to pairwise alignment of each document pair, leading to multiplication of source text files with slight differences in the number of sentences. As far as we can tell, this did not have any implications for our experimental setup.
 
-Figure~\ref{fig:perspective} shows that we had four datasets, each with its own type of quality label/score.
+Figure~\ref{fig:perspective} shows that we had four datasets of various sizes, each with its own type of quality label/score. The parameters of the subcorpora with each type of annotation are given in Figure~\ref{fig:perspective} in terms of number of source documents, number of multiple translated documents and number of unique sentence pairs.  
 They are comparable as there is some overlap between them, and they come from the same general population, i.e. \textit{Multiple targets}, shown as a grey dashed circle encompassing other subsets. This general pool of student translations was selected according to the following parameters:
 \begin{enumerate}\compresslist{}
-	\item English-to-Russian translation direction;
-	\item produced by full-time students enrolled in specialist (5-year) or BA (4-year) degree programmes during their per-ultimate and final years of study;
-    \item ST is annotated for register as \textit{informational, essay, educational};
+	\item English-to-Russian translation direction,
+	\item produced by full-time students enrolled in specialist (5-year) or BA (4-year) degree programmes during their per-ultimate and final years of study,
+    \item ST is annotated for register as \textit{informational, essay, educational},
     \item ST has more than 400 running words and at least 10 sentences.
 \end{enumerate}
 
@@ -231,27 +232,27 @@ These criteria, as well as \textit{RusLTC} procedures contribute to the homogene
 
 The \textit{Random students} subset (blue circle) is a subset that includes one random translation from all translations available for each of the 334 English sources selected for this project. While the multiple nature of \textit{RusLTC} can be useful for some studies~\cite[see][]{Castagnoli2009}, it is certainly a factor to be considered when producing keyword lists and assessing frequency distributions of lexical items at a subcorpus level. This set was used to represent students in comparison with professionals in experiments on professionalism in Section~\ref{ssec:var}. The quantitative parameters are given in Table~\ref{tab:vars} (page~\pageref{tab:vars}), along the parameters of the professional subcorpus.
 
-The \textit{Error-annotated} subset (green circle) includes independently produced translations that have complete error annotations. It means that translations were produced in an exam or competition setting, and the source text or draft translations were not discussed in the classroom prior to translation. This is a multi-parallel subcorpus built of 46 English sources and 553 annotated translations, counting over 12 thousand sentence pairs in total. Admittedly, the number of unique English source sentences in this subset is a bit over 1,000.
-
-The \textit{Binary labels} subset (light-brown circle), includes \textit{good} and \textit{bad} translations to the same source text. It is a ST-limited version of a larger collection (blue dashed line) that was build using the \textit{grade} attribute. The binary quality labels (\textit{good}/\textit{bad}) are assigned to 1--4 top-ranking translations and to 1--4 bottom translations, respectively.
+The \textit{Error-annotated} subset (green circle) includes independently produced translations that have complete error annotations. It means that translations were produced in an exam or competition setting, and the source text or draft translations were not discussed in the classroom prior to translation. This is a multi-parallel subcorpus built of 46 English sources and 553 annotated translations, counting over 12 thousand sentence pairs in total. The number of unique English source sentences in this subset is a bit over 1,000.
+\label{pg:binary}
+The \textit{Binary labels} subset (light-brown circle), includes \textit{good} and \textit{bad} translations to the same source text. It is a ST-limited version of a larger collection (blue dashed line) that was built using the \textit{grade} attribute. The binary quality labels (\textit{good}/\textit{bad}) are assigned to 1--4 top-ranking translations and to 1--4 bottom translations, respectively.
 
 Finally, the \textit{Direct assessment} subset (dark-brown circle) represents the texts annotated specifically for this thesis in 2020 in a direct assessment setup.  The documents were selected to include other types of quality labels/scores, as shown in Figure~\ref{fig:perspective}. More information on this is given in Section~\ref{ssec:da}.
 
 \subsection{\label{ssec:mypro}Professional Translations}
 
-Professional translations included in this research, were published by established electronic media, such as \textit{BBC Russian service}  (49\%), InoSMI.ru (20\%) and other electronic mass media (\textit{Nezavisimaya Gazeta}, Russian editions of global mass media outlets: \textit{Forbes} and \textit{National Geographic}). These editions publish links to the respective source texts. A considerable portion of the professional subcorpus was harvested automatically by parsing the html code of the respective websites. All translations on these websites have the translator's name and/or are authorised by the editorial board.
+Professional translations included in this research, were published by established electronic media, such as \textit{BBC Russian service}  (49\%), InoSMI.ru (20\%) and other electronic mass media (8\%) such as \textit{Nezavisimaya Gazeta}, Russian editions of \textit{Forbes} and \textit{National Geographic}. These editions publish links to the respective source texts. A considerable portion of the professional subcorpus was harvested automatically by parsing the html code of the respective websites. All translations on these websites have the translator's name and/or are authorised by the editorial board.
 The automatically crawled data was filtered to exclude noisy results.
 Remaining 23\% were sampled from the \gls{RNC} parallel subcorpus of newspaper texts~\cite{Sitchinava2019}. 
 
 \label{pg:stu_pro_made_comparable}
 To make sure that  English sources for student and professional translations are register-comparable, we applied the methodology described in~\citet{Kunilovskaya2019similar}. In brief, this approach consists (i) in vectorising documents with a ML model trained to predict document functionality along 10 dimensions and then (ii) in extracting the most similar documents from given text collections.
 
-We relied on the most successful model from our previous research -- a bidirectional LSTM with an attention layer trained on texts in mixed token-PoS representations suggested by~\citet{Baroni2006}. This experimental setup returned better results in the evaluation study predicting the functionality of documents in a corpus with `known' register composition. 
+We relied on the most successful model from our previous research (biLSTMa) -- a bidirectional LSTM with an attention layer trained on texts in mixed token-PoS representations suggested by~\citet{Baroni2006}. This experimental setup returned better results in the evaluation study predicting the functionality of documents in a corpus with `known' register composition. 
 % a multi-label task in a deep neural network architecture
 This model was trained in a multi-label task. It used annotations described in detail in~\citet{Sharoff2018} and based on \textit{Functional Text Dimensions} approach (ibid). In that annotation effort, linguistics students assigned texts a score on a 4-point Likert scale that reflected the proximity of a text to the suggested functional prototype (argumentative, evaluative, informational, fiction, instruction, news, personal, promotional, technical-scientific, legal). The annotations were produced for English and Russian; the reported inter-rater agreement averaged at was reported at Krippendorff's $\alpha > 0.76$. 
 
 The quantitative parameters of the resulting comparable subcorpora of professional and student translations used in this thesis are reported in Table~\ref{tab:vars}. For consistency, the table includes information about a comparable reference corpus of non-translations described in the next section (Section~\ref{ssec:ref}).
-
+\vspace{-1em}
 % updated 11 July 2022
 % after filtering, pre-processing and annotation (based on conllu format)
 % the diverging number of sentences after annotation in parallel corpora is reported based on EN (which is higher in stu and lower in pro than in tgt :-))
@@ -271,8 +272,9 @@ The quantitative parameters of the resulting comparable subcorpora of profession
 	non-translations & 497  & 26,038 & -- & 523,737 \\  
 	\bottomrule
 \end{tabular}
-	\caption{\label{tab:vars} Parallel subcorpora of professional and student translations and non-translated reference subcorpus}
+	\caption{\label{tab:vars} Random student translations (blue circle in Figure~\ref{fig:perspective}), professional and non-translated subcorpora}
 \end{table}
+\vspace{-1em}
 
 Note that we report the corpora sizes after filtering, pre-processing and annotation, based on the \textit{CoNLL-U} format of the corpora, which was used to extract morphosyntactic translationese features.
 
@@ -283,14 +285,15 @@ Similar to student subcorpus, the automatic sentence alignment for professional 
 This thesis uses two types of monolingual document collections comparable to the parallel data: (i) non-translation, or reference subcorpus, which is an integral part of the research corpus and is directly used in all experiments, and (ii) large monolingual resources used to train language models for English and Russian required for the extraction of collocational and n-gram features. 
 The Russian reference subcorpus and the resource used to train Russian language models are non-intersecting.  
 
-Non-translated Russian texts (`ref', i.e. reference corpus) were extracted from the main \gls{RNC} (2016 version, counting in total over 50 thousand documents across a number of registers). For extracting a comparable subset, we relied on the corpus metadata and the following sampling frame:
+Non-translated Russian texts (`ref', i.e. reference corpus) were extracted from the main \gls{RNC} (2016 version of post-1950 part), counting in total about 50 thousand documents across a number of registers and counting over 87 million tokens). % RNC Main v.2016 (post1950) parameters: Tokens: 87824590; Documents: 46876
+For extracting a comparable subset, we relied on the corpus metadata and the following sampling frame:
 
 \begin{enumerate}\compresslist{}
-	\item longer than 350 words;
-	\item intended for non-specialist adult audience;
-	\item marked as article or commentary;
-	\item marked as neutral of style;
-	\item created after 2003
+	\item longer than 350 words,
+	\item intended for non-specialist adult audience,
+	\item marked as article or commentary,
+	\item marked as neutral of style,
+	\item created after 2003.
 \end{enumerate}
 
 The resulting sample counted 8,210 documents.
@@ -299,7 +302,7 @@ Further on, this subcorpus of documents originally-authored in the target langua
 
 We used the most successful neural model to generate functional vectors for the total of 738 unique English sources to find two most cross-linguistically similar Russian non-translated documents for each of the English original texts. 
 
-After removing duplicates and 10\% of the document-length and sentence-length outliers, this sample was reduced to 497 documents. 
+After removing duplicates and 10\% of the document-length and sentence-length outliers, this sample was reduced to 497 document, counting 523,737 tokens (see Table~\ref{tab:vars}). 
 
 As we explained above, this subcorpus represents the expected target language norm for the selected register, i.e. the current TL `textual fit' for professional and student translations.
 

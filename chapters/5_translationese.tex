@@ -1,31 +1,79 @@
 \chapter{\label{cha:translationese}Translation Detection}
 This chapter examines the strength of the investigated hypothesis that the amount of translationese manifested in a translation can be a good predictor of the level of professionalism and quality. 
 
+Section~\ref{sec:my_classifiers} opens with an overview of the workflow in this thesis. This overview brings together the practical steps that have been covered so far and links them to the experiments reported in the next two chapters. Section~\ref{sec:my_classifiers} continues with description of the experimental setup for classification tasks including details on learning algorithms, generation of alternative representations and numeric data preprocessing.
 Sections~\ref{sec:detect} and~\ref{sec:bestof} have the results of translationese classifications, where translations (professional or student) are distinguished from non-translations to demonstrate that the selected hand-engineered features are, in fact, effective to capture translationese. 
 %To make sure that the proposed features are competitive in a translation detection task, their performance is contrasted with other representations including content-dependent features. 
 If our hypothesis stands, we can expect that the more salient translationese indicators will also be good quality predictors. 
 To shed more light on feature subsets and individual variables that can be considered most effective in capturing translationese, we analyse outcomes of automatic feature selection and perform univariate analysis for the three proposed types of features in Section~\ref{sec:bestof}.
 
-The chapter opens with a description of the experimental setup for classification tasks including details on learning algorithms, generation of alternative representations and numeric data preprocessing (Section~\ref{sec:my_classifiers}).
-
 \section{\label{sec:my_classifiers}Experimental Setup}
+\paragraph{Overview of the research methodology}
+
+Figure~\ref{fig:flowchart} has a diagram that shows the workflow steps followed in the methodology of this project. It also explains the structure of the thesis: each step corresponds to a self-contained chapter, including a theoretical overview and practical solutions implemented in this project. The order of chapters is motivated by the perceived importance of the respective contributions rather than their chronological sequence shown in Figure~\ref{fig:flowchart}. 
+\textit{Data collection} involved building two sentence-aligned parallel corpora -- of student and professional translations -- and a register-comparable non-translation corpus, which represents the expected TL norm.
+Generating the targets for ML tasks, i.e. \textit{quality labels/scores} was based on the theoretical exploration of the concept of quality in MT and translation studies as well as on the survey of the current recommendations and best practices in benchmarking translation quality. Chapter~\ref{cha:quest} has the details on how we generated binary quality labels, quality scores from error annotation and from direct assessment of translation quality. Note that we also use student and professional translation categories as quality-related binary labels. 
+\textit{Feature engineering and extraction} is the cornerstone of the methodology (Chapter~\ref{cha:indicators}). Using linguistically-motivated features allows meaningful interpretation of the findings via statistical analysis and feature selection.
+Chapters~\ref{cha:translationese} and~\ref{cha:pro_qua} contain the description of the experimental results. \textit{Translation detection tasks} aim to demonstrate that the selected features are effective in distinguishing translations from non-translations, and to identify strong indicators of translationese in English-to-Russian translation of mass media texts. \textit{Translation quality estimation tasks} put the main hypothesis of the thesis to an empirical test. Their results show to what extent various real-life manual methods of translation quality annotation reflect the translationese properties of translations.
+
+%\begin{center}
+%	\smartdiagramset{back arrow disabled=true,
+%		module minimum height=1cm,% initial: 1cm
+%		module minimum width=2cm,% initial: 2cm
+%		module x sep=3} % initial 2.75
+%	
+%	\smartdiagram[flow diagram:horizontal]{teaching, RusLTC,
+%		errors/grades, CoLing research}
+%\end{center}
+% from https://tex.stackexchange.com/questions/574742/can-i-include-a-vertical-smartdiagram-addition-below-horizontal-smartdiagram
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[n/.style={minimum height=9mm, minimum width=3cm,draw=cyan,thick,fill=cyan!20,rounded corners,inner xsep=1mm}]
+		\def\a{7.5} % vertical distance between nodes
+		\def\b{1.5} % horisontal distance between nodes
+		\path[nodes={n}]
+		(0,0) node (s3) [draw=red]{Feature engineering and extraction (Chapter~\ref{cha:indicators})}
+		++(-\a,0) node (A) [fill=white]{Translationese studies}
+		(s3)		
+		++(0,-\b) node (s4) {Translation detection tasks (Chapter~\ref{cha:translationese})}
+		(s4)
+		++(-\a,0) node (D) [fill=white]{\gls{ML}, feature selection}
+		(s4)
+		++(0,-\b) node (s5) {Translation quality estimation tasks (Chapter~\ref{cha:pro_qua})}
+		(s3)		
+		++(0,\b) node (s2) {Obtaining quality labels/scores (Chapter~\ref{cha:quest})}
+		(s2)
+		++(-\a,0) node (B) [fill=white]{Quality research, Best practices}
+		(s2)
+		++(0,\b) node (s1) {Data collection (Chapter~\ref{cha:varieties})} 
+		(s1)
+		++(-\a,0) node (C) [fill=white]{Corpus and variational linguistics}
+		(s1)
+		;
+		\foreach \p/\q in {A/s3,s2/s3,s1/s2,C/s1,B/s2,D/s4,D/s5,s3/s4,s4/s5}
+		\draw[-stealth] (\p)--(\q);
+	\end{tikzpicture} 
+	\caption{\label{fig:flowchart}Major steps in this thesis workflow}
+\end{figure}
+
+%Both examiners agreed that the thesis would benefit from the addition of a concise explanation, e.g. by means of a framework/diagram/graphic and/or a few paragraphs, of the various workflow steps followed in the methodology. This additional text/graphic should focus only on the important milestones of the methodology followed, e.g. collection of student corpora, professional translators corpora, creation of spreadsheet with labels, meta descriptors and numeric features, how this spreadsheet was used, with which tools/models, etc, and these can be cross-referenced to the section(s) in the thesis where they are explained further/in more detail. This additional explanation of the methodology can be added to the Experimental Setup section (section 5.1), for example.
 
 \paragraph{Dataset and proposed translationese indicators} The input to classifiers was arranged as a table of 3055 rows by 167 columns. In that table each row represented a document (including sentence-aligned source texts for parallel subcorpora). Columns stored three labels, six meta descriptors of each document-instance (document ID, language, word count, number of sentences, raw text and lemmatised text) and 158 hand-engineered numeric features from the attempted manual feature sets. 
 
 The labels reflected pairs of categories, listed below to introduce their shorthand names used throughout the experiments:
 
 \begin{description}\compresslist{}
-	\item[pro vs ref:] professional translations vs non-translations;
-	\item[stu vs ref:] student translations vs non-translations;
-	\item[stu vs pro:] student translations vs professional translations (see Section~\ref{ssec:var} in Chapter~\ref{cha:pro_qua});
+	\item[pro vs ref:] professional translations vs non-translations,
+	\item[stu vs ref:] student translations vs non-translations,
+	\item[stu vs pro:] student translations vs professional translations (see Section~\ref{ssec:var} in Chapter~\ref{cha:pro_qua}),
 	\item[bad vs good:] categorial document-level quality labels from holistic assessment of student translations verified in a separate annotation effort (results on this dataset appear in Section~\ref{ssec:bin}).
 \end{description}
 
 Throughout the rest of the thesis, linguistically-motivated translationese-aware feature sets are represented as follows:
 \begin{description}\compresslist{}
-	\item[UD:] 60 features extracted from Universal Dependencies annotations (see Section~\ref{ssec:ud});
-	\item[collgram:] 24 features representing abstract collocational properties of texts (see Section~\ref{ssec:coll});
-	\item[ngram:] 10 features from 1-2-3-gram frequency lists and from n-gram-based language models (see Section~\ref{ssec:ngram});
+	\item[UD:] 60 features extracted from Universal Dependencies annotations (see Section~\ref{ssec:ud}),
+	\item[collgram:] 24 features representing abstract collocational properties of texts (see Section~\ref{ssec:coll}),
+	\item[ngram:] 10 features from 1-2-3-gram frequency lists and from n-gram-based language models (see Section~\ref{ssec:ngram}),
 	\item[all:] combination of the above feature sets (94 features).
 \end{description}  
 
@@ -39,7 +87,7 @@ The hand-engineered features were relatively content-independent. Their performa
 The vectorisation setup in each case was implemented as follows.
 
 \label{pg:tfidf_meth}
-\textit{Tf-idf} is a numeric representation for documents which uses weighted frequencies of a corpus vocabulary items as vector components. Those vectors were calculated using a dedicated \textit{scikit-learn} utility. We used all available documents in the Russian language as the underlying corpus. 
+\textit{Tf-idf} is a numeric representation for documents which uses weighted frequencies of a corpus vocabulary items as vector components. Those vectors were calculated using TF-IDF Vectorizer, an algorithm provided in \textit{scikit-learn}, a free software machine learning library for the Python programming language\footnote{\url{https://scikit-learn.org/stable/modules/generated/sklearn.feature\_extraction.text.TfidfVectorizer.html}}. We used all available documents in the Russian language as the underlying corpus. 
 To reduce vocabulary size and increase informativity of this representation, the corpus was lemmatised. All proper names and their sequences were replaced with a \textit{PROPN} tag (e.g \textcyrillic{\textit{говорит Максимилиан Чуперски}} [says Maksymilian Czuperski] --> \textcyrillic{\textit{говорить PROPN}}). All digits were replaced with \textit{X} (e.g. \textit{12 октября 1982; 2,5;  1980-е} --> \textit{XX October XXXX; X.X; XXXXs}). The vocabulary was built to include word unigrams, bigrams and trigrams. The vector size was limited to 5000 most frequent corpus vocabulary items. Other hyper-parameters were set to the default values from the library. 
 % we should have excluded items in English as simple give-aways for translations vs non-translations, because translatons often retain the proper names in the SL in parenthesis, and those were not tagged as PROPN but as foreign_word.
 
@@ -48,12 +96,12 @@ We also used four pre-trained contextualised embedding models to infer vectors f
 We selected the models that were trained to solve various NLP tasks deemed more suitable for our purposes. The list below gives a brief description of each model. 
 \label{pg:embeddings}
 \begin{description}\compresslist{}
-	\item[stsb-xlm-r-m:] a multilingual model\wlvfootnote{\url{https://huggingface.co/sentence-transformers/stsb-xlm-r-multilingual}} trained using Sentence-BERT (SBERT), a~\gls{SOTA} framework to compute sentence representation~\cite{Reimers2019}. SBERT is a generic name for contextualised embedding models fine-tuned on various sentence-level tasks such as question-answering, sentiment, paraphrasing, etc. The model is a multilingual XLM-R fine-tuned on \gls{STS} task;
+	\item[stsb-xlm-r-m:] a multilingual model\wlvfootnote{\url{https://huggingface.co/sentence-transformers/stsb-xlm-r-multilingual}} trained using Sentence-BERT (SBERT), a~\gls{SOTA} framework to compute sentence representation~\cite{Reimers2019}. SBERT is a generic name for contextualised embedding models fine-tuned on various sentence-level tasks such as question-answering, sentiment, paraphrasing, etc. The model is a multilingual XLM-R fine-tuned on \gls{STS} task,
 	
-	\item[TQmono-m:] a cross-lingual model for many languages\wlvfootnote{\url{https://TransQuest/monotransquest-da-multilingual}} trained by the more successful architecture from \textit{TransQuest} package~\cite{Ranasinghe2020}, to solve MT quality estimation task based on DA scores;
+	\item[TQmono-m:] a cross-lingual model for many languages\wlvfootnote{\url{https://TransQuest/monotransquest-da-multilingual}} trained by the more successful architecture from \textit{TransQuest} package~\cite{Ranasinghe2020}, to solve MT quality estimation task based on DA scores,
 	% these models generate word embeddings that are mean-pooled under the hood by SentenceTransformers library 
 	
-	\item[ruRoberta:] a dedicated Russian model\wlvfootnote{\url{https://huggingface.co/sberbank-ai/ruRoberta-large}} trained as a full-mask language model using \textit{RoBERTa}, an optimised BERT transformers training method proposed by~\citet{Liu2019};
+	\item[ruRoberta:] a dedicated Russian model\wlvfootnote{\url{https://huggingface.co/sberbank-ai/ruRoberta-large}} trained as a full-mask language model using \textit{RoBERTa}, an optimised BERT transformers training method proposed by~\citet{Liu2019},
 	
 	\item[mdeberta3:] a multilingual version of \textit{DeBERTa}~\cite{He2021}, an improvement on \textit{BERT} and~\textit{RoBERTa} word embedding architectures, trained on 2.5T CommonCrawl corpus for 100 languages\wlvfootnote{\url{https://huggingface.co/microsoft/mdeberta-v3-base}}. At the time of writing, it is \gls{SOTA} in word-level representation learning. 
 \end{description}
@@ -67,7 +115,7 @@ For all experiments and representations, the input data was transformed with \te
 \paragraph{Algorithms} Both classification and regression experiments (reported in Chapter~\ref{cha:pro_qua}) are based on \gls{SVM} algorithm as implemented in \textit{scikit-learn}, a Python library for machine learning. 
 This algorithm was shown to be superior to tested alternatives for translationese classification in a number of research projects~\cite[see, for example,][]{Ilisei2010}. It is also known to be robust to high-dimensional datasets where the number of instances is similar or even smaller than the number of features.
 
-This research is focused on testing the hypothesis whether translationese indicators are correlated with translation quality, and on exploring the relations between a number of diverse representations and quality labels. Our aims did not include achieving the best performance possible for given datasets, therefore, the results for various SVM kernels and other parameters of algorithms that can be discovered through optimisation studies are omitted. 
+This research is focused on testing the hypothesis whether translationese indicators are correlated with translation quality, and on exploring the relations between a number of diverse representations and quality labels. Our aims did not include achieving the best performance possible for given datasets, therefore, the results for various SVM kernels and other parameters of algorithms that can be discovered through optimisation studies are omitted. Besides, the preliminary experiments demonstrated that for some tasks the higher results were achieved on the \textit{radial basis function} kernel that does not allow an easy access to feature weights. It would have made the feature selection less uniform across the experiments and datasets; their results would be less comparable. 
 Instead, the classification experiments are based on a linear kernel SVM and regularisation parameter $C=1.0$ (default for SVM \textit{scikit-learn} setting).
 
 SVM uses pairwise distances between the datapoints from given categories and identifies instances with most similar vectors (called \textit{support vectors}). Then, it calculates a maximum hyperplane separating these support vectors, by assigning positive or negative weights to features to put instances on the required side of the hyperplane and to reduce algorithm error. Instances that are found on the opposite sides of the hyperplane are assigned to the respective categories. 
@@ -209,7 +257,7 @@ This is done to demonstrate the achievable in our setup, and to answer the quest
 	\caption{\label{tab:pro-ref}Professionals: translationese classification. Support: N(pro)=404, N(ref)=497}
 \end{table}
 
-Results for a neural classifier (see description at page~\pageref{pg:neural}), which was run in the same settings as an alternative for a linear SVM, appear in Appendix~\ref{appx:neural_res}. Systematic comparison between the SVM and neural classifier showed that out of 40 settings across various feature sets in four binary classifications, statistically significant differences between the algorithms were observed in only four cases (as measured with a two-sided t-test using F1-scores from 10 cross-validation folds, at confidence level $\alpha=0.05$). It confirms that in terms of learnability, SVM achieved a reasonable performance level in all tasks. 
+Results for a neural classifier (see description on page~\pageref{pg:neural}), which was run in the same settings as an alternative for a linear SVM, appear in Appendix~\ref{appx:neural_res}. Systematic comparison between the SVM and neural classifier showed that out of 40 settings across various feature sets in four binary classifications, statistically significant differences between the algorithms were observed in only four cases (as measured with a two-sided t-test using F1-scores from 10 cross-validation folds, at confidence level $\alpha=0.05$). It confirms that in terms of learnability, SVM achieved a reasonable performance level in all tasks. 
 
 Generally, both translation varieties were easily separable from originally-authored document on all attempted representations. Both lowest and highest F1-scores were seen on student translations: 65.63\% on \textit{collgram} feature set and 98.36\% on \textit{mdeberta3} vectors. 
 
@@ -337,7 +385,7 @@ Finally, the right-most scatter plot in Figure~\ref{fig:other} shows that a dedi
 %TQmono-m Variance explained per dimension:  [0.44481555 0.13820085]
 %ruRoberta Variance explained per dimension:  [0.09490415 0.0667047 ] naturally no src
 
-Despite contextualised embeddings seem to capture different aspects of documents relatedness, they achieved the same classification result: there were no significant differences between \textit{TQmono-m, ruRoberta and mdeberta3}, with \textit{stsb-xlm-r-m} being inferior only to \textit{ruRoberta} and \textit{mdeberta3} on professional translations by either SVM or neural classifier. 
+Although contextualised embeddings seem to capture different aspects of documents relatedness, they achieved the same classification result: there were no significant differences between \textit{TQmono-m, ruRoberta and mdeberta3}, with \textit{stsb-xlm-r-m} being inferior only to \textit{ruRoberta} and \textit{mdeberta3} on professional translations by either SVM or neural classifier. 
 On (more challenging) student translations mean-pooled word embeddings (\textit{ruRoberta} and \textit{mdeberta3}) significantly outperformed both sentence embedding models (\textit{TQmono-m} and \textit{stsb-xlm-r-m}) at least by SVM.
 % By neural classifier TQmono-m is not different from word-embeddings, while stsb-xlm-r-m significantly loses to all of them
 
@@ -348,6 +396,7 @@ This section presents the results of feature analysis, which detects strong tran
 The primary method to achieve this goal is feature selection, supported by univariate feature analysis and statistical significance tests.
 
 %Eventually, we want to see whether strong translationese indicators are correlated with professionalism and quality labels/scores and could predict them in a ML setup. 
+\vspace{-1em}
 
 \subsection{\label{ssec:best_ud}Best of UD features}
 
@@ -365,18 +414,19 @@ After discarding noisy and collinear features, the performance of both classific
 Figures~\ref{fig:pro-weights} and~\ref{fig:stu-weights} visualise the weights assigned to the respective subsets of best features in each classification. Features with larger absolute weights can be considered more predictive of the distinctions between categories. 
 Detailed explanations of shorthand used on the x-axis can be found in Appendix~\ref{appx:ud}.
 \vspace{-2em}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.80\linewidth]{figures/pro-ref-bars-ud33}
 	\caption{\label{fig:pro-weights}Weights loading the decision towards each category for 32 RFECV-selected items}	
 \end{figure}
-\vspace{-2.5em}
+\vspace{-2em}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.80\linewidth]{figures/stu-ref-bars-ud42}
 	\caption{\label{fig:stu-weights}Weights loading the decision towards each category for 42 RFECV-selected items}	
 \end{figure}
-\vspace{-2.5em}
 
 %RFECV: Shared best UD features for translation detection (28, sorted by average absolute weight): nsubj, amod, mark, sentlength, sconj, acl, pasttense, attrib, nnargs, copula, obj, nmod, neg, advcl, pverbals, wdlength, aux:pass, compar, fixed, ppron, advmod, addit, determ, deverbals, simple, finites, ccomp, acl:relcl
 To have a closer look at the commonalities between translation varieties and feature importance in these selections, the lists were intersected and ranked based on the weights assigned by the linear kernel SVM algorithm. Feature weights were obtained from classifiers run on full datasets (without reserving a fraction for testing). Experiments showed that the feature weights were approximately the same if the weights were averaged across the models learnt on each of the folds in a cross-validation setup.
@@ -451,6 +501,18 @@ To understand more about the prominent patterns of language use in translations 
  
 For each feature, we compared its distributions in sources, targets and non-translations. The differences were tested for statistical significance using \textit{Mann-Whitney U test for independent samples} and \textit{Wilcoxon signed-rank test} for paired samples of source and target texts. 
 
+For all statistical tests and correlation analysis below, we used \textit{SciPy}\footnote{\url{https://docs.scipy.org/doc/scipy/}}, a open-source library for Python, which provides a collection of mathematical algorithms and convenience functions for data analysis.
+
+First, we identified the features that had significant differences between translations and non-translations (\textit{tgt} and \textit{ref} categories): these are translationese indicators by definition. 
+Then, we established whether there were statistically significant differences between the two languages (\textit{src} and \textit{ref} categories) with respect to a given feature, and which language had greater values.
+Finally, for each feature, we performed pairwise comparisons between frequencies in translations and in each of the languages.
+
+The outcome of the above sequence of tests can be viewed as capturing the amount of effort invested by a translator to reconcile differences between the two languages (if any) for a given feature. The features, representing various trends in translational behaviour, can be arranged in three major groups (see Table~\ref{tab:trends}), depending on the adopted translation strategy and the scale of its implementation. 
+
+There was a group of features that were useless for a translationese study, because they had the same frequencies in translations and non-translations, and also did not distinguish the languages. In the classification based on professional translations, this group included frequencies of adpositions (prepositions) and discourse particles such as interjections. In student translation data, there were no statistically significant differences between document categories for interrogative sentences and adverbial quantifiers (e.g. \textcyrillic{\textit{совершенно}} [entirely],  \textcyrillic{\textit{чрезмерно}} [utterly]).
+
+\newpage
+
 \begin{longtable}[H]{l|l|p{3cm}p{8cm}}
 	\toprule		
 	& group & trend & description \\
@@ -475,13 +537,6 @@ For each feature, we compared its distributions in sources, targets and non-tran
 	\caption{\label{tab:trends}Patterns in translational behaviour (SL=source language, ST=source text, TL=target language, TT=target text)}\\
 \end{longtable}
 
-First, we identified the features that had significant differences between translations and non-translations (\textit{tgt} and \textit{ref} categories): these are translationese indicators by definition. 
-Then, we established whether there were statistically significant differences between the two languages (\textit{src} and \textit{ref} categories) with respect to a given feature, and which language had greater values.
-Finally, for each feature, we performed pairwise comparisons between frequencies in translations and in each of the languages.
-
-The outcome of the above sequence of tests can be viewed as capturing the amount of effort invested by a translator to reconcile differences between the two languages (if any) for a given feature. The features, representing various trends in translational behaviour, can be arranged in three major groups (see Table~\ref{tab:trends}), depending on the adopted translation strategy and the scale of its implementation. 
-
-There was a group of features that were useless for a translationese study, because they had the same frequencies in translations and non-translations, and also did not distinguish the languages. In the classification based on professional translations, this group included frequencies of adpositions (prepositions) and discourse particles such as interjections. In student translation data, there were no statistically significant differences between document categories for interrogative sentences and adverbial quantifiers (e.g. \textcyrillic{\textit{совершенно}} [entirely],  \textcyrillic{\textit{чрезмерно}} [utterly]).
 
 Further on, we established the strength of association between each feature values and binary categorical labels (translation, non-translation) by measuring the quality of single-feature logistic regression classifier using macro F1-score (LogR F1). The results of significance tests and variable-label association analysis are collected in Table~\ref{tab:shared_rfecv_feats}. The features selected by RFECV are sorted by LogR F1-score averaged for students and professionals. Statistically significant results are indicated by \textit{less-than} and \textit{greater-than} signs, the lack thereof is shown with an \textit{equals} sign.
 
@@ -566,6 +621,9 @@ To complete the overview of UD features usefulness for translationese classifica
 
 Table~\ref{tab:spec_rfecv_feats} gives contrastive-comparative profiles for the features that were specific for each translation collection in the translationese classification. The table is sorted by F1-score in the respective classification. Equals sign in \textit{means} column indicates no statistical differences between the shorthanded categories. Again, above-chance association values between the feature values and the labels are boldfaced.
 
+Quite surprisingly, RFECV selections of features specific for either professional or student translation classification included features that indicated no trend in translational behaviour due to lack of differences between the sources, translations and non-translations in that particular setting (see \hyperlink{ft:adp}{adp} and \hyperlink{ft:mquantif}{mquantif}). This might mean that they were employed as part of a multivariate pattern detected by an algorithm.
+
+Some features were not selected for a particular classification despite being well-associated with the class. For example, number of clauses (\textit{numcls}), mean hierarchical distance (\textit{mhd}) and frequency of clausal complements without subjects (\textit{xcomp}) had F1-score over 0.63 when used in a single-feature classifier for professional translations vs reference, but they were not selected by RFECV algorithm in that classification. Most likely these features were collinear with other features in the data. Number of clauses is negatively correlated with ratio of simple sentences, for example. 
 %Specific to PRO-REF (5): case, mdd, passives, content_TTR, adp
 
 %Specific to STU-REF (14): numcls, parataxis, mpred, xcomp, aux, content_dens, superl, nummod, mhd, iobj, nn, mquantif, infs, caus
@@ -604,9 +662,7 @@ Table~\ref{tab:spec_rfecv_feats} gives contrastive-comparative profiles for the 
 	\caption{\label{tab:spec_rfecv_feats}Patterns of translational behaviour with regard to 14 UD features that were unique for professional and student experiments}\\
 \end{longtable}	
 
-Quite surprisingly, RFECV selections of features specific for either professional or student translation classification included features that indicated no trend in translational behaviour due to lack of differences between the sources, translations and non-translations in that particular setting (see \hyperlink{ft:adp}{adp} and \hyperlink{ft:mquantif}{mquantif}). This might mean that they were employed as part of a multivariate pattern detected by an algorithm.
-
-Some features were not selected for a particular classification despite being well-associated with the class. For example, number of clauses (\textit{numcls}), mean hierarchical distance (\textit{mhd}) and frequency of clausal complements without subjects (\textit{xcomp}) had F1-score over 0.63 when used in a single-feature classifier for professional translations vs reference, but they were not selected by RFECV algorithm in that classification. Most likely these features were collinear with other features in the data. Number of clauses is negatively correlated with ratio of simple sentences, for example. \textit{Xcomp} was well-correlated with infinitives and number of modal predicates, because it mostly captured typical cases of transferring English modal verbs into Russian, where in non-translations other ways of expressing subjective modality would be used. Example~\ref{ex:mpred} has a case of positive transfer of a modal predicate, where a more fluent rendition could be \textcyrillic{\textit{Ошибки нельзя исправить.}} \textit{[It is impossible to correct errors]}. 
+\textit{Xcomp} was well-correlated with infinitives and number of modal predicates, because it mostly captured typical cases of transferring English modal verbs into Russian, where in non-translations other ways of expressing subjective modality would be used. Example~\ref{ex:mpred} has a case of positive transfer of a modal predicate, where a more fluent rendition could be \textcyrillic{\textit{Ошибки нельзя исправить.}} \textit{[It is impossible to correct errors]}. 
 
 \ex. \label{ex:mpred}\hspace{1pt}
 (about death penalty) Mistakes can never be rectified.\\
@@ -800,7 +856,7 @@ There was only one feature that had values deviating from both SL and TL.
 Analysis of the features that were brought up as translationese indicators \textbf{provided further evidence for some common anticipations from translation theory and practical textbooks on English-to-Russian translation}. In particular, \textit{translations had higher frequencies of additive discourse markers, analytical passives, copula verbs, modal predicates, personal pronouns, finite verbs and determiners} than non-translations. The most prominent property of translations against non-translations was longer and more complex sentences. 
 % determ: \textcyrillic{\textit{этoт, вecь, тoт, тaкoй, кaкoй, кaждый, любoй, нeкoтopый, кaкoй-тo, oдин, ceй, этo, вcякий, нeкий, кaкoй-либo, кaкoй-нибyдь, кoe-кaкoй}} \textit{this, some, these, that, any, all, every, another, each, those, either, such}
 
-We see two major limitations of this analysis. First, it does not account for other known factors that might result in translationese deviations, except for SL-TL contrast. These factors might include other known tendencies in translation, most importantly explicitation, and lack of developed writing skills in the TL. The results of a detailed manual analysis based on a very similar subset of student translations from the RusLTC, reported in~\citet{Kunilovskaya2022err} as well as examples above indicate that the properties of student translations can be shaped by `unforced' errors, when students fail to generate a fluent output due to limited TL competence.  
+We see two major limitations of this analysis. First, it does not account for other known factors that might result in translationese deviations, except for SL-TL contrast. These factors might include other known tendencies in translation, most importantly explicitation, and lack of developed writing skills in the TL. The results of a detailed manual analysis based on a very similar subset of student translations from the RusLTC, reported in~\citet{Kunilovskaya2023err} as well as examples above indicate that the properties of student translations can be shaped by `unforced' errors, when students fail to generate a fluent output due to limited TL competence.  
 Second, although the analysis is based on document- and sentence-level aligned corpora, we did not link the individual items within sentences. It is likely that specific frequencies in translations were not generated directly by the frequencies of comparable ST items.
 % correlation is not causation: measure and plot correlations between ST and TT items. 
 
